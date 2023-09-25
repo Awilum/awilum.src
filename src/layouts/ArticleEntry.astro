@@ -1,7 +1,10 @@
 --- 
 ---
-<h3 class="text-7xl text-left block py-14 uppercase font-bold border-b border-solid border-black">{Astro.props.frontmatter.title}</h3>
+<h1 class="text-7xl text-left block py-14 uppercase font-bold border-b border-solid border-black">{Astro.props.frontmatter.title}</h1>
 	<div class="text-left text-xl font-bold border-b border-solid border-black py-10 mb-10">{
 		<span><a href=`/articles/` class="bg-black text-white px-3 py-2 mr-1">Все статьи</a></span>
 	} </div>
-<slot />
+
+<div class="max-w-[1000px] mx-auto text-lg">
+	<slot />
+</div>
