@@ -1,0 +1,68 @@
+--- 
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="lofi">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description">
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<div class="flex bg-base-100 max-w-[1200px] mx-auto border-b-2  py-5 border-black items-center">
+			<div class="flex-1">
+			  <a class="btn btn-ghost normal-case font-bold text-3xl pl-0 ml-0 hover:underline hover:bg-transparent" href="/">awilum</a>
+			</div>
+			<div class="flex-none">
+			  <ul class="flex px-1 text-lg">
+				<li><a class="px-3 hover:underline hover:bg-transparent font-bold" href="/articles">Статьи</a></li>
+				<li><a class="px-3 hover:underline hover:bg-transparent font-bold" href="/courses">Курсы</a></li>
+				<li><a class="px-3 pr-0 hover:underline hover:bg-transparent font-bold" href="/about">Об авторе</a></li>
+			  </ul>
+			</div>
+		  </div>
+		<div class="max-w-[1200px] mx-auto">
+		  <slot />
+		</div>
+		<footer class="max-w-[1200px] mx-auto border-t-2 border-black py-10 mt-20 border-solid">
+			<p class="mb-6">
+				<span class="mr-1 font-bold">Курсы:</span>
+				<a href="#" class="underline">JavaScript Базовый уровень</a> • 
+				<a href="#" class="underline">JavaScript Продвинутый уровень</a> • 
+				<a href="#" class="underline">JavaScript Тренажер</a> •
+				<a href="#" class="underline">Все курсы</a>
+			</p>
+			<p class="mb-6">
+				<span class="mr-1 font-bold">Статьи:</span>
+				<a href="#" class="underline">Что такое алгоритм?</a> • 
+				<a href="#" class="underline">Алгоритмы сортировки</a> • 
+				<a href="#" class="underline">JavaScript Тренажер</a> •
+				<a href="#" class="underline">Все статьи</a>
+			</p>
+			<p class="mb-6">
+				<span class="mr-1 font-bold">Ссылки:</span>
+				<a href="#" class="underline">Twitter</a> • 
+				<a href="#" class="underline">GitHub</a> • 
+				<a href="#" class="underline">Instagram</a>
+			</p>
+			<p class="font-semibold text-xs">&copy; SERGEY ROMANENKO 2023 • ALL RIGHTS RESERVED.</p>
+		</footer>
+	</body>
+</html>
+<style is:global>
+	html {
+		font-family: system-ui, sans-serif;
+	}
+	code {
+		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+			Bitstream Vera Sans Mono, Courier New, monospace;
+	}
+</style>
