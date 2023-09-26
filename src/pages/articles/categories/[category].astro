@@ -7,23 +7,23 @@ export async function getStaticPaths() {
   const allArticles = await getCollection("articles");
   const uniqueTags = [...new Set(allArticles.map((post) => post.data.categories).flat())];
 
-  return uniqueTags.map((tag) => {
+  return uniqueTags.map((category) => {
     const filteredPosts = allArticles.filter((post) =>
-      post.data.categories.includes(tag)
+      post.data.categories.includes(category)
     );
     return {
-      params: { tag },
+      params: { category },
       props: { posts: filteredPosts },
     };
   });
 }
 
-const { tag } = Astro.params;
+const { category } = Astro.params;
 const { posts } = Astro.props;
 ---
 
-<Layout title={tag ?? ""}>
-	<h3 class="text-7xl text-left block py-14 uppercase font-bold border-b border-solid border-black">Статьи <br>в категории "{categories[tag ?? ""].title}"</h3>
+<Layout title={category ?? ""}>
+	<h3 class="text-7xl text-left block py-14 uppercase font-bold border-b border-solid border-black">Статьи <br>в категории "{categories[category ?? ""].title}"</h3>
 	<div class="text-left text-xl font-bold border-b border-solid border-black py-10">{
 		<span><a href=`/articles/` class="bg-black text-white px-3 py-2 mr-1 ">Все статьи</a></span>
 	} </div>
