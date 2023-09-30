@@ -8,30 +8,30 @@ const articles = (await getCollection('articles')).sort(
 );
 ---
 
-<Layout title="Welcome to Astro.">	
+<Layout title="Статьи о веб разработке" description="Статьи о веб разработке" keywords="php, js, css, development">	
 	<h3 class="text-7xl text-left block py-14 uppercase font-bold border-b border-solid border-black">Статьи</h3>
 	<div class="text-left text-xl font-bold border-b border-solid border-black py-10">{
 		Object.keys(categories).map((category, i) => (
-			<span><a href=`/articles/categories/${category}/` class="bg-black text-white px-3 py-2 mr-1 ">{categories[category].title}</a>{i !== Object.keys(categories).length - 1 && " "}</span>
+			<a href=`/articles/categories/${category}/` class="bg-black text-white px-3 py-2 mr-2 ">{categories[category].title}</a>
 		))
 	} </div>
 	<div>
 		{
 			articles.map((article, index) => (
-				<div class="flex border-b border-dashed border-slate-500 py-10 items-center">
+				<div class=`flex items-center py-10 ${index < articles.length - 1 ? "border-b border-dashed border-slate-500" : "pb-0"}`>
 					<div class="w-9/12">
 						<a href=`/articles/${article.slug}/` class="text-2xl font-bold underline">{article.data.title}</a>
 					</div>
-						<div class="w-3/12 text-right">
-							{
-								article.data.categories.map((category) => (
-										<a href=`/articles/categories/${category}/` class="bg-black text-white px-4 py-2">
-											{categories[category]['title']}
-										</a>
-									)
+					<div class="w-3/12 text-right">
+						{
+							article.data.categories.map((category) => (
+									<a href=`/articles/categories/${category}/` class="bg-black text-white px-4 py-2">
+										{categories[category]['title']}
+									</a>
 								)
-							}
-						</div>
+							)
+						}
+					</div>
 				</div>
 			))
 		}

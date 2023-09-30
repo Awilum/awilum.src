@@ -3,23 +3,36 @@ import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { categories } from '../consts';
 
-let articles = await getCollection('articles');
+let articles = (await getCollection('articles')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
 articles = articles.slice(0,3);
 ---
 
-<Layout title="Welcome to Astro.">	
-	<h3 class="text-7xl text-left block py-14 uppercase font-bold border-b border-solid border-black">Статьи</h3>
-	<div class="">
+<Layout title="Веб-портал про разработку программного обеспечения Сергея Романенко." 
+        description="Разработчик с крепкой волей к обучению и исследованию новых технологий и архитектурных решений. ">	
+		<h3 class="text-7xl text-left block py-14 uppercase font-bold border-b border-solid border-black">Привет!<br>Меня зовут Сергей!</h3>
+		<div class="grid lg:grid-cols-1 grid-cols-1 gap-10 pt-10 mb-10">
+			<div class="text-xl">
+					<p>Я частный разработчик, ментор и преподаватель онлайн-курсов. </p>
+					<p>В течение 18 лет я посвятил себя разработке, поддержке и тестированию проектов различной сложности. За это время я приобрел обширный опыт работы с различными языками программирования и технологиями.</p>
+					<p>Мой опыт включает работу с языками программирования, такими как: Basic, Pascal, C/C++, ASM86, Object Pascal, Delphi, PHP, JavaScript, SQL, Python, Go, Dart, Lua и другие. Кроме того, я активно участвую в разработке и поддержке проектов с открытым исходным кодом.</p>
+					<p class="mb-0">Я готов поделиться своими знаниями и опытом с вами, помогая вам улучшить ваши навыки программирования и достичь своих целей. Рад быть вашим гидом в мире разработки программного обеспечения!</p>
+			</div>
+		</div>
+	<h3 class="text-7xl text-left block py-14 uppercase font-bold border-b border-t border-solid border-black">Статьи</h3>
+	<div>
 		{
 			articles.map((article, index) => (
 				<div class="flex border-b border-dashed border-slate-500 py-10 items-center">
-					<div class="w-8/12">
-						<a href="" class="text-2xl font-bold underline">{article.data.title}</a>
-						</div>
-						<div class="w-4/12 text-right">
+					<div class="w-9/12">
+						<a href=`/articles/${article.slug}/` class="text-2xl font-bold underline">{article.data.title}</a>
+					</div>
+						<div class="w-3/12 text-right">
 							{
 								article.data.categories.map((category) => (
-										<a href=`/articles/categories/${category}` class="bg-black text-white px-4 py-2">
+										<a href=`/articles/categories/${category}/` class="bg-black text-white px-4 py-2">
 											{categories[category]['title']}
 										</a>
 									)
@@ -30,28 +43,27 @@ articles = articles.slice(0,3);
 			))
 		}
 	</div>
-
 	  <div class="text-center p-10">
-		<a href="#" class="text-2xl font-bold block underline uppercase">Все статьи</a>
+		<a href="/articles/" class="text-2xl font-bold block underline uppercase">Все статьи</a>
 	  </div>
 	  <h3 class="text-7xl text-left block py-14 uppercase font-bold border-b border-t border-solid border-black">Онлайн-курсы<br> по IT-профессиям</h3>
 	  <div class="grid lg:grid-cols-2 grid-cols-1 gap-10 pt-10">
-		  <div class="border border-black rounded p-10">
-			  <a class="text-2xl font-bold mb-6 block underline" href="#">JavaScript Базовый уровень</a>
-			  <p class="mb-6"><strong>В курс входят</strong>:<br> 173 урока, 817 тестов, 155 интерактивных задач</p>
-			  <p class="mb-6 lg:min-h-[220px]">
-				  Самый полный курс по JavaScript для начинающих программистов! Курс состоит из 221 урок, 834 теста и 231 интерактивных задач на программирование! Этот курс идеально подходит для программистов, которые хотят изучить основы языка программирования JavaScript. В ходе курса вы узнаете основные концепции языка, включая переменные, типы данных, условные конструкции, циклы, функции и объекты. Курс также включает в себя большое количество практических заданий, которые помогут закрепить полученные знания.
-			  </p>
-		  </div>
-		  <div class="border border-black rounded p-10">
-			  <a class="text-2xl font-bold mb-6 block underline" href="#">JavaScript Продвинутый уровень</a>
-			  <p class="mb-6"><strong>В курс входят</strong>:<br> 173 урока, 817 тестов, 155 интерактивных задач</p>
-			  <p class="mb-6 lg:min-h-[220px]">
-				  Этот курс представляет следующий этап вашего путешествия в мире разработки приложений на JavaScript. Если вы владеете основами и стремитесь глубже освоить продвинутые концепции и методы, то этот курс именно для вас. Обширные практические задания позволят вам закрепить и применить знания на практике. Вы также столкнетесь с разнообразными тестовыми и классическими задачами, которые часто встречаются на собеседованиях в ведущих компаниях, включая Google, Amazon, Apple, Twitter и Microsoft.			
-			  </p>
-		  </div>
+			<div class="border border-black rounded p-10">
+				<a class="text-2xl font-bold mb-6 block underline" href="https://stepik.org/a/134850">JavaScript Базовый уровень</a>
+				<p><strong>В курс входят</strong>:<br> 222 урока, 836 тестов, 231 интерактивная задача</p>
+				<p class="lg:min-h-[220px]">
+					Самый полный курс по JavaScript для начинающих программистов! Этот курс идеально подходит для программистов, которые хотят изучить основы языка программирования JavaScript. В ходе курса вы узнаете основные концепции языка, включая переменные, типы данных, условные конструкции, циклы, функции и объекты. Курс также включает в себя большое количество практических заданий, которые помогут закрепить полученные знания.
+				</p>
+			</div>
+			<div class="border border-black rounded p-10">
+				<a class="text-2xl font-bold mb-6 block underline" href="https://stepik.org/a/177315">JavaScript Продвинутый уровень</a>
+				<p><strong>В курс входят</strong>:<br> 173 урока, 817 тестов, 155 интерактивных задач</p>
+				<p class="lg:min-h-[220px]">
+					Этот курс представляет следующий этап вашего путешествия в мире разработки приложений на JavaScript. Если вы владеете основами и стремитесь глубже освоить продвинутые концепции и методы, то этот курс именно для вас. Обширные практические задания позволят вам закрепить и применить знания на практике. Вы также столкнетесь с разнообразными тестовыми и классическими задачами, которые часто встречаются на собеседованиях в ведущих компаниях, включая Google, Amazon, Apple, Twitter и Microsoft.			
+				</p>
+			</div>
 		</div>
-		<div class="text-center p-10 mt-10 uppercase border-t border-dashed border-slate-500 py-10 items-center">
-			<a href="#" class="text-2xl font-bold block underline">Все курсы</a>
+		<div class="text-center p-10 mt-10 uppercase border-t border-dashed border-slate-500 py-10 pb-0 items-center">
+			<a href="/courses/" class="text-2xl font-bold block underline">Все курсы</a>
 		</div>
 </Layout>

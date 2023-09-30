@@ -1,32 +1,37 @@
 --- 
 interface Props {
 	title: string;
+	description: string;
+	keywords: string;
 }
 
-const { title } = Astro.props;
+const { title, description, keywords } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en" data-theme="lofi">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description">
+		<meta name="description" content={description}>
+		<meta name="keywords" content={keywords}>
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/themes/prism.min.css" integrity="sha512-/mZ1FHPkg6EKcxo0fKXF51ak6Cr2ocgDi5ytaTBjsQZIH/RNs6GF6+oId/vPe3eJB836T36nXwVh/WBl/cWT4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<title>{title}</title>
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
 	</head>
 	<body>
 		<div class="flex bg-base-100 max-w-[1200px] mx-auto border-b-2  py-5 border-black items-center">
 			<div class="flex-1">
-			  <a class="btn btn-ghost normal-case font-bold text-3xl pl-0 ml-0 hover:underline hover:bg-transparent" href="/">awilum</a>
+			  <a class="btn btn-ghost normal-case font-bold text-3xl pl-0 ml-0 hover:underline hover:bg-transparent" href="/">awilum.ru</a>
 			</div>
 			<div class="flex-none">
 			  <ul class="flex px-1 text-lg">
-				<li><a class="px-3 hover:underline hover:bg-transparent font-bold" href="/articles">Статьи</a></li>
-				<li><a class="px-3 hover:underline hover:bg-transparent font-bold" href="/courses">Курсы</a></li>
-				<li><a class="px-3 pr-0 hover:underline hover:bg-transparent font-bold" href="/about">Об авторе</a></li>
+				<li><a class="px-3 hover:underline hover:bg-transparent font-bold" href="/articles/">Статьи</a></li>
+				<li><a class="px-3 hover:underline hover:bg-transparent font-bold" href="/courses/">Курсы</a></li>
+				<li><a class="px-3 pr-0 hover:underline hover:bg-transparent font-bold" href="/about/">Об авторе</a></li>
 			  </ul>
 			</div>
 		  </div>
@@ -34,25 +39,27 @@ const { title } = Astro.props;
 		  <slot />
 		</div>
 		<footer class="max-w-[1200px] mx-auto border-t-2 border-black py-10 mt-10 border-solid">
-			<p class="mb-6">
+			<p>
 				<span class="mr-1 font-bold">Курсы:</span>
-				<a href="#" class="underline">JavaScript Базовый уровень</a> • 
-				<a href="#" class="underline">JavaScript Продвинутый уровень</a> • 
-				<a href="#" class="underline">JavaScript Тренажер</a> •
-				<a href="#" class="underline">Все курсы</a>
+				<a href="https://stepik.org/a/134850" class="underline">JavaScript Базовый уровень</a> • 
+				<a href="https://stepik.org/a/177315" class="underline">JavaScript Продвинутый уровень</a> • 
+				<a href="https://stepik.org/a/172576" class="underline">JavaScript Тренажер</a> •
+				<a href="/courses/" class="underline">Все курсы</a>
 			</p>
-			<p class="mb-6">
+			<p>
 				<span class="mr-1 font-bold">Статьи:</span>
-				<a href="#" class="underline">Что такое алгоритм?</a> • 
-				<a href="#" class="underline">Алгоритмы сортировки</a> • 
-				<a href="#" class="underline">JavaScript Тренажер</a> •
-				<a href="#" class="underline">Все статьи</a>
+				<a href="/articles/rol-yazyka-programmirovaniya-v-sozdanii-programmnogo-obespecheniya" class="underline">Роль языка программирования в создании программного обеспечения</a> • 
+				<a href="/articles/programmirovanie-eto-ne-tolko-znanie-yazyka-programmirovaniya" class="underline">Программирование – это не только знание языка программирования</a> • 
+				<a href="/articles/vazhnost-razvitiya-logicheskogo-myshleniya-dlya-programmista" class="underline">Важность развития логического мышления для программиста</a> •
+				<a href="/articles/" class="underline">Все статьи</a>
 			</p>
-			<p class="mb-6">
+			<p>
 				<span class="mr-1 font-bold">Ссылки:</span>
-				<a href="#" class="underline">Twitter</a> • 
-				<a href="#" class="underline">GitHub</a> • 
-				<a href="#" class="underline">Instagram</a>
+				<a href="https://twitter.com/_awilum" class="underline">Twitter</a> • 
+				<a href="https://github.com/Awilum" class="underline">GitHub</a> • 
+				<a href="https://www.linkedin.com/in/sergey-romanenko/" class="underline">Linkedin</a> • 
+				<a href="https://awilum.t.me" class="underline">Telegram</a> • 
+				<a href="https://www.instagram.com/sergey.romanenko/" class="underline">Instagram</a>
 			</p>
 			<p class="font-semibold text-xs">&copy; SERGEY ROMANENKO 2023 • ALL RIGHTS RESERVED.</p>
 		</footer>
@@ -65,6 +72,8 @@ const { title } = Astro.props;
 
 	html {
 		font-family: system-ui, sans-serif;
+		font-size: 18px;
+		font-weight: 300;
 	}
 	
 	code {
