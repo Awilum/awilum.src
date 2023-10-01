@@ -1,9 +1,9 @@
 --- 
 ---
-<h1 class="text-7xl text-left block py-14 uppercase font-bold border-b border-solid border-black">{Astro.props.frontmatter.title}</h1>
-<div class="max-w-[1000px] mx-auto text-lg py-10">
+<h1 class="text-7xl py-14 p-10 text-left block uppercase font-bold border-b-2 border-solid border-black">{Astro.props.frontmatter.title}</h1>
+<div class="text-lg py-10 p-10">
 	<slot />
 </div>
-<div class="text-center	text-xl font-bold border-t border-solid border-black py-10 pb-0">{
-	<a href=`/articles/` class="bg-black text-white px-3 py-2 mr-2">Все статьи</a>
-} </div>
+<div class="text-center	text-xl font-bold border-t-2 border-solid border-black py-10">
+	<a href="/articles/" class="bg-black text-white px-3 py-2 mr-2">Все статьи</a>
+</div>

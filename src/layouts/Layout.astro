@@ -23,22 +23,20 @@ const { title, description, keywords } = Astro.props;
 		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
 	</head>
 	<body>
-		<div class="flex bg-base-100 max-w-[1200px] mx-auto border-b-2  py-5 border-black items-center">
-			<div class="flex-1">
-			  <a class="btn btn-ghost normal-case font-bold text-3xl pl-0 ml-0 hover:underline hover:bg-transparent" href="/">awilum.ru</a>
+		<div class="flex bg-base-100 max-w-[1250px] mx-auto border-2 mt-10 border-black items-center">
+			<div class="text-center uppercase border-r-2 border-black">
+			  <a class="block font-black text-6xl hover:bg-black hover:text-white" href="/" style="padding: 22px 30px;">awilum.ru</a>
 			</div>
-			<div class="flex-none">
-			  <ul class="flex px-1 text-lg">
-				<li><a class="px-3 hover:underline hover:bg-transparent font-bold" href="/articles/">Статьи</a></li>
-				<li><a class="px-3 hover:underline hover:bg-transparent font-bold" href="/courses/">Курсы</a></li>
-				<li><a class="px-3 pr-0 hover:underline hover:bg-transparent font-bold" href="/about/">Об авторе</a></li>
-			  </ul>
+			<div class="flex text-center w-full  text-xl uppercase">
+				<a style="padding: 40px 40px" class="flex-auto border-black border-r-2 font-bold hover:bg-black hover:text-white border-black" href="/articles/">Статьи</a>
+				<a style="padding: 40px 40px" class="flex-auto border-black border-r-2 font-bold hover:bg-black hover:text-white border-black" href="/courses/">Курсы</a>
+			    <a style="padding: 40px 40px" class="flex-auto font-bold hover:bg-black hover:text-white" href="/about/">Об авторе</a>
 			</div>
-		  </div>
-		<div class="max-w-[1200px] mx-auto">
-		  <slot />
 		</div>
-		<footer class="max-w-[1200px] mx-auto border-t-2 border-black py-10 mt-10 border-solid">
+		<div class="max-w-[1250px] mx-auto border-2 border-t-0 border-black">
+		  	<slot />
+		</div>
+		<footer class="max-w-[1250px] mx-auto border-2 border-t-0 border-black p-10 py-20 border-black mb-10 border-solid ">
 			<p>
 				<span class="mr-1 font-bold">Курсы:</span>
 				<a href="https://stepik.org/a/134850" class="underline">JavaScript Базовый уровень</a> • 
@@ -61,7 +59,7 @@ const { title, description, keywords } = Astro.props;
 				<a href="https://awilum.t.me" class="underline">Telegram</a> • 
 				<a href="https://www.instagram.com/sergey.romanenko/" class="underline">Instagram</a>
 			</p>
-			<p class="font-semibold text-xs">&copy; SERGEY ROMANENKO 2023 • ALL RIGHTS RESERVED.</p>
+			<p class="font-semibold text-xs m-0">&copy; SERGEY ROMANENKO 2023 • ALL RIGHTS RESERVED.</p>
 		</footer>
 	</body>
 </html>

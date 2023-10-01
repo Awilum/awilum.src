@@ -12,24 +12,27 @@ articles = articles.slice(0,3);
 
 <Layout title="Веб-портал про разработку программного обеспечения Сергея Романенко." 
         description="Разработчик с крепкой волей к обучению и исследованию новых технологий и архитектурных решений. ">	
-		<h3 class="text-7xl text-left block py-14 uppercase font-bold border-b border-solid border-black">Привет!<br>Меня зовут Сергей!</h3>
-		<div class="grid lg:grid-cols-1 grid-cols-1 gap-10 pt-10 mb-10">
-			<div class="text-xl">
-					<p>Я частный разработчик, ментор и преподаватель онлайн-курсов. </p>
-					<p>В течение 18 лет я посвятил себя разработке, поддержке и тестированию проектов различной сложности. За это время я приобрел обширный опыт работы с различными языками программирования и технологиями.</p>
-					<p>Мой опыт включает работу с языками программирования, такими как: Basic, Pascal, C/C++, ASM86, Object Pascal, Delphi, PHP, JavaScript, SQL, Python, Go, Dart, Lua и другие. Кроме того, я активно участвую в разработке и поддержке проектов с открытым исходным кодом.</p>
-					<p class="mb-0">Я готов поделиться своими знаниями и опытом с вами, помогая вам улучшить ваши навыки программирования и достичь своих целей. Рад быть вашим гидом в мире разработки программного обеспечения!</p>
-			</div>
+	
+
+	<h3 class="text-7xl text-left p-10 block py-14 uppercase font-bold border-b-2 border-solid border-black">Привет!<br>Меня зовут Сергей!</h3>
+	<div class="grid lg:grid-cols-1 grid-cols-1 gap-10 p-10">
+		<div class="text-xl">
+				<p>Я частный разработчик, ментор и преподаватель онлайн-курсов. </p>
+				<p>В течение 18 лет я посвятил себя разработке, поддержке и тестированию проектов различной сложности. За это время я приобрел обширный опыт работы с различными языками программирования и технологиями.</p>
+				<p>Мой опыт включает работу с языками программирования, такими как: Basic, Pascal, C/C++, ASM86, Object Pascal, Delphi, PHP, JavaScript, SQL, Python, Go, Dart, Lua и другие. Кроме того, я активно участвую в разработке и поддержке проектов с открытым исходным кодом.</p>
+				<p class="mb-0">Я готов поделиться своими знаниями и опытом с вами, помогая вам улучшить ваши навыки программирования и достичь своих целей. Рад быть вашим гидом в мире разработки программного обеспечения!</p>
 		</div>
-	<h3 class="text-7xl text-left block py-14 uppercase font-bold border-b border-t border-solid border-black">Статьи</h3>
+	</div>
+	
+	<h3 class="text-7xl text-left block py-14 p-10 uppercase font-bold border-b-2 border-t-2 border-solid border-black">Статьи</h3>
 	<div>
 		{
 			articles.map((article, index) => (
-				<div class="flex border-b border-dashed border-slate-500 py-10 items-center">
-					<div class="w-9/12">
+				<div class=`flex ${index < articles.length - 1 ? "border-b border-dashed border-slate-500" : "border-b-2 border-solid border-slate-500"} py-10 items-center`>
+					<div class="w-9/12 p-10 pb-0 pt-0">
 						<a href=`/articles/${article.slug}/` class="text-2xl font-bold underline">{article.data.title}</a>
 					</div>
-						<div class="w-3/12 text-right">
+						<div class="w-3/12 text-right p-10 pb-0 pt-0">
 							{
 								article.data.categories.map((category) => (
 										<a href=`/articles/categories/${category}/` class="bg-black text-white px-4 py-2">
@@ -43,19 +46,21 @@ articles = articles.slice(0,3);
 			))
 		}
 	</div>
+
 	  <div class="text-center p-10">
 		<a href="/articles/" class="text-2xl font-bold block underline uppercase">Все статьи</a>
 	  </div>
-	  <h3 class="text-7xl text-left block py-14 uppercase font-bold border-b border-t border-solid border-black">Онлайн-курсы<br> по IT-профессиям</h3>
-	  <div class="grid lg:grid-cols-2 grid-cols-1 gap-10 pt-10">
-			<div class="border border-black rounded p-10">
+	  
+	  <h3 class="p-10 text-7xl text-left block py-14 uppercase font-bold border-b-2 border-t-2 border-solid border-black">Онлайн-курсы<br> по IT-профессиям</h3>
+	  <div class="grid lg:grid-cols-2 grid-cols-1">
+			<div class="border-b-2 border-r-2 border-black p-10 border-l-0 border-t-0">
 				<a class="text-2xl font-bold mb-6 block underline" href="https://stepik.org/a/134850">JavaScript Базовый уровень</a>
 				<p><strong>В курс входят</strong>:<br> 222 урока, 836 тестов, 231 интерактивная задача</p>
 				<p class="lg:min-h-[220px]">
 					Самый полный курс по JavaScript для начинающих программистов! Этот курс идеально подходит для программистов, которые хотят изучить основы языка программирования JavaScript. В ходе курса вы узнаете основные концепции языка, включая переменные, типы данных, условные конструкции, циклы, функции и объекты. Курс также включает в себя большое количество практических заданий, которые помогут закрепить полученные знания.
 				</p>
 			</div>
-			<div class="border border-black rounded p-10">
+			<div class="border border-l-0 border-black p-10 border-r-0 border-b-2 border-t-0">
 				<a class="text-2xl font-bold mb-6 block underline" href="https://stepik.org/a/177315">JavaScript Продвинутый уровень</a>
 				<p><strong>В курс входят</strong>:<br> 173 урока, 817 тестов, 155 интерактивных задач</p>
 				<p class="lg:min-h-[220px]">
@@ -63,7 +68,8 @@ articles = articles.slice(0,3);
 				</p>
 			</div>
 		</div>
-		<div class="text-center p-10 mt-10 uppercase border-t border-dashed border-slate-500 py-10 pb-0 items-center">
+		<div class="text-center p-10 uppercase py-10 items-center">
 			<a href="/courses/" class="text-2xl font-bold block underline">Все курсы</a>
 		</div>
+	</div>
 </Layout>
