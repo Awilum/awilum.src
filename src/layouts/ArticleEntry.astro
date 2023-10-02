@@ -4,6 +4,23 @@
 <div class="text-lg py-10 p-10">
 	<slot />
 </div>
-<div class="text-center	text-xl font-bold border-t-2 border-solid border-black py-10">
-	<a href="/articles/" class="bg-black text-white px-3 py-2 mr-2">Все статьи</a>
+<div class="flex py-10 p-10 text-xl font-bold border-t-2 border-solid border-black">
+	<div class="flex-auto text-left">
+		<!-- AddToAny BEGIN -->
+		<div>
+			<div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+				<a class="a2a_dd grayscale" href="https://www.addtoany.com/share"></a>
+				<a class="a2a_button_twitter grayscale"></a>
+				<a class="a2a_button_telegram grayscale"></a>
+				<a class="a2a_button_copy_link grayscale"></a>
+			</div>
+		</div>
+		<script>
+		var a2a_config = a2a_config || {};
+		a2a_config.locale = "ru";
+		</script>
+		<script async src="https://static.addtoany.com/menu/page.js"></script>
+		<!-- AddToAny END -->
+	</div> 
+	<div class="flex-auto text-right"><a href="/articles/" class="bg-black text-white px-3 py-2 mr-2">Все статьи</a></div> 
 </div>
