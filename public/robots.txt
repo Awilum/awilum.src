@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://http://localhost:4321/sitemap-index.xml
+Sitemap: https://awilum.ru/sitemap-index.xml
