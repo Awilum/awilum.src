@@ -5,6 +5,8 @@ interface Props {
 	keywords: string;
 }
 
+const currentPath = Astro.url.pathname;
+
 const { title, description, keywords } = Astro.props;
 ---
 
@@ -18,10 +20,14 @@ const { title, description, keywords } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="yandex-verification" content="a1d97fb868e5cf5e" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/themes/prism.min.css" integrity="sha512-/mZ1FHPkg6EKcxo0fKXF51ak6Cr2ocgDi5ytaTBjsQZIH/RNs6GF6+oId/vPe3eJB836T36nXwVh/WBl/cWT4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<meta property="og:locale" content="ru_RU">
+		<meta property="og:title" content={title}>
+		<meta property="og:site_name" content="awilum.ru">
+		<meta property="og:url" content={currentPath}>
+		<meta property="og:description" content={description}>
+		<meta property="og:type" content="website">
 		<title>{title}</title>
 		<link rel="sitemap" href="/sitemap-index.xml" />
-		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
 	</head>
 	<body class="p-4 lg:p-0">
 		<div class="lg:flex bg-base-100 max-w-[1000px] mx-auto lg:mt-10 items-center">
@@ -40,25 +46,25 @@ const { title, description, keywords } = Astro.props;
 		<footer class="max-w-[1000px] mx-auto py-20 mb-10 border-t-2 border-black">
 			<p>
 				<span class="mr-1 font-bold">Курсы:</span>
-				<a href="https://stepik.org/a/134850" class="underline">JavaScript Базовый уровень</a><span class="text-xs px-2">•</span>
-				<a href="https://stepik.org/a/177315" class="underline">JavaScript Продвинутый уровень</a><span class="text-xs px-2">•</span>
-				<a href="https://stepik.org/a/172576" class="underline">JavaScript Тренажер</a><span class="text-xs px-2">•</span>
+				<a href="https://stepik.org/a/134850" class="underline mr-2">JavaScript Базовый уровень</a>
+				<a href="https://stepik.org/a/177315" class="underline mr-2">JavaScript Продвинутый уровень</a>
+				<a href="https://stepik.org/a/172576" class="underline">JavaScript Тренажер</a>
 				<a href="/courses/" class="underline">Все курсы</a>
 			</p>
 			<p>
 				<span class="mr-1 font-bold">Статьи:</span>
-				<a href="/articles/rol-yazyka-programmirovaniya-v-sozdanii-programmnogo-obespecheniya" class="underline">Роль языка программирования в создании программного обеспечения</a><span class="text-xs px-2">•</span>
-				<a href="/articles/programmirovanie-eto-ne-tolko-znanie-yazyka-programmirovaniya" class="underline">Программирование – это не только знание языка программирования</a><span class="text-xs px-2">•</span>
-				<a href="/articles/vazhnost-razvitiya-logicheskogo-myshleniya-dlya-programmista" class="underline">Важность развития логического мышления для программиста</a><span class="text-xs px-2">•</span>
+				<a href="/articles/rol-yazyka-programmirovaniya-v-sozdanii-programmnogo-obespecheniya" class="underline mr-2">Роль языка программирования в создании программного обеспечения</a>
+				<a href="/articles/programmirovanie-eto-ne-tolko-znanie-yazyka-programmirovaniya" class="underline mr-2">Программирование – это не только знание языка программирования</a>
+				<a href="/articles/vazhnost-razvitiya-logicheskogo-myshleniya-dlya-programmista" class="underline">Важность развития логического мышления для программиста</a>
 				<a href="/articles/" class="underline">Все статьи</a>
 			</p>
-			<p>
+			<p class="flex flex-wrap">
 				<span class="mr-1 font-bold">Ссылки:</span>
-				<a target="_blank" href="https://twitter.com/_awilum" class="underline">Twitter</a><span class="text-xs px-2">•</span>
-				<a target="_blank" href="https://github.com/Awilum" class="underline">GitHub</a><span class="text-xs px-2">•</span>
-				<a target="_blank" href="https://www.linkedin.com/in/sergey-romanenko/" class="underline">LinkedIn</a><span class="text-xs px-2">•</span>
-				<a target="_blank" href="https://awilum.t.me" class="underline">Telegram</a><span class="text-xs px-2">•</span>
-				<a target="_blank" href="https://www.instagram.com/sergey.romanenko/" class="underline">Instagram</a><span class="text-xs px-2">•</span>
+				<a target="_blank" href="https://twitter.com/_awilum" class="underline mr-2">Twitter</a>
+				<a target="_blank" href="https://github.com/Awilum" class="underline mr-2">GitHub</a>
+				<a target="_blank" href="https://www.linkedin.com/in/sergey-romanenko/" class="underline mr-2">LinkedIn</a>
+				<a target="_blank" href="https://awilum.t.me" class="underline mr-2">Telegram</a> 
+				<a target="_blank" href="https://www.instagram.com/sergey.romanenko/" class="underline mr-2">Instagram</a>
 				<a target="_blank" href="https://stepik.org/users/561566563/profile" class="underline">Stepik</a>
 			</p>
 			<p class="font-semibold text-xs m-0">&copy; SERGEY ROMANENKO <span class="px-2">•</span> ALL RIGHTS RESERVED.</p>
