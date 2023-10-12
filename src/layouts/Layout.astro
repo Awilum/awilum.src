@@ -22,45 +22,61 @@ const { title, description, keywords } = Astro.props;
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
 	</head>
-	<body>
-		<div class="flex bg-base-100 max-w-[1250px] mx-auto border-2 mt-10 border-black items-center">
-			<div class="text-center uppercase border-r-2 border-black">
-			  <a class="block font-black text-6xl hover:bg-black hover:text-white" href="/" style="padding: 22px 30px;">awilum.ru</a>
+	<body class="p-4 lg:p-0">
+		<div class="lg:flex bg-base-100 max-w-[1000px] mx-auto lg:mt-10 items-center">
+			<div class="text-center uppercase text-2xl mr-4">
+			  <a class="block font-black underline" href="/">awilum.ru</a>
 			</div>
-			<div class="flex text-center w-full  text-xl uppercase">
-				<a style="padding: 40px 40px" class="flex-auto border-black border-r-2 font-bold hover:bg-black hover:text-white border-black" href="/articles/">Статьи</a>
-				<a style="padding: 40px 40px" class="flex-auto border-black border-r-2 font-bold hover:bg-black hover:text-white border-black" href="/courses/">Курсы</a>
-			    <a style="padding: 40px 40px" class="flex-auto font-bold hover:bg-black hover:text-white" href="/about/">Об авторе</a>
+			<div class="lg:flex text-center w-full lg:text-2xl text-xl uppercase">
+				<a class="font-bold px-4 underline" href="/articles/">Статьи</a>
+				<a class="font-bold px-4 underline" href="/courses/">Курсы</a>
+			    <a class="font-bold px-4 underline" href="/about/">Об авторе</a>
 			</div>
 		</div>
-		<div class="max-w-[1250px] mx-auto border-2 border-t-0 border-black">
+		<div class="max-w-[1000px] mx-auto">
 		  	<slot />
 		</div>
-		<footer class="max-w-[1250px] mx-auto border-2 border-t-0 border-black p-10 py-20 border-black mb-10 border-solid ">
+		<footer class="max-w-[1000px] mx-auto py-20 mb-10 border-t-2 border-black">
 			<p>
 				<span class="mr-1 font-bold">Курсы:</span>
-				<a href="https://stepik.org/a/134850" class="underline">JavaScript Базовый уровень</a> • 
-				<a href="https://stepik.org/a/177315" class="underline">JavaScript Продвинутый уровень</a> • 
-				<a href="https://stepik.org/a/172576" class="underline">JavaScript Тренажер</a> •
+				<a href="https://stepik.org/a/134850" class="underline">JavaScript Базовый уровень</a><span class="text-xs px-2">•</span>
+				<a href="https://stepik.org/a/177315" class="underline">JavaScript Продвинутый уровень</a><span class="text-xs px-2">•</span>
+				<a href="https://stepik.org/a/172576" class="underline">JavaScript Тренажер</a><span class="text-xs px-2">•</span>
 				<a href="/courses/" class="underline">Все курсы</a>
 			</p>
 			<p>
 				<span class="mr-1 font-bold">Статьи:</span>
-				<a href="/articles/rol-yazyka-programmirovaniya-v-sozdanii-programmnogo-obespecheniya" class="underline">Роль языка программирования в создании программного обеспечения</a> • 
-				<a href="/articles/programmirovanie-eto-ne-tolko-znanie-yazyka-programmirovaniya" class="underline">Программирование – это не только знание языка программирования</a> • 
-				<a href="/articles/vazhnost-razvitiya-logicheskogo-myshleniya-dlya-programmista" class="underline">Важность развития логического мышления для программиста</a> •
+				<a href="/articles/rol-yazyka-programmirovaniya-v-sozdanii-programmnogo-obespecheniya" class="underline">Роль языка программирования в создании программного обеспечения</a><span class="text-xs px-2">•</span>
+				<a href="/articles/programmirovanie-eto-ne-tolko-znanie-yazyka-programmirovaniya" class="underline">Программирование – это не только знание языка программирования</a><span class="text-xs px-2">•</span>
+				<a href="/articles/vazhnost-razvitiya-logicheskogo-myshleniya-dlya-programmista" class="underline">Важность развития логического мышления для программиста</a><span class="text-xs px-2">•</span>
 				<a href="/articles/" class="underline">Все статьи</a>
 			</p>
 			<p>
 				<span class="mr-1 font-bold">Ссылки:</span>
-				<a href="https://twitter.com/_awilum" class="underline">Twitter</a> • 
-				<a href="https://github.com/Awilum" class="underline">GitHub</a> • 
-				<a href="https://www.linkedin.com/in/sergey-romanenko/" class="underline">Linkedin</a> • 
-				<a href="https://awilum.t.me" class="underline">Telegram</a> • 
+				<a href="https://twitter.com/_awilum" class="underline">Twitter</a><span class="text-xs px-2">•</span>
+				<a href="https://github.com/Awilum" class="underline">GitHub</a><span class="text-xs px-2">•</span>
+				<a href="https://www.linkedin.com/in/sergey-romanenko/" class="underline">LinkedIn</a><span class="text-xs px-2">•</span>
+				<a href="https://awilum.t.me" class="underline">Telegram</a><span class="text-xs px-2">•</span>
 				<a href="https://www.instagram.com/sergey.romanenko/" class="underline">Instagram</a>
 			</p>
-			<p class="font-semibold text-xs m-0">&copy; SERGEY ROMANENKO 2023 • ALL RIGHTS RESERVED.</p>
+			<p class="font-semibold text-xs m-0">&copy; SERGEY ROMANENKO <span class="px-2">•</span> ALL RIGHTS RESERVED.</p>
 		</footer>
+		<!-- Yandex.Metrika counter -->
+		<script type="text/javascript" >
+			(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+			(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+		
+			ym(95236209, "init", {
+				clickmap:true,
+				trackLinks:true,
+				accurateTrackBounce:true
+			});
+		</script>
+		<noscript><div><img src="https://mc.yandex.ru/watch/95236209" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+		<!-- /Yandex.Metrika counter -->
 	</body>
 </html>
 <style is:global>
@@ -69,7 +85,7 @@ const { title, description, keywords } = Astro.props;
 	@tailwind utilities;
 
 	html {
-		font-family: system-ui, sans-serif;
+		font-family: Graphik, sans-serif;
 		font-size: 18px;
 		font-weight: 300;
 	}

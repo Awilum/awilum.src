@@ -6,7 +6,9 @@ import alpinejs from "@astrojs/alpinejs";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "http://localhost:4321",
+  outDir: "./dist",
+  site: "https://awilum.ru",
+  compressHTML: true,
   markdown: {
     // Can be 'shiki' (default), 'prism' or false to disable highlighting
     syntaxHighlight: "prism"
