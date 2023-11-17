@@ -11,7 +11,7 @@ const { title, description, keywords } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en" data-theme="lofi">
+<html lang="en" data-theme="lofi" class="text-[18px] lg:text-[20px]">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description}>
@@ -30,37 +30,37 @@ const { title, description, keywords } = Astro.props;
 		<link rel="sitemap" href="/sitemap-index.xml" />
 	</head>
 	<body class="p-4 lg:p-0">
-		<div class="lg:flex bg-base-100 max-w-[1000px] mx-auto lg:mt-10 items-center">
-			<div class="text-center uppercase text-2xl mr-4">
+		<div class="lg:flex bg-base-100 max-w-[1200px] mx-auto lg:mt-10 items-center">
+			<div class="text-left lg:text-center uppercase text-2xl mr-4 mb-6 lg:mb-0">
 			  <a class="block font-black underline" href="/">awilum.ru</a>
 			</div>
-			<div class="lg:flex text-center w-full lg:text-2xl text-xl uppercase">
-				<a class="font-bold px-4 underline" href="/articles/">Статьи</a>
-				<a class="font-bold px-4 underline" href="/courses/">Курсы</a>
-			    <a class="font-bold px-4 underline" href="/about/">Об авторе</a>
+			<div class="lg:flex text-left lg:text-center w-full lg:text-2xl text-xl uppercase">
+				<a class="font-bold px-2 pl-0 lg:px-2 lg:px-4 underline" href="/articles/">Статьи</a>
+				<a class="font-bold px-2 lg:px-4 underline" href="/courses/">Курсы</a>
+			    <a class="font-bold px-2 lg:px-4 underline" href="/about/">Об авторе</a>
 			</div>
 		</div>
-		<div class="max-w-[1000px] mx-auto">
+		<div class="max-w-[1200px] mx-auto">
 		  	<slot />
 		</div>
-		<footer class="max-w-[1000px] mx-auto py-20 mb-10 border-t-2 border-black">
+		<footer class="max-w-[1200px] mx-auto py-12 mb-10 border-t-2 border-black">
 			<p>
 				<span class="mr-1 font-bold">Курсы:</span>
 				<a href="https://stepik.org/a/134850" class="underline mr-2">JavaScript Базовый уровень</a>
 				<a href="https://stepik.org/a/177315" class="underline mr-2">JavaScript Продвинутый уровень</a>
-				<a href="https://stepik.org/a/172576" class="underline">JavaScript Тренажер</a>
+				<a href="https://stepik.org/a/172576" class="underline mr-2">JavaScript Тренажер</a>
 				<a href="/courses/" class="underline">Все курсы</a>
 			</p>
 			<p>
 				<span class="mr-1 font-bold">Статьи:</span>
-				<a href="/articles/rol-yazyka-programmirovaniya-v-sozdanii-programmnogo-obespecheniya" class="underline mr-2">Роль языка программирования в создании программного обеспечения</a>
-				<a href="/articles/programmirovanie-eto-ne-tolko-znanie-yazyka-programmirovaniya" class="underline mr-2">Программирование – это не только знание языка программирования</a>
-				<a href="/articles/vazhnost-razvitiya-logicheskogo-myshleniya-dlya-programmista" class="underline mr-2">Важность развития логического мышления для программиста</a>
+				<a href="/articles/the-role-of-programming-language-in-software-creation" class="underline mr-2">Роль языка программирования в создании программного обеспечения</a>
+				<a href="/articles/programming-is-not-just-about-knowing-a-programming-language" class="underline mr-2">Программирование – это не только знание языка программирования</a>
+				<a href="/articles/the-importance-of-theory-and-practice-when-learning-programming" class="underline mr-2">Важность развития логического мышления для программиста</a>
 				<a href="/articles/" class="underline">Все статьи</a>
 			</p>
 			<p class="flex flex-wrap">
 				<span class="mr-1 font-bold">Ссылки:</span>
-				<a target="_blank" href="https://twitter.com/_awilum" class="underline mr-2">Twitter</a>
+				<a target="_blank" href="https://twitter.com/awilum_" class="underline mr-2">Twitter</a>
 				<a target="_blank" href="https://github.com/Awilum" class="underline mr-2">GitHub</a>
 				<a target="_blank" href="https://www.linkedin.com/in/sergey-romanenko/" class="underline mr-2">LinkedIn</a>
 				<a target="_blank" href="https://awilum.t.me" class="underline mr-2">Telegram</a> 
@@ -95,7 +95,6 @@ const { title, description, keywords } = Astro.props;
 
 	html {
 		font-family: Graphik, sans-serif;
-		font-size: 18px;
 		font-weight: 300;
 	}
 	

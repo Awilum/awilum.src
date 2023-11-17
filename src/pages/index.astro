@@ -10,8 +10,8 @@ let articles = (await getCollection('articles')).sort(
 articles = articles.slice(0,3);
 ---
 
-<Layout title="Веб-портал про разработку программного обеспечения Сергея Романенко." 
-        description="Разработчик с крепкой волей к обучению и исследованию новых технологий и архитектурных решений. ">	
+<Layout title="Про разработку программного обеспечения" 
+        description="О разработке программного обеспечения, веб разработке и IT">	
 
 	<h3 class="text-4xl lg:text-7xl  text-left block py-14 uppercase font-bold border-b-2 border-black">Привет!<br>Меня зовут Сергей!</h3>
 	<div class="text-xl py-10 border-b-2 border-black">
@@ -25,14 +25,14 @@ articles = articles.slice(0,3);
 	<div>
 		{
 			articles.map((article, index) => (
-				<div class=`lg:flex ${index < articles.length - 1 ? "border-b border-dashed border-slate-500" : "border-b-2 border-solid border-black"} py-10 items-center`>
+				<div class=`lg:flex ${index < articles.length - 1 ? "border-b border-dashed border-slate-500" : "border-b-2 border-solid border-black"} py-4 items-center`>
 					<div class="lg:w-9/12 w-full pb-0 pt-0">
-						<a href=`/articles/${article.slug}/` class="text-2xl font-bold underline">{article.data.title}</a>
+						<a href=`/articles/${article.slug}/` class="text-xl hover:underline">{article.data.title}</a>
 					</div>
 					<div class="lg:w-3/12 mt-10 lg:mt-0 w-full lg:text-right pb-0 pt-0">
 						{
 							article.data.categories.map((category) => (
-									<a href=`/articles/categories/${category}/` class="bg-black text-white px-4 py-2">
+									<a href=`/articles/categories/${category}/` class="bg-black text-white px-2 py-1 ml-2 text-sm">
 										{categories[category]['title']}
 									</a>
 								)

@@ -8,4 +8,7 @@ export const categories = {
   development: {
     title: "Разработка",
   },
+  python: {
+    title: "Python",
+  },
 };

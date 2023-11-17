@@ -1,14 +1,14 @@
 --- 
 import { categories } from '../consts';
 ---
-<h1 class="text-4xl lg:text-7xl py-14 text-left block uppercase font-bold border-b-2 border-solid border-black">{Astro.props.frontmatter.title}</h1>
+<h1 class="text-2xl lg:text-6xl py-14 text-left block uppercase font-bold border-b-2 border-solid border-black">{Astro.props.frontmatter.title}</h1>
 <div class="text-lg py-10 ">
 	<slot />
 </div>
-<div class="flex py-10 text-xl font-bold border-t-2 border-solid border-black">
-	<div class="flex-auto text-left">
+<div class="lg:flex py-10 text-xl font-bold border-t-2 border-solid border-black">
+	<div class="lg:flex-auto text-left">
 		<!-- AddToAny BEGIN -->
-		<div>
+		<div class="mb-10 lg:mb-0">
 			<div class="a2a_kit a2a_kit_size_32 a2a_default_style">
 				<a class="a2a_dd grayscale" href="https://www.addtoany.com/share"></a>
 				<a class="a2a_button_twitter grayscale"></a>
@@ -22,15 +22,15 @@ import { categories } from '../consts';
 		</script>
 		<script async src="https://static.addtoany.com/menu/page.js"></script>
 		<!-- AddToAny END -->
-	</div> 
-	<div class="flex-auto text-right">
+	</div>
+	<div class="lg:flex-auto lg:text-right">
 		{
 			Astro.props.frontmatter.categories.map((category) => (
-					<a href=`/articles/categories/${category}/` class="bg-black text-white px-3 py-2 mr-2">{categories[category]['title']}</a>
+					<a href=`/articles/categories/${category}/` class="bg-black text-white px-3 py-2 mr-2 text-sm">{categories[category]['title']}</a>
 				)
 			)
 		}
-		<a href="/articles/" class="bg-black text-white px-3 py-2">Все статьи</a>
+		<a href="/articles/" class="bg-black text-white px-3 py-2 text-sm">Все статьи</a>
 	</div> 
 </div>
 <style>
