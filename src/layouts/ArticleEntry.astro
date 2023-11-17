@@ -26,11 +26,11 @@ import { categories } from '../consts';
 	<div class="lg:flex-auto lg:text-right">
 		{
 			Astro.props.frontmatter.categories.map((category) => (
-					<a href=`/articles/categories/${category}/` class="bg-black text-white px-3 py-2 mr-2 text-sm">{categories[category]['title']}</a>
+					<a href=`/articles/categories/${category}/` class="bg-black text-white px-3 py-2 mr-2 text-sm font-normal">{categories[category]['title']}</a>
 				)
 			)
 		}
-		<a href="/articles/" class="bg-black text-white px-3 py-2 text-sm">Все статьи</a>
+		<a href="/articles/" class="bg-black text-white px-3 py-2 text-sm font-normal">Все статьи</a>
 	</div> 
 </div>
 <style>
