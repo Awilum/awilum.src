@@ -27,12 +27,12 @@ articles = articles.slice(0,3);
 			articles.map((article, index) => (
 				<div class=`lg:flex ${index < articles.length - 1 ? "border-b border-dashed border-slate-500" : "border-b-2 border-solid border-black"} py-4 items-center`>
 					<div class="lg:w-9/12 w-full pb-0 pt-0">
-						<a href=`/articles/${article.slug}/` class="text-xl hover:underline">{article.data.title}</a>
+						<a href=`/articles/${article.slug}/` class="text-xl no-underline hover:underline">{article.data.title}</a>
 					</div>
 					<div class="lg:w-3/12 mt-10 lg:mt-0 w-full lg:text-right pb-0 pt-0">
 						{
 							article.data.categories.map((category) => (
-									<a href=`/articles/categories/${category}/` class="bg-black text-white px-2 py-1 ml-2 text-sm font-normal">
+									<a href=`/articles/categories/${category}/` class="bg-black text-white px-2 py-1 ml-2 text-sm font-normal no-underline">
 										{categories[category]['title']}
 									</a>
 								)
@@ -45,13 +45,13 @@ articles = articles.slice(0,3);
 	</div>
 
 	  <div class="text-center p-10">
-		<a href="/articles/" class="text-2xl font-bold block underline uppercase">Все статьи</a>
+			<a href="/articles/" class="text-2xl font-bold block underline uppercase">Все статьи</a>
 	  </div>
 	  
 	  <h3 class="text-4xl lg:text-7xl  text-left block py-14 uppercase font-bold border-b-2 border-t-2 border-solid border-black">Онлайн-курсы<br> по IT-профессиям</h3>
 	  <div class="grid grid-cols-1 gap-10 courses mt-10 mb-10">
 		    <div class="p-10 border-2 border-black">
-				<a class="text-2xl font-bold mb-6 block underline" href="https://stepik.org/a/134850">JavaScript Базовый уровень</a>
+				<a class="text-2xl font-bold mb-6 block underline" href="/courses/javascript-basic/">JavaScript Базовый уровень</a>
 				<p><strong>В курс входят</strong>:<br> 222 урока, 836 тестов, 231 интерактивная задача</p>
 				<p>
 					Самый полный курс по JavaScript для начинающих программистов! Этот курс идеально подходит для программистов, которые хотят изучить основы языка программирования JavaScript. В ходе курса вы узнаете основные концепции языка, включая переменные, типы данных, условные конструкции, циклы, функции и объекты. Курс также включает в себя большое количество практических заданий, которые помогут закрепить полученные знания.

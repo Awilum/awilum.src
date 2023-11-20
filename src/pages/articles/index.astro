@@ -12,23 +12,23 @@ const articles = (await getCollection('articles')).sort(
 	<h3 class="text-4xl lg:text-7xl text-left py-14 uppercase font-bold border-b-2 border-solid border-black">Статьи</h3>
 	<div class="text-left text-xl py-10 font-bold border-b-2 border-solid border-black py-10">{
 		Object.keys(categories).map((category, i) => (
-			<a href=`/articles/categories/${category}/` class="bg-black text-white px-3 py-2 mr-2 text-lg">{categories[category].title}</a>
+			<a href=`/articles/categories/${category}/` class="bg-black text-white px-3 py-2 mr-2 text-lg no-underline">{categories[category].title}</a>
 		))
 	} </div>
 		<div class="text-left text-xl py-10 font-bold border-b-2 border-solid border-black py-10">
-			<a target="_blank" href="https://t.me/awilum_ru" class="bg-white text-black border-black border-2 px-3 py-2 mr-2 text-sm lg:text-lg">Подписаться на обновления в Telegram</a>
+			<a target="_blank" href="https://t.me/awilum_ru" class="bg-white text-black border-black border-2 px-3 py-2 mr-2 text-sm lg:text-lg no-underline">Подписаться на обновления в Telegram</a>
 		 </div>
 	<div>
 	{
 		articles.map((article, index) => (
 			<div class=`lg:flex ${index < articles.length - 1 ? "border-b border-dashed border-slate-500" : ""} py-4 items-center`>
 				<div class="lg:w-9/12 w-full pb-0 pt-0">
-					<a href=`/articles/${article.slug}/` class="text-xl hover:underline">{article.data.title}</a>
+					<a href=`/articles/${article.slug}/` class="text-xl no-underline hover:underline">{article.data.title}</a>
 				</div>
 				<div class="lg:w-3/12 mt-10 lg:mt-0 w-full lg:text-right pb-0 pt-0">
 					{
 						article.data.categories.map((category) => (
-								<a href=`/articles/categories/${category}/` class="bg-black text-white px-2 ml-2 py-1 text-sm font-normal">
+								<a href=`/articles/categories/${category}/` class="bg-black text-white px-2 ml-2 py-1 text-sm font-normal no-underline">
 									{categories[category]['title']}
 								</a>
 							)
