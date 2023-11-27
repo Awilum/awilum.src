@@ -12,11 +12,13 @@ const articles = (await getCollection('articles')).sort(
 	<h3 class="text-4xl lg:text-7xl text-left py-14 uppercase font-bold border-b-2 border-solid border-black">Статьи</h3>
 	<div class="text-left text-xl py-10 font-bold border-b-2 border-solid border-black py-10">{
 		Object.keys(categories).map((category, i) => (
-			<a href=`/articles/categories/${category}/` class="bg-black text-white px-3 py-2 mr-2 text-lg no-underline">{categories[category].title}</a>
+			<a href=`/articles/categories/${category}/` class="bg-black text-white px-3 py-2 mr-2 text-lg no-underline font-normal">{categories[category].title}</a>
 		))
 	} </div>
-		<div class="text-left text-xl py-10 font-bold border-b-2 border-solid border-black py-10">
-			<a target="_blank" href="https://t.me/awilum_ru" class="bg-white text-black border-black border-2 px-3 py-2 mr-2 text-sm lg:text-lg no-underline">Подписаться на обновления в Telegram</a>
+		<div class="text-left py-10 font-bold border-b-2 border-solid border-black py-5">
+			<span class="mr-2">Подписаться на обновления в</span>
+			<a target="_blank" href="https://t.me/awilum_ru" class="bg-white text-black border-black hover:text-white hover:bg-black border-2 px-3 py-1 mr-2 text-sm lg:text-normal font-normal no-underline">Телеграм</a>
+			<a target="_blank" href="https://t.me/awilum_ru" class="bg-white text-black border-black hover:text-white hover:bg-black border-2 px-3 py-1 mr-2 text-sm lg:text-normal font-normal no-underline">Дзен</a>
 		 </div>
 	<div>
 	{
