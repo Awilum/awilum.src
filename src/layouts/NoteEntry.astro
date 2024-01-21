@@ -1,5 +1,7 @@
 --- 
 import { categoriesNotes } from '../consts';
+
+let id = Astro.url.pathname.replaceAll("notes/", "").replaceAll("/", "");
 ---
 <h1 class="text-2xl lg:text-6xl py-14 text-left block border-b-2 border-solid border-black">{Astro.props.frontmatter.title}</h1>
 <div class="text-lg py-10 mx-auto">
@@ -8,12 +10,16 @@ import { categoriesNotes } from '../consts';
 <div class="lg:flex py-10 border-t-2 border-solid border-black">
 	<div class="lg:flex-auto text-left">
 		<!-- AddToAny BEGIN -->
-		<div class="mb-10 lg:mb-0">
+		<div class="mb-10 lg:mb-0 flex">
 			<div class="a2a_kit a2a_kit_size_32 a2a_default_style">
 				<a class="a2a_dd grayscale" href="https://www.addtoany.com/share"></a>
 				<a class="a2a_button_twitter grayscale"></a>
 				<a class="a2a_button_telegram grayscale"></a>
 				<a class="a2a_button_copy_link grayscale"></a>
+			</div>
+			<div>
+				<span class="mx-2 opacity-10">|</span>
+				<a target="_blank" href={`https://github.com/Awilum/awilum.src/blob/master/src/content/notes/${id}.md`} class="bg-gray-200 px-3 py-1 no-underline text-sm">Редактировать заметку</a>
 			</div>
 		</div>
 		<script>
@@ -26,10 +32,11 @@ import { categoriesNotes } from '../consts';
 	<div class="lg:flex-auto lg:text-right">
 		{
 			Astro.props.frontmatter.categories.map((category) => (
-					<a href=`/notes/categories/${category}/` class="bg-gray-200 px-3 py-1 mr-2 no-underline text-sm">{categoriesNotes[category]['title']}</a>
+					<a href=`/notes/categories/${category}/` class="bg-gray-200 px-3 py-1 no-underline text-sm">{categoriesNotes[category]['title']}</a>
 				)
 			)
 		}
-		<a href="/notes/" class="bg-gray-200 px-3 py-1 mr-2 no-underline text-sm">Все заметки</a>
+		<span class="mx-2 opacity-10">|</span>
+		<a href="/notes/" class="bg-gray-200 px-3 py-1 no-underline text-sm">Все заметки</a>
 	</div> 
 </div>
