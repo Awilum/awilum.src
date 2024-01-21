@@ -9,17 +9,12 @@ const articles = (await getCollection('articles')).sort(
 ---
 
 <Layout title="Статьи про разработку программного обеспечения, образование и IT в целом" description="Погрузитесь в мир разработки. Узнайте что такое технический долг, качества хорошего разработчика и важность развития логического мышления. Улучшайте свои навыки программирования!" keywords="PEP 8, разработка, технический долг, программирование, качества разработчика, логическое мышление, python, javascript, php, code monkey, фундаментальные знания">	
-	<h3 class="text-4xl lg:text-7xl text-left py-14 uppercase font-bold border-b-2 border-solid border-black">Статьи</h3>
-	<div class="text-left text-xl py-10 font-bold border-b-2 border-solid border-black py-10">{
+	<h3 class="text-4xl lg:text-5xl text-left py-14   border-b-2 border-solid border-black">Статьи</h3>
+	<div class="text-left py-10 border-b-2 border-solid border-black py-10">{
 		Object.keys(categories).map((category, i) => (
-			<a href=`/articles/categories/${category}/` class="bg-black text-white px-3 py-2 mr-2 text-lg no-underline font-normal">{categories[category].title}</a>
+			<a href=`/articles/categories/${category}/` class="bg-gray-200 px-3 py-1 mr-2 no-underline text-sm">{categories[category].title}</a>
 		))
 	} </div>
-		<div class="text-left py-10 font-bold border-b-2 border-solid border-black py-5">
-			<span class="mr-2">Подписаться на обновления в</span>
-			<a target="_blank" href="https://t.me/awilum_ru" class="bg-white text-black border-black hover:text-white hover:bg-black border-2 px-3 py-1 mr-2 text-sm lg:text-normal font-normal no-underline">Телеграм</a>
-			<a target="_blank" href="https://dzen.ru/awilum" class="bg-white text-black border-black hover:text-white hover:bg-black border-2 px-3 py-1 mr-2 text-sm lg:text-normal font-normal no-underline">Дзен</a>
-		 </div>
 	<div>
 	{
 		articles.map((article, index) => (
@@ -27,10 +22,10 @@ const articles = (await getCollection('articles')).sort(
 				<div class="lg:w-9/12 w-full pb-0 pt-0">
 					<a href=`/articles/${article.slug}/` class="text-xl no-underline hover:underline">{article.data.title}</a>
 				</div>
-				<div class="lg:w-3/12 mt-10 lg:mt-0 w-full lg:text-right pb-0 pt-0">
+				<div class="lg:w-3/12 mt-4 lg:mt-0 w-full lg:text-right pb-0 pt-0">
 					{
 						article.data.categories.map((category) => (
-								<a href=`/articles/categories/${category}/` class="bg-black text-white px-2 ml-2 py-1 text-sm font-normal no-underline">
+								<a href=`/articles/categories/${category}/` class="bg-gray-200 px-3 py-1 lg:ml-2 no-underline text-sm">
 									{categories[category]['title']}
 								</a>
 							)

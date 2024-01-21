@@ -4,11 +4,21 @@
 export const SITE_TITLE = "AWILUM";
 export const SITE_DESCRIPTION =
   "Digital Nomad. Software Engineer. E-Learning Instructor.";
+
 export const categories = {
-  development: {
-    title: "Разработка",
-  },
   python: {
     title: "Python",
+  },
+  growth: {
+    title: "Развитие", 
+  }
+};
+
+export const categoriesNotes = {
+  javascript: {
+    title: "JavaScript",
+  },
+  php: {
+    title: "PHP",
   },
 };

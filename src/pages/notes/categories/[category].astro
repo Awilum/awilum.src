@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+import { categoriesNotes } from '../../../consts';
+
+export async function getStaticPaths() {
+  const allnotes = await getCollection("notes");
+  const uniqueTags = [...new Set(allnotes.map((note) => note.data.categories).flat())];
+
+  return uniqueTags.map((category) => {
+    const filteredPosts = allnotes.filter((note) =>
+      note.data.categories.includes(category)
+    );
+    return {
+      params: { category },
+      props: { notes: filteredPosts },
+    };
+  });
+}
+
+const { category } = Astro.params;
+let { notes } = Astro.props;
+
+notes.sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout title={category ?? ""}>
+	<h3 class="py-14 text-2xl lg:text-5xl text-left block   border-b-2 border-solid border-black">Заметки <br>в категории "{categoriesNotes[category ?? ""].title}"</h3>
+	<div class="text-left text-xl  border-b-2 border-solid border-black py-10">{
+		<span><a href=`/notes/` class="bg-gray-200 px-3 py-1 mr-2 no-underline text-sm">Все заметки</a></span>
+	} </div>
+	<div>
+		{
+			notes.map((note, index) => (
+				<div class=`flex ${index < notes.length - 1 ? "border-b border-dashed border-slate-500" : ""} py-4 items-center`>
+					<div class="w-full pb-0 pt-0">
+						<a href=`/notes/${note.slug}/` class="text-xl no-underline hover:underline">{note.data.title}</a>
+					</div>
+				</div>
+			))
+		}
+	</div>
+</Layout>
