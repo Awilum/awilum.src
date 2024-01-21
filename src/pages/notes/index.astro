@@ -1,7 +1,8 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import Layout from '../../layouts/NotesLayout.astro';
 import { getCollection } from 'astro:content';
 import { categoriesNotes } from '../../consts';
+import Search from "astro-pagefind/components/Search";
 
 const notes = (await getCollection('notes')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -10,6 +11,14 @@ const notes = (await getCollection('notes')).sort(
 
 <Layout title="заметки про разработку программного обеспечения, образование и IT в целом" description="Погрузитесь в мир разработки. Узнайте что такое технический долг, качества хорошего разработчика и важность развития логического мышления. Улучшайте свои навыки программирования!" keywords="PEP 8, разработка, технический долг, программирование, качества разработчика, логическое мышление, python, javascript, php, code monkey, фундаментальные знания">	
 	<h3 class="text-4xl lg:text-5xl text-left py-14   border-b-2 border-solid border-black">Заметки разработчика</h3>
+
+	<div class="border-b-2 border-solid border-black py-10">
+		<Search id="search" className="pagefind-ui" 
+				uiOptions={{ showImages: false, 
+							pageSize: 3
+							}} />
+	</div>
+
 	<div class="text-left py-10 border-b-2 border-solid border-black py-10">{
 		Object.keys(categoriesNotes).map((category, i) => (
 			<a href=`/notes/categories/${category}/` class="bg-gray-200 px-3 py-1 mr-2 no-underline text-sm">{categoriesNotes[category].title}</a>
