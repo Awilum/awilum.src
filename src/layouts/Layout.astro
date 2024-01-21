@@ -57,7 +57,6 @@ notes = notes.slice(0,3);
 			</div>
 			<div class="lg:flex text-left lg:text-center w-full lg:text-2xl text-xl lowercase">
 				<a class="px-2 pl-0 lg:px-4 underline" href="/notes/">Заметки</a>
-				<a class="px-2 pl-0 lg:px-4 underline" href="/articles/">Статьи</a>
 				<a class="px-2 lg:px-4 underline" href="/courses/">Курсы</a>
 			    <a class="px-2 lg:px-4 underline" href="/about/">Об авторе</a>
 			</div>
@@ -81,15 +80,6 @@ notes = notes.slice(0,3);
 					))
 				}
 				<a href="/notes/" class="underline">Все заметки</a>
-			</p>
-			<p class="lg:pr-10">
-				<span class="mr-1 font-bold">Статьи:</span>
-				{
-					articles.map((article, index) => (
-						<a href=`/articles/${article.slug}/` class="underline mr-2">{article.data.title}</a>
-					))
-				}
-				<a href="/articles/" class="underline">Все статьи</a>
 			</p>
 			<p class="flex flex-wrap">
 				<span class="mr-1 font-bold">Ссылки:</span>

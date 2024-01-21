@@ -1,13 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import { categories, categoriesNotes } from '../consts';
-
-let articles = (await getCollection('articles')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
-
-articles = articles.slice(0,5);
+import { categoriesNotes } from '../consts';
 
 let notes = (await getCollection('notes')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -27,7 +21,7 @@ notes = notes.slice(0,5);
 		<p class="mb-0">Я готов поделиться своими знаниями и опытом с вами, помогая вам улучшить ваши навыки программирования и достичь своих целей. Рад быть вашим гидом в мире разработки программного обеспечения!</p>
 	</div>
 
-	<h3 class="text-4xl lg:text-5xl text-left block py-14 border-b-2 border-black">Новые заметки</h3>
+	<h3 class="text-4xl lg:text-5xl text-left block py-14 border-b-2 border-black">Новые заметки разработчика</h3>
 	<div>
 		{
 			notes.map((note, index) => (
@@ -53,33 +47,6 @@ notes = notes.slice(0,5);
 	<div class="text-center p-10">
 		<a href="/notes/" class="text-2xl  block underline ">Все заметки</a>
 	</div>
-	
-	<h3 class="text-4xl lg:text-5xl text-left block py-14 border-b-2 border-t-2 border-black">Новые статьи</h3>
-	<div>
-		{
-			articles.map((article, index) => (
-				<div class=`lg:flex ${index < articles.length - 1 ? "border-b border-dashed border-slate-500" : "border-b-2 border-solid border-black"} py-4 items-center`>
-					<div class="lg:w-9/12 w-full pb-0 pt-0">
-						<a href=`/articles/${article.slug}/` class="text-xl no-underline hover:underline">{article.data.title}</a>
-					</div>
-					<div class="lg:w-3/12 mt-4 lg:mt-0 w-full lg:text-right pb-0 pt-0">
-						{
-							article.data.categories.map((category) => (
-									<a href=`/articles/categories/${category}/` class="bg-gray-200 px-3 py-1 mr-2 no-underline text-sm">
-										{categories[category]['title']}
-									</a>
-								)
-							)
-						}
-					</div>
-				</div>
-			))
-		}
-	</div>
-
-	  <div class="text-center p-10">
-			<a href="/articles/" class="text-2xl  block underline ">Все статьи</a>
-	  </div>
 	  
 	  <h3 class="text-4xl lg:text-5xl  text-left block py-14   border-b-2 border-t-2 border-solid border-black">Онлайн-курсы<br> по IT-профессиям</h3>
 	  <div class="grid grid-cols-1 gap-10 courses mt-10 mb-10">
