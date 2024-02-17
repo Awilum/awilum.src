@@ -1,0 +1,98 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { Prism } from '@astrojs/prism';
+---
+
+<Layout title="Как работает Markdown?" 
+	    description="Курс предназначен для освоения ключевых принципов и навыков использования языка разметки Markdown. Этот курс разработан с учетом потребностей тех, кто стремится овладеть этим простым и эффективным инструментом форматирования текста." 
+		keywords="markdown">	
+	<h1 class="text-4xl lg:text-5xl text-left block  border-b-2 py-14 p-10 pl-0 pr-[200px] border-solid border-black">Заголовки</h1>
+	<div class="py-4">
+		<a href="/courses/">Курсы</a> <span class="px-2">/</span> <a href="/courses/markdown/">Markdown</a> <span class="px-2">/</span> <a href="/courses/markdown/basic-syntax/">Базовый синтаксис</a>
+	</div>
+	<div class="pt-10 pb-10 border-black border-t-2">
+
+		<p>В <strong>Markdown</strong> <strong>заголовки (Headings) </strong>используются для выделения различных уровней заголовков или разделов в тексте. Заголовки в <strong>Markdown</strong> создаются с использованием символов решетки <code>#</code>. Количество символов <code>#</code> определяет уровень заголовка, и чем меньше <code>#</code>, тем выше уровень заголовка.</p>
+
+		<h3>Заголовок <u>первого</u> уровня создается с использованием <u>одной</u> решетки</h3>
+
+		<p><strong>Пример (Markdown):</strong></p>
+
+		<Prism lang="markdown" code={`# Очень странные дела`} />
+
+		<p><strong>Результат (HTML):</strong>&nbsp;</p>
+
+		<Prism lang="html" code={`<h1>Очень странные дела</h1>`} />
+
+		<p><strong>Результат (Отображение):</strong></p>
+
+		<div class="text-3xl font-bold">Очень странные дела</div>
+
+		<h3>Заголовок <u>второго</u> уровня создается с использованием <u>двух</u> решеток</h3>
+
+		<p><strong>Пример (Markdown):</strong></p>
+
+		<Prism lang="markdown" code={`## Главы`} />
+
+		<p><strong>Результат (HTML):</strong>&nbsp;</p>
+
+		<Prism lang="html" code={`<h2>Главы</h2>`} />
+
+		<p><strong>Результат (Отображение):</strong></p>
+	
+		<div class="text-2xl font-bold">Главы</div>
+
+		<h3>И так далее, до заголовка <u>шестого</u> уровня.</h3>
+
+		<p><strong>Пример (Markdown):</strong></p>
+
+		<Prism lang="markdown" code={`###### Майк`} />
+
+		<p><strong>Результат (HTML):</strong>&nbsp;</p>
+
+		<Prism lang="html" code={`<h6>Майк</h6>`} />
+
+		<p><strong>Результат (Отображение):</strong></p>
+
+		<div class="text-xl font-bold">Майк</div>
+
+		<h3>Альтернативный способ для заголовков <u>первого</u> и <u>второго</u> уровней</h3>
+
+		<p><strong>Пример (Markdown):</strong></p>
+
+<Prism lang="markdown" code={`Очень странные дела
+========================
+
+Главы
+------------------------
+`} />
+
+		<p><strong>Результат (HTML):</strong>&nbsp;</p>
+
+
+<Prism lang="html" code={`<h1>Очень странные дела</h1>
+
+<h2>Главы</h2>
+`} />
+		
+		<p><strong>Результат (Отображение):</strong></p>
+
+		<div class="text-3xl font-bold">Очень странные дела</div>
+		<div class="text-2xl font-bold">Главы</div>
+
+
+		<p>&nbsp;</p>
+
+		<p>Старайтесь подбирать уровень заголовка в соответствии с логикой структуры вашего текста, чтобы создать четкую и легко читаемую иерархию. Избегайте использования слишком многочисленных уровней заголовков, чтобы избежать избыточной сложности в структуре текста.</p>
+
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center grid grid-cols-1 lg:grid-cols-2 gap-4">
+		<a href="/courses/markdown/basic-syntax/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Базовый синтаксис</a>
+		<a href="/courses/markdown/basic-syntax/paragraphs/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Параграфы</a>
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center">
+		<a target="_blank" href="https://stepik.org/course/187888/promo" class="bg-white text-black  text-center border-2 border-black rounded hover:bg-black hover:text-white px-8 lg:px-24 py-4 mr-2  no-underline">Записаться на курс</a>
+	</div>
+</Layout>

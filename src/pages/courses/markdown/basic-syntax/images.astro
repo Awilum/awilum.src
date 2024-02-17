@@ -1,0 +1,96 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { Prism } from '@astrojs/prism';
+---
+
+<Layout title="Изображения" 
+	    description="Курс предназначен для освоения ключевых принципов и навыков использования языка разметки Markdown. Этот курс разработан с учетом потребностей тех, кто стремится овладеть этим простым и эффективным инструментом форматирования текста." 
+		keywords="markdown">	
+	<h1 class="text-4xl lg:text-5xl text-left block  border-b-2 py-14 p-10 pl-0 pr-[200px] border-solid border-black">Изображения</h1>
+	<div class="py-4">
+		<a href="/courses/">Курсы</a> <span class="px-2">/</span> <a href="/courses/markdown/">Markdown</a> <span class="px-2">/</span> <a href="/courses/markdown/basic-syntax/">Базовый синтаксис</a>
+	</div>
+	
+	<div class="pt-10 pb-10 border-black border-t-2">
+		
+		<p>В <strong>Markdown</strong> вы можете вставлять <strong>изображения (Images)</strong>, делая ваши тексты более наглядными и привлекательными.</p>
+		
+		<h3>Основы вставки изображений</h2>
+		
+		<p>Для вставки изображения используйте следующий синтаксис.</p>
+		
+		<p><strong>Пример (Markdown):</strong></p>
+
+		<Prism lang="markdown" code={`![Добро пожаловать в Хоукинс](https://ik.imagekit.io/awilum/welcome-to-hawkins.jpg)`} />
+
+		<p><strong>Результат (HTML):</strong></p>
+		
+		<Prism lang="html" code={`<img alt="Добро пожаловать в Хоукинс" src="https://ik.imagekit.io/awilum/welcome-to-hawkins.jpg">`} />
+
+		<p><strong>Результат (Отображение):</strong></p>
+		
+		<p><img alt="Добро пожаловать в Хоукинс" height="337" src="https://ik.imagekit.io/awilum/welcome-to-hawkins.jpg" width="500"></p>
+		
+		<h3>Ссылки на изображения</h3>
+		
+		<p>Вы также можете вставлять изображения, ссылаясь на них по URL, без использования восклицательного знака. Это может быть полезно, если вы хотите, чтобы изображение открывалось в новой вкладке при клике.</p>
+		
+		<p><strong>Пример (Markdown):</strong></p>
+		
+		<Prism lang="markdown" code={`[![Добро пожаловать в Хоукинс](https://ik.imagekit.io/awilum/welcome-to-hawkins.jpg)](https://en.wikipedia.org/wiki/Stranger_Things)`} />
+
+		<p><strong>Результат (HTML):</strong></p>
+		
+		<Prism lang="html" code={`<a href="https://en.wikipedia.org/wiki/Stranger_Things"><img alt="Добро пожаловать в Хоукинс" src="https://ik.imagekit.io/awilum/welcome-to-hawkins.jpg"></a>`} />
+
+		<p><strong>Результат (Отображение):</strong></p>
+		
+		<p><a href="https://en.wikipedia.org/wiki/Stranger_Things" rel="noopener noreferrer nofollow"><img alt="Добро пожаловать в Хоукинс" height="337" src="https://ik.imagekit.io/awilum/welcome-to-hawkins.jpg" width="500"></a></p>
+		
+		<p> </p>
+		
+		<h3>Изображения с изменением размера</h3>
+		
+		<p>Синтаксис <strong>Markdown</strong> для изображений не позволяет указывать ширину и высоту изображений. Если вам необходимо изменить размер изображения, и ваша программа(процессор) <strong>Markdown</strong> поддерживает HTML, вы можете использовать HTML-тег <code>img</code> с атрибутами <code>width</code> и <code>height</code> для задания размеров изображения в пикселях.</p>
+		
+		<p><strong>Пример (Markdown):</strong></p>
+		
+		<Prism lang="markdown" code={`<img alt="Добро пожаловать в Хоукинс" height="337" src="https://ik.imagekit.io/awilum/welcome-to-hawkins.jpg" width="500" />`} />
+
+		<pre><code class="language-markdown">&lt;img alt="Добро пожаловать в Хоукинс" height="337" src="https://ik.imagekit.io/awilum/welcome-to-hawkins.jpg" width="500" /&gt;</code></pre>
+		
+		<p><strong>Результат (HTML):</strong></p>
+
+		<Prism lang="html" code={`<img alt="Добро пожаловать в Хоукинс" height="337" src="https://ik.imagekit.io/awilum/welcome-to-hawkins.jpg" width="500" />`} />
+		
+		<p><strong>Результат (Отображение):</strong></p>
+		
+		<p><img alt="Добро пожаловать в Хоукинс" height="337" src="https://ik.imagekit.io/awilum/welcome-to-hawkins.jpg" width="500"></p>
+		
+		<h3><strong>Локальные изображения</strong></h3>
+		
+		<p>Если изображение находится в том же каталоге, что и ваш <strong>Markdown</strong> файл, вы можете использовать относительный путь.</p>
+		
+		<p><strong>Пример (Markdown):</strong></p>
+		
+		<Prism lang="markdown" code={`![Добро пожаловать в Хоукинс](welcome-to-hawkins.jpg)`} />
+
+		<p><strong>Результат (HTML):</strong></p>
+		
+		<Prism lang="html" code={`<img alt="Добро пожаловать в Хоукинс" src="welcome-to-hawkins.jpg">`} />
+
+		<p><strong>Результат (Отображение):</strong></p>
+		
+		<p><img alt="Добро пожаловать в Хоукинс" height="337" src="https://ik.imagekit.io/awilum/welcome-to-hawkins.jpg" width="500"></p>
+
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center grid grid-cols-1 lg:grid-cols-2 gap-4">
+		<a href="/courses/markdown/basic-syntax/links/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Ссылки</a>
+		<a href="/courses/markdown/basic-syntax/escaping-characters/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Экранирующие символы</a>
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center">
+		<a target="_blank" href="https://stepik.org/course/187888/promo" class="bg-white text-black  text-center border-2 border-black rounded hover:bg-black hover:text-white px-8 lg:px-24 py-4 mr-2  no-underline">Записаться на курс</a>
+	</div>
+</Layout>

@@ -1,0 +1,133 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { Prism } from '@astrojs/prism';
+---
+
+<Layout title="Блок цитат" 
+	    description="Курс предназначен для освоения ключевых принципов и навыков использования языка разметки Markdown. Этот курс разработан с учетом потребностей тех, кто стремится овладеть этим простым и эффективным инструментом форматирования текста." 
+		keywords="markdown">	
+	<h1 class="text-4xl lg:text-5xl text-left block  border-b-2 py-14 p-10 pl-0 pr-[200px] border-solid border-black">Блок цитат</h1>
+	<div class="py-4">
+		<a href="/courses/">Курсы</a> <span class="px-2">/</span> <a href="/courses/markdown/">Markdown</a> <span class="px-2">/</span> <a href="/courses/markdown/basic-syntax/">Базовый синтаксис</a>
+	</div>
+	
+	<div class="pt-10 pb-10 border-black border-t-2">
+	
+		<p><strong>Блок цитат (Blockquote</strong><strong>)</strong> в <strong>Markdown</strong> позволяет выделить текст, придав ему вид цитаты.</p>
+		
+		<h3><strong>Простой блока цитат</strong></h3>
+		
+		<p>Для создания блока цитат используйте символ большой стрелки <code>&gt;</code>&nbsp;перед текстом цитаты.</p>
+		
+		<p><strong>Пример (Markdown):</strong></p>
+		
+		<Prism lang="markdown" code={`> Это странное место, Хоукинс.`} />
+
+		<p><strong>Результат (HTML):</strong></p>
+		
+		<Prism lang="html" code={`<blockquote>Это странное место, Хоукинс.</blockquote>`} />
+
+		<p><strong>Результат (Отображение):</strong></p>
+		
+		<blockquote>Это странное место, Хоукинс.</blockquote>
+		
+		<h3><strong>Блок цитат с несколькими абзацами</strong></h3>
+		
+		<p>Блок цитат может содержать несколько абзацев текста.</p>
+		
+		<p><strong>Пример (Markdown):</strong></p>
+		
+		<Prism lang="markdown" code={`> Я потерялся в изнанке.  
+> На меня охотится что-то странное.		
+`} />
+
+		<p><strong>Результат (HTML):</strong></p>
+		
+		<Prism lang="html" code={`<blockquote>Я потерялся в изнанке.<br>На меня охотится что-то странное.</blockquote>`} />
+
+		<p><strong>Результат (Отображение):</strong></p>
+		
+		<blockquote>Я потерялся в изнанке.<br />
+		На меня охотится что-то странное.</blockquote>
+		
+		<h3>Вложенные блоки цитат&nbsp;</h3>
+		
+		<p>Блоки цитат могут быть вложенными.</p>
+		
+		<p>Добавьте <code>&gt;&gt;</code> перед абзацем, который хотите вложить.</p>
+		
+		<p><strong>Пример (Markdown):</strong></p>
+
+<Prism lang="markdown" code={`> Джим: В Лаборатории Хоукинс  
+> происходит что-то странное.
+>> Уилл: Да, тут какие-то порталы  
+>> и демогоргоны!	
+`} />
+
+		<p><strong>Результат (HTML):</strong></p>
+		
+<Prism lang="html" code={`<blockquote>
+	<p>Джим: В Лаборатории Хоукинс<br>происходит что-то странное.</p>
+	<blockquote>
+		<p>Уилл: Да, тут какие-то порталы<br>и демогоргоны!</p>
+	</blockquote>
+</blockquote>	
+`} />
+	
+		<p><strong>Результат (Отображение):</strong></p>
+		
+		<blockquote>
+		<p>Джим: В Лаборатории Хоукинс<br />
+		происходит что-то странное.</p>
+		
+		<blockquote>
+		<p>Уилл: Да, тут какие-то порталы<br />
+		и демогоргоны!</p>
+		</blockquote>
+		</blockquote>
+		
+		<h3>Блоки цитат с другими элементами&nbsp;</h3>
+		
+		<p>Блоки цитат могут содержать другие элементы в формате <strong>Markdown</strong>.</p>
+		
+		<p>Не все элементы можно использовать &mdash; вам придется поэкспериментировать, чтобы увидеть, какие из них работают.</p>
+		
+		<p><strong>Пример (Markdown):</strong></p>
+
+<Prism lang="markdown" code={`> __Эл__: Я могу видеть вещи,  
+> которые другие не видят.
+>
+> **Дастин**: Так, Эл, давай лучше поиграем  
+> в Dungeons & Dragons.	
+`} />
+
+		<p><strong>Результат (HTML):</strong></p>
+		
+<Prism lang="html" code={`<blockquote>
+	<p><strong>Эл</strong>: Я могу видеть вещи,<br>которые другие не видят.</p>
+  	<p><strong>Дастин</strong>: Так, Эл, давай лучше поиграем<br>в Dungeons &amp; Dragons.</p>
+</blockquote>
+`} />
+
+		<p><strong>Результат (Отображение):</strong></p>
+		
+		<blockquote>
+		<p><strong>Эл</strong>: Я могу видеть вещи,<br />
+		которые другие не видят.</p>
+		
+		<p><strong>Дастин</strong>: Так, Эл, давай лучше поиграем<br />
+		в Dungeons &amp; Dragons.</p>
+		</blockquote>
+		
+
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center grid grid-cols-1 lg:grid-cols-2 gap-4">
+		<a href="/courses/markdown/basic-syntax/emphasis/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Акценты</a>
+		<a href="/courses/markdown/basic-syntax/lists/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Списки</a>
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center">
+		<a target="_blank" href="https://stepik.org/course/187888/promo" class="bg-white text-black  text-center border-2 border-black rounded hover:bg-black hover:text-white px-8 lg:px-24 py-4 mr-2  no-underline">Записаться на курс</a>
+	</div>
+</Layout>

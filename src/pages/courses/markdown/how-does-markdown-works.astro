@@ -1,0 +1,46 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout title="Как работает Markdown?" 
+	    description="Курс предназначен для освоения ключевых принципов и навыков использования языка разметки Markdown. Этот курс разработан с учетом потребностей тех, кто стремится овладеть этим простым и эффективным инструментом форматирования текста." 
+		keywords="markdown">	
+	<h1 class="text-4xl lg:text-5xl text-left block  border-b-2 py-14 p-10 pl-0 border-solid border-black">Как работает Markdown?</h1>
+	<div class="py-4">
+		<a href="/courses/">Курсы</a> <span class="px-2">/</span> <a href="/courses/markdown/">Markdown</a>
+	</div>
+	<div class="pt-10 pb-10 border-black border-t-2">
+
+		<p>При написании в <strong>Markdown</strong>, текст сохраняется в файле обычного текста с расширением <code>.md</code> или <code>.markdown</code>. Но что происходит дальше? Как ваш файл в формате Markdown превращается в <strong>HTML</strong> или подготавливается к печати?</p>
+
+		<p>Вам нужно приложение процессор <strong>Markdown</strong>, способное обрабатывать файл <strong>Markdown</strong>. Существует множество таких приложений &mdash; от простых сценариев до настольных приложений, напоминающих Microsoft Word. Несмотря на визуальные различия, все эти приложения выполняют одну и ту же функцию. Как и <strong>Dillinger</strong>, они преобразуют текст в формате <strong>Markdown</strong> в <strong>HTML</strong>, чтобы его можно было отображать в веб-браузерах.</p>
+		
+		<center><img alt="" height="419" name="Screenshot 2023-12-14 at 20.18.01.png" src="https://ik.imagekit.io/awilum/awilum-ru/Screenshot%202023-12-14%20at%2020.18.01.png?updatedAt=1708058701063" width="700" /></center>
+		
+		<p>&nbsp;</p>
+
+		<p>Приложения <strong>Markdown</strong> используют так называемый процессор <strong>Markdown</strong> (также часто называемый &quot;парсером&quot; или &quot;реализацией&quot;), чтобы взять текст в формате <strong>Markdown</strong> и преобразовать его в формат <strong>HTML</strong>. На этом этапе ваш документ можно просматривать в веб-браузере или объединять с таблицей стилей и печатать. Ниже вы можете увидеть схему этого процесса.</p>
+		
+		<p>Приложение и процессор <strong>Markdown</strong> &mdash; это два отдельных компонента.&nbsp;</p>
+		
+		<p>В целях краткости, на схеме ниже я объединил их в один элемент &quot;<strong>Приложение Markdown</strong>&quot;:</p>
+		
+		<center><img alt="" height="225" name="100-js-4.jpg" src="https://ik.imagekit.io/awilum/awilum-ru/100-js-4-2.jpg?updatedAt=1708058700627" width="900" /></center>
+		
+		<p>&nbsp;</p>
+
+		<p>С вашей точки зрения процесс будет немного различаться в зависимости от приложения, которое вы используете.</p>
+		
+		<p>Например, <strong>Dillinger</strong> фактически объединяет шаги 1-3 в единый, безшовный интерфейс &mdash; всё, что вам нужно сделать, это печатать в левой панели, и отформатированный вывод волшебным образом появляется в правой панели. Однако, если вы используете другие инструменты, такие как текстовый редактор с генератором статических сайтов, вы увидите, что этот процесс более заметен.&nbsp;</p>
+		
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center grid grid-cols-1 lg:grid-cols-2 gap-4">
+		<a href="/courses/markdown/markdown-editors/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Редакторы Markdown</a>
+		<a href="/courses/markdown/basic-syntax/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Базовый синтаксис</a>
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center">
+		<a target="_blank" href="https://stepik.org/course/187888/promo" class="bg-white text-black  text-center border-2 border-black rounded hover:bg-black hover:text-white px-8 lg:px-24 py-4 mr-2  no-underline">Записаться на курс</a>
+	</div>
+</Layout>

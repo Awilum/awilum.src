@@ -1,0 +1,98 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { Prism } from '@astrojs/prism';
+---
+
+<Layout title="Ссылки" 
+	    description="Курс предназначен для освоения ключевых принципов и навыков использования языка разметки Markdown. Этот курс разработан с учетом потребностей тех, кто стремится овладеть этим простым и эффективным инструментом форматирования текста." 
+		keywords="markdown">	
+	<h1 class="text-4xl lg:text-5xl text-left block  border-b-2 py-14 p-10 pl-0 pr-[200px] border-solid border-black">Ссылки</h1>
+	<div class="py-4">
+		<a href="/courses/">Курсы</a> <span class="px-2">/</span> <a href="/courses/markdown/">Markdown</a> <span class="px-2">/</span> <a href="/courses/markdown/basic-syntax/">Базовый синтаксис</a>
+	</div>
+	
+	<div class="pt-10 pb-10 border-black border-t-2">
+		
+		<p><strong>Ссылки (Links)</strong> в <strong>Markdown</strong> позволяют вставлять гиперссылки для перехода к другим веб-ресурсам или документам.</p>
+
+		<p>В <strong>Markdown</strong> существует несколько способов создания ссылок, а также дополнительные возможности форматирования, которые могут сделать их более выразительными.</p>
+		
+		<h3><strong>Основы создания ссылок</strong></h3>
+		
+		<p>Создание ссылок осуществляется с использованием квадратных скобок для отображения текста ссылки и круглых скобок для указания самой ссылки.</p>
+		
+		<p><strong>Пример (Markdown):</strong></p>
+
+		<Prism lang="markdown" code={`[Очень странные дела](https://en.wikipedia.org/wiki/Stranger_Things)`} />
+
+		<p><strong>Результат (HTML):</strong></p>
+		
+		<Prism lang="html" code={`<a href="https://en.wikipedia.org/wiki/Stranger_Things">Очень странные дела</a>`} />
+
+		<p><strong>Результат (Отображение):</strong></p>
+		
+		<p><a href="https://en.wikipedia.org/wiki/Stranger_Things" rel="noopener noreferrer nofollow">Очень странные дела</a></p>
+		
+		<h3><strong>Ссылки с заголовками (Titles)</strong></h3>
+		
+		<p>Вы можете добавить заголовок для ссылки, который появится в виде подсказки, когда пользователь наводит курсор на ссылку. Для этого заключите заголовок в кавычки после URL.</p>
+		
+		<p><strong>Пример (Markdown):</strong></p>
+		
+		<Prism lang="markdown" code={`[Очень странные дела](https://en.wikipedia.org/wiki/Stranger_Things "Американский научно-фантастический драматический сериал ужасов, созданный братьями Даффер для стриминг-сервиса Netflix")`} />
+
+		<p><strong>Результат (HTML):</strong></p>
+
+		<Prism lang="html" code={`<a title="Американский научно-фантастический драматический сериал ужасов, созданный братьями Даффер для стриминг-сервиса Netflix" href="https://en.wikipedia.org/wiki/Stranger_Things">Очень странные дела</a>`} />
+
+		<p><strong>Результат (Отображение):</strong></p>
+		
+		<p><a href="https://en.wikipedia.org/wiki/Stranger_Things" rel="noopener noreferrer nofollow" title="Американский научно-фантастический драматический сериал ужасов, созданный братьями Даффер для стриминг-сервиса Netflix">Очень странные дела</a></p>
+		
+		<h3><strong>Форматирование ссылок</strong></h3>
+		
+		<p>Чтобы выделить или изменить стиль текста внутри ссылки, используйте звездочки или подчеркивания.</p>
+		
+		<p><strong>Пример (Markdown):</strong></p>
+		
+		<Prism lang="markdown" code={`Мне нравится **[Stranger _Things_](https://en.wikipedia.org/wiki/Stranger_Things)**.`} />
+
+		<p><strong>Результат (HTML):</strong></p>
+		
+		<Prism lang="html" code={`Мне нравится <strong><a href="https://en.wikipedia.org/wiki/Stranger_Things">Stranger <em>Things</em></a></strong>.`} />
+
+		<p><strong>Результат (Отображение):</strong></p>
+		
+		<p>Мне нравится <strong><a href="https://en.wikipedia.org/wiki/Stranger_Things" rel="noopener noreferrer nofollow">Stranger <em>Things</em></a></strong>.</p>
+			
+		<h3>Ссылки на URL и Email</h3>
+		
+		<p>Чтобы быстро создать ссылку на URL или адрес электронной почты, заключите их в угловые скобки.</p>
+		
+		<p><strong>Пример (Markdown):</strong></p>
+
+<Prism lang="markdown" code={`<https://en.wikipedia.org/wiki/Stranger_Things>
+<eleven@strangerthings.com>
+`} />
+
+		<p><strong>Результат (HTML):</strong></p>
+
+<Prism lang="markdown" code={`<a href="https://en.wikipedia.org/wiki/Stranger_Things">https://en.wikipedia.org/wiki/Stranger_Things</a>
+<a href="mailto:eleven@strangerthings.com">eleven@strangerthings.com</a>
+`} />
+		<p><strong>Результат (Отображение):</strong></p>
+		
+		<p><a href="https://en.wikipedia.org/wiki/Stranger_Things" rel="noopener noreferrer nofollow">https://en.wikipedia.org/wiki/Stranger_Things</a><br />
+		<a href="mailto:eleven@strangerthings.com" rel="noopener noreferrer nofollow">eleven@strangerthings.com</a></p>		
+
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center grid grid-cols-1 lg:grid-cols-2 gap-4">
+		<a href="/courses/markdown/basic-syntax/horizontal-rules/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Горизонтальные линии</a>
+		<a href="/courses/markdown/basic-syntax/images/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Изображения</a>
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center">
+		<a target="_blank" href="https://stepik.org/course/187888/promo" class="bg-white text-black  text-center border-2 border-black rounded hover:bg-black hover:text-white px-8 lg:px-24 py-4 mr-2  no-underline">Записаться на курс</a>
+	</div>
+</Layout>

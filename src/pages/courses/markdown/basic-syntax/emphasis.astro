@@ -1,0 +1,126 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { Prism } from '@astrojs/prism';
+---
+
+<Layout title="Переносы строк" 
+	    description="Курс предназначен для освоения ключевых принципов и навыков использования языка разметки Markdown. Этот курс разработан с учетом потребностей тех, кто стремится овладеть этим простым и эффективным инструментом форматирования текста." 
+		keywords="markdown">	
+	<h1 class="text-4xl lg:text-5xl text-left block  border-b-2 py-14 p-10 pl-0 pr-[200px] border-solid border-black">Акценты</h1>
+	<div class="py-4">
+		<a href="/courses/">Курсы</a> <span class="px-2">/</span> <a href="/courses/markdown/">Markdown</a> <span class="px-2">/</span> <a href="/courses/markdown/basic-syntax/">Базовый синтаксис</a>
+	</div>
+	
+	<div class="pt-10 pb-10 border-black border-t-2">
+				
+		<p>В <strong>Markdown</strong> можно добавлять <strong>акценты (Emphasis)</strong>, чтобы выделить части текста.</p>
+
+		<p>Давайте рассмотрим различные способы добавления акцентов.</p>
+
+		<h3><strong>Жирный текст</strong></h3>
+
+		<p>Чтобы сделать текст <strong>жирным (Bold)</strong>, используйте две звездочки <code>**</code>&nbsp;или два подчеркивания <code>__</code>&nbsp;вокруг текста.</p>
+
+		<p><strong>Пример (Markdown):</strong></p>
+
+		<Prism lang="markdown" code={`**Эл**: Я не такая, как __они__.`} />
+
+		<p><strong>Результат (HTML):</strong></p>
+
+		<Prism lang="html" code={`<strong>Эл</strong>: Я не такая, как <strong>они</strong>.`} />
+
+		<p><strong>Результат (Отображение):</strong></p>
+
+		<p><strong>Эл</strong>: Я не такая, как <strong>они</strong>.</p>
+
+		<h3><strong>Курсив</strong></h3>
+
+		<p>Чтобы сделать текст <strong>курсивным (Italic)</strong>, используйте одну звездочку <code>*</code>&nbsp;или одно подчеркивание <code>_</code>&nbsp;вокруг текста.</p>
+
+		<p><strong>Пример (Markdown):</strong></p>
+
+		<Prism lang="markdown" code={`*Уилл*: Где я? Это не _Хоукинс_.`} />
+
+		<p><strong>Результат (HTML):</strong>&nbsp;</p>
+
+		<Prism lang="html" code={`<em>Уилл</em>: Где я? Это не <em>Хоукинс</em>.`} />
+
+		<p><strong>Результат (Отображение):</strong></p>
+
+		<p><em>Уилл</em>: Где я? Это не <em>Хоукинс</em>.</p>
+
+		<h3><strong>Жирный и курсив</strong></h3>
+
+		<p>Для комбинированного эффекта <strong>жирного и курсивного текста (Bold and Italic)</strong> используйте три звездочки <code>***</code>&nbsp;или три подчеркивания <code>___</code>&nbsp;вокруг текста.</p>
+
+		<p><strong>Пример (Markdown):</strong></p>
+
+		<Prism lang="markdown" code={`***Робин***: Странности снова ___начинаются___.`} />
+
+		<p><strong>Результат (HTML):</strong>&nbsp;</p>
+
+		<Prism lang="html" code={`<strong><em>Робин</em></strong>: Странности снова <strong><em>начинаются</em></strong>.`} />
+
+		<p><strong>Результат (Отображение):</strong></p>
+
+		<p><strong><em>Робин</em></strong>: Странности снова <strong><em>начинаются</em></strong>.</p>
+
+		<h3>Зачеркнутый текст</h3>
+
+		<p>Чтобы добавить <strong>зачеркивание (Strikethrough)</strong> текста, используйте две тильды <code>~~</code>&nbsp;вокруг текста.</p>
+
+		<p><strong>Пример (Markdown):</strong></p>
+
+		<Prism lang="markdown" code={`~~Демогоргон~~: Угроза из другого мира.`} />
+
+		<p><strong>Результат (HTML):</strong>&nbsp;</p>
+
+		<Prism lang="html" code={`<s>Демогоргон</s>: Угроза из другого мира.`} />
+
+		<p><strong>Результат (Отображение):</strong></p>
+
+		<p><s>Демогоргон</s>: Угроза из другого мира.</p>
+
+		<h3>Цветной текст</h3>
+		
+		<p><strong>Markdown</strong> не позволяет изменять цвет текста, но если ваш процессор <strong>Markdown</strong> поддерживает <strong>HTML</strong>, вы можете использовать тег <code>&lt;font&gt;</code> <strong>HTML</strong>. Атрибут <code>color</code> позволяет указать цвет шрифта, используя имя цвета или шестнадцатеричный код <code>#RRGGBB</code>.</p>
+
+		<p><strong>Пример (Markdown):</strong></p>
+
+		<Prism lang="markdown" code={`<font color="red">Угроза из другого мира.</font>`} />
+
+		<p><strong>Результат (HTML):</strong>&nbsp;</p>
+
+		<Prism lang="markdown" code={`<font color="red">Угроза из другого мира.</font>`} />
+
+		<p><strong>Результат (Отображение):</strong></p>
+
+		<p><span style="color:red">Угроза из другого мира.</span></p>
+
+		<p><br />
+		Тег <code>&lt;font&gt;</code> <strong>HTML</strong> технически поддерживается, но официально устарел, что означает, что он работает в настоящее время, но вы не должны его использовать. К сожалению, нет другой чистой <strong>HTML</strong>-альтернативы. Вы можете попробовать использовать один из альтернативных вариантов с использованием <strong>встроенных стилей (Inline Styles)</strong>. Не все приложения <strong>Markdown</strong> поддерживают <strong>встроенные стили (Inline Styles)</strong>, но если то, которое вы используете, поддерживает, вот альтернатива тегу <code>&lt;font&gt;</code></p>
+
+		<p><strong>Пример (Markdown):</strong></p>
+
+		<Prism lang="markdown" code={`<span style="color:red">Угроза из другого мира.</span>`} />
+
+		<p><strong>Результат (HTML):</strong>&nbsp;</p>
+
+		<Prism lang="html" code={`<span style="color:red">Угроза из другого мира.</span>`} />
+
+		<p><strong>Результат (Отображение):</strong></p>
+
+		<p style="color:red">Угроза из другого мира.</p>
+
+
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center grid grid-cols-1 lg:grid-cols-2 gap-4">
+		<a href="/courses/markdown/basic-syntax/line-breaks/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Переносы строк</a>
+		<a href="/courses/markdown/basic-syntax/blockquotes/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Блок цитат</a>
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center">
+		<a target="_blank" href="https://stepik.org/course/187888/promo" class="bg-white text-black  text-center border-2 border-black rounded hover:bg-black hover:text-white px-8 lg:px-24 py-4 mr-2  no-underline">Записаться на курс</a>
+	</div>
+</Layout>

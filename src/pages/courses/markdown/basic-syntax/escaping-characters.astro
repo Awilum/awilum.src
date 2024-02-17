@@ -1,0 +1,113 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { Prism } from '@astrojs/prism';
+---
+
+<Layout title="Изображения" 
+	    description="Курс предназначен для освоения ключевых принципов и навыков использования языка разметки Markdown. Этот курс разработан с учетом потребностей тех, кто стремится овладеть этим простым и эффективным инструментом форматирования текста." 
+		keywords="markdown">	
+	<h1 class="text-4xl lg:text-5xl text-left block  border-b-2 py-14 p-10 pl-0 pr-[200px] border-solid border-black">Изображения</h1>
+	<div class="py-4">
+		<a href="/courses/">Курсы</a> <span class="px-2">/</span> <a href="/courses/markdown/">Markdown</a> <span class="px-2">/</span> <a href="/courses/markdown/basic-syntax/">Базовый синтаксис</a>
+	</div>
+	
+	<div class="pt-10 pb-10 border-black border-t-2">
+
+		<p>В <strong>Markdown</strong> <strong>экранирование (Escaping Characters)</strong> чтобы отобразить специальный символ, который в обычных условиях используется для форматирования текста в документе <strong>Markdown</strong>, используйте обратный слеш <code>\</code> перед этим символом.</p>
+
+		<h3>Пример экранирования </h3>
+
+		<p>Пример (Markdown): </p>
+
+		<Prism lang="markdown" code={`\- Очень \*странные\* дела`} />
+
+		<p>Результат (HTML): </p>
+
+		<Prism lang="html" code={`- Очень *странные* дела`} />
+
+		<p>Результат (Отображение):</p>
+
+		<p>- Очень *странные* дела</p>
+
+		<h3>Символы, которые можно экранировать</h3>
+
+		<p>Вы можете использовать обратный слеш для экранирования следующих символов.</p>
+
+		<table style="width: 100%;">
+		<thead>
+			<tr>
+				<th>Символ</th>
+				<th>Название</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>\</td>
+				<td>обратный слеш (backslash)</td>
+			</tr>
+			<tr>
+				<td>`</td>
+				<td>обратная кавычка (backtick)</td>
+			</tr>
+			<tr>
+				<td>*</td>
+				<td>звездочка (asterisk)</td>
+			</tr>
+			<tr>
+				<td>_</td>
+				<td>подчеркивание (underscore)</td>
+			</tr>
+			<tr>
+				<td>{ }</td>
+				<td>фигурные скобки (curly braces)</td>
+			</tr>
+			<tr>
+				<td>[ ]</td>
+				<td>квадратные скобки (brackets)</td>
+			</tr>
+			<tr>
+				<td>&lt; &gt;</td>
+				<td>угловые скобки (angle brackets)</td>
+			</tr>
+			<tr>
+				<td>( )</td>
+				<td>круглые скобки (parentheses)</td>
+			</tr>
+			<tr>
+				<td>#</td>
+				<td>знак номера (pound sign)</td>
+			</tr>
+			<tr>
+				<td>+</td>
+				<td>плюс (plus sign)</td>
+			</tr>
+			<tr>
+				<td>-</td>
+				<td>минус (minus sign, hyphen)</td>
+			</tr>
+			<tr>
+				<td>.</td>
+				<td>точка (dot)</td>
+			</tr>
+			<tr>
+				<td>!</td>
+				<td>восклицательный знак (exclamation mark)</td>
+			</tr>
+			<tr>
+				<td>|</td>
+				<td>вертикальная черта (pipe)</td>
+			</tr>
+		</tbody>
+		</table>
+
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center grid grid-cols-1 lg:grid-cols-2 gap-4">
+		<a href="/courses/markdown/basic-syntax/images/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Списки</a>
+		<a href="javascript:;" class="bg-white text-black border-2 border-black rounded opacity-50 px-14 py-2 mr-2  no-underline">Продвинутый синтаксис</a>
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center">
+		<a target="_blank" href="https://stepik.org/course/187888/promo" class="bg-white text-black  text-center border-2 border-black rounded hover:bg-black hover:text-white px-8 lg:px-24 py-4 mr-2  no-underline">Записаться на курс</a>
+	</div>
+</Layout>

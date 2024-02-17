@@ -1,0 +1,144 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { Prism } from '@astrojs/prism';
+---
+
+<Layout title="Списки" 
+	    description="Курс предназначен для освоения ключевых принципов и навыков использования языка разметки Markdown. Этот курс разработан с учетом потребностей тех, кто стремится овладеть этим простым и эффективным инструментом форматирования текста." 
+		keywords="markdown">	
+	<h1 class="text-4xl lg:text-5xl text-left block  border-b-2 py-14 p-10 pl-0 pr-[200px] border-solid border-black">Списки</h1>
+	<div class="py-4">
+		<a href="/courses/">Курсы</a> <span class="px-2">/</span> <a href="/courses/markdown/">Markdown</a> <span class="px-2">/</span> <a href="/courses/markdown/basic-syntax/">Базовый синтаксис</a>
+	</div>
+	
+	<div class="pt-10 pb-10 border-black border-t-2">
+	
+		<p><strong>Списки (Lists)</strong> в <strong>Markdown</strong> позволяют организовать информацию в упорядоченные и неупорядоченные структуры.</p>
+
+		<p>Давайте рассмотрим, как создавать списки и добавлять элементы.</p>
+
+		<h3><strong>Неупорядоченные списки</strong></h3>
+
+		<p><strong>Неупорядоченные списки (Unordered Lists)</strong> создаются с использованием символов <code>-</code>, <code>*</code> или <code>+</code>. </p>
+
+		<p><strong>Пример (Markdown):</strong></p>
+
+<Prism lang="markdown" code={`- Глава первая: Исчезновение Уилла Байерса
+- Глава вторая: Чудак с Кленовой улицы
+- Глава третья: Здорово, Джолли
+`} />
+
+		<p><strong>Результат (HTML):</strong></p>
+
+<Prism lang="html" code={`<ul>
+	<li>Глава первая: Исчезновение Уилла Байерса</li>
+	<li>Глава вторая: Чудак с Кленовой улицы</li>
+	<li>Глава третья: Здорово, Джолли</li>
+</ul>
+`} />
+
+		<p><strong>Результат (Отображение):</strong></p>
+
+		<ul class="list-disc ml-10">
+			<li>Глава первая: Исчезновение Уилла Байерса</li>
+			<li>Глава вторая: Чудак с Кленовой улицы</li>
+			<li>Глава третья: Здорово, Джолли</li>
+		</ul>
+
+		<h3>Упорядоченные списки </h3>
+
+		<p><strong>Упорядоченные списки (Ordered Lists)</strong> создаются с использованием числовых значений и точек.</p>
+
+		<p><strong>Пример (Markdown):</strong></p>
+
+<Prism lang="markdown" code={`1. Джойс Байерс
+2. Хоппер
+3. Одиннадцать
+`} />
+
+		<p><strong>Результат (HTML):</strong></p>
+
+<Prism lang="html" code={`<ol>
+	<li>Джойс Байерс</li>
+	<li>Хоппер</li>
+	<li>Одиннадцать</li>
+</ol>
+`} />
+	
+		<p><strong>Результат (Отображение):</strong></p>
+
+		<ol>
+			<li>Джойс Байерс</li>
+			<li>Хоппер</li>
+			<li>Одиннадцать</li>
+		</ol>
+
+		<h3><strong>Добавление элементов в списки</strong></h3>
+
+		<p>Элементы списка могут включать в себя другие элементы, текст, изображения или даже блоки цитата и кода.</p>
+
+		<p><strong>Пример (Markdown):</strong></p>
+
+<Prism lang="markdown" code={`- **Джойс Байерс**
+- Уилл
+- Джонатан
+- **Хоппер**
+- **Одиннадцать**
+- Майк
+- Лукас
+- Дастин
+`} />
+
+		<p><strong>Результат (HTML):</strong></p>
+
+<Prism lang="markdown" code={`<ul>
+	<li>
+		<strong>Джойс Байерс</strong>
+		<ul>
+		<li>Уилл</li>
+		<li>Джонатан</li>
+		</ul>
+	</li>
+	<li><strong>Хоппер</strong></li>
+	<li>
+		<strong>Одиннадцать</strong>
+		<ul>
+		<li>Майк</li>
+		<li>Лукас</li>
+		<li>Дастин</li>
+		</ul>
+	</li>
+</ul>
+`} />
+
+		<p><strong>Результат (Отображение):</strong></p>
+
+		<ul class="list-disc ml-10">
+			<li><strong>Джойс Байерс</strong>
+
+			<ul class="list-disc ml-10">
+				<li>Уилл</li>
+				<li>Джонатан</li>
+			</ul>
+			</li>
+			<li><strong>Хоппер</strong></li>
+			<li><strong>Одиннадцать</strong>
+			<ul class="list-disc ml-10">
+				<li>Майк</li>
+				<li>Лукас</li>
+				<li>Дастин</li>
+			</ul>
+			</li>
+		</ul>
+
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center grid grid-cols-1 lg:grid-cols-2 gap-4">
+		<a href="/courses/markdown/basic-syntax/blockquotes/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Блок цитат</a>
+		<a href="/courses/markdown/basic-syntax/code/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Код</a>
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center">
+		<a target="_blank" href="https://stepik.org/course/187888/promo" class="bg-white text-black  text-center border-2 border-black rounded hover:bg-black hover:text-white px-8 lg:px-24 py-4 mr-2  no-underline">Записаться на курс</a>
+	</div>
+</Layout>
