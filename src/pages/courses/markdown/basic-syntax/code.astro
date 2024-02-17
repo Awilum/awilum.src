@@ -1,0 +1,131 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { Prism } from '@astrojs/prism';
+---
+
+<Layout title="Как работает Markdown?" 
+	    description="Курс предназначен для освоения ключевых принципов и навыков использования языка разметки Markdown. Этот курс разработан с учетом потребностей тех, кто стремится овладеть этим простым и эффективным инструментом форматирования текста." 
+		keywords="markdown">	
+	<h1 class="text-4xl lg:text-5xl text-left block  border-b-2 py-14 p-10 pl-0 pr-[200px] border-solid border-black">Код</h1>
+	<div class="py-4">
+		<a href="/courses/">Курсы</a> <span class="px-2">/</span> <a href="/courses/markdown/">Markdown</a> <span class="px-2">/</span> <a href="/courses/markdown/basic-syntax/">Базовый синтаксис</a>
+	</div>
+	<div class="pt-10 pb-10 border-black border-t-2">
+
+		<p>Вставка<strong> кода (Code)</strong> в <strong>Markdown</strong> позволяет выделить программный код, команды, или другие фрагменты кода для лучшего восприятия и форматирования.</p>
+		
+		<h3>Вставка Кода</h3>
+		
+		<p>Для вставки кода в текст используются <strong>обратные кавычки (backticks)</strong>.</p>
+		
+		<p>Обратите внимание, что на клавиатуре это символ, обычно находящийся под <strong>Esc</strong>.</p>
+		
+		<p><strong>Пример (Markdown):</strong></p>
+		
+<Prism lang="markdown" code={`\`\`\`
+console.log("Привет");
+\`\`\`
+`} />
+
+		<p><strong>Результат (HTML):</strong></p>
+
+<Prism lang="html" code={`<pre>
+	<code>
+		console.log("Привет");
+	</code>
+</pre>
+`} />
+		
+		<p><strong>Результат (Отображение):</strong></p>
+		
+		<Prism lang="javascript" code={`console.log("Привет");`} />
+
+		<h3>Встроенный Код</h3>
+		
+		<p>В тексте можно вставлять короткие фрагменты кода, обрамляя их одной обратной кавычкой.</p>
+		
+		<p><strong>Пример (Markdown):</strong></p>
+		
+		<Prism lang="markdown" code={`\`alert()\``} />
+
+		<p><strong>Результат (HTML):</strong></p>
+
+		<Prism lang="html" code={`<code>alert()</code>`} />
+		
+		<p><strong>Результат (Отображение):</strong></p>
+		
+		<Prism lang="javascript" code={`alert()`} />
+		
+		<h3>Блоки Кода</h3>
+		
+		<p>Если кода много, используйте три обратные кавычки для создания блока кода.</p>
+		
+		<p><strong>Пример (Markdown):</strong></p>
+		
+<Prism lang="markdown" code={`\`\`\`
+function logMessage() {
+	console.log("Сообщение в консоль");
+}
+\`\`\`
+`} />
+		
+		<p><strong>Результат (HTML):</strong></p>
+
+<Prism lang="html" code={`<pre>
+	<code>
+	function logMessage() {
+	  console.log("Сообщение в консоль");
+	}
+	</code>
+</pre>
+`} />
+		
+		<p><strong>Результат (Отображение):</strong></p>
+		
+<Prism lang="javascript" code={`
+function logMessage() {
+	console.log("Сообщение в консоль");
+}`} />
+
+		<h3>Спецификация Языка</h3>
+		
+		<p>Чтобы подсветить код для конкретного языка, добавьте имя языка после трех обратных кавычек.</p>
+		
+		<p>Обратите внимание, что подсветка языка может не поддерживаться во всех платформах. В таких случаях код будет отображаться без выделения, но сама структура блока кода сохранится.</p>
+		
+		<p><strong>Пример (Markdown):</strong></p>
+		
+<Prism lang="markdown" code={`\`\`\`javascript
+function logMessage() {
+	console.log("Сообщение в консоль");
+}
+\`\`\``} />
+		
+		<p><strong>Результат (HTML):</strong></p>
+
+<Prism lang="html" code={`<pre>
+	<code class="language-javascript">
+	function logMessage() {
+	  console.log("Сообщение в консоль");
+	}
+	</code>
+</pre>
+`} />
+		
+		<p><strong>Результат (Отображение):</strong></p>
+		
+<Prism lang="javascript" code={`function logMessage() {
+	console.log("Сообщение в консоль");
+}`} />
+
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center grid grid-cols-1 lg:grid-cols-2 gap-4">
+		<a href="/courses/markdown/basic-syntax/lists/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Списки</a>
+		<a href="/courses/markdown/basic-syntax/horizontal-rules/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Горизонтальные линии</a>
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center">
+		<a target="_blank" href="https://stepik.org/course/187888/promo" class="bg-white text-black  text-center border-2 border-black rounded hover:bg-black hover:text-white px-8 lg:px-24 py-4 mr-2  no-underline">Записаться на курс</a>
+	</div>
+</Layout>

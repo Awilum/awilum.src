@@ -47,8 +47,6 @@ import { Prism } from '@astrojs/prism';
 		
 		<p><a href="https://en.wikipedia.org/wiki/Stranger_Things" rel="noopener noreferrer nofollow"><img alt="Добро пожаловать в Хоукинс" height="337" src="https://ik.imagekit.io/awilum/welcome-to-hawkins.jpg" width="500"></a></p>
 		
-		<p> </p>
-		
 		<h3>Изображения с изменением размера</h3>
 		
 		<p>Синтаксис <strong>Markdown</strong> для изображений не позволяет указывать ширину и высоту изображений. Если вам необходимо изменить размер изображения, и ваша программа(процессор) <strong>Markdown</strong> поддерживает HTML, вы можете использовать HTML-тег <code>img</code> с атрибутами <code>width</code> и <code>height</code> для задания размеров изображения в пикселях.</p>
@@ -57,8 +55,6 @@ import { Prism } from '@astrojs/prism';
 		
 		<Prism lang="markdown" code={`<img alt="Добро пожаловать в Хоукинс" height="337" src="https://ik.imagekit.io/awilum/welcome-to-hawkins.jpg" width="500" />`} />
 
-		<pre><code class="language-markdown">&lt;img alt="Добро пожаловать в Хоукинс" height="337" src="https://ik.imagekit.io/awilum/welcome-to-hawkins.jpg" width="500" /&gt;</code></pre>
-		
 		<p><strong>Результат (HTML):</strong></p>
 
 		<Prism lang="html" code={`<img alt="Добро пожаловать в Хоукинс" height="337" src="https://ik.imagekit.io/awilum/welcome-to-hawkins.jpg" width="500" />`} />
