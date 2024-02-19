@@ -1,0 +1,412 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { Prism } from '@astrojs/prism';
+---
+
+<Layout title="Введение в SQL" 
+	    description="Введение в SQL" 
+		keywords="sql">	
+	<h1 class="text-4xl lg:text-5xl text-left block  border-b-2 py-14 p-10 pl-0 pr-[200px] border-solid border-black">Введение в SQL</h1>
+	<div class="py-4">
+		<a href="/courses/">Курсы</a> <span class="px-2">/</span> <a href="/courses/sql-basic/">SQL Базовый уровень</a> <span class="px-2">/</span> <a href="/courses/sql-basic/basic/">Основы</a>
+	</div>
+	
+	<div class="pt-10 pb-10 border-black border-t-2">
+	
+		<p><strong>SQL</strong> (<strong>S</strong>tructured <strong>Q</strong>uery <strong>L</strong>anguage)&nbsp;&mdash; декларативный язык программирования, является стандартным языком для работы с реляционными базами данных. Он используется для создания, изменения и управления структурой базы данных, а также для выполнения запросов к базе данных и получения данных из нее.</p>
+
+		<p><strong>SQL</strong> используется в большинстве современных <strong>СУБД</strong> (<strong>С</strong>истемы <strong>У</strong>правления <strong>Б</strong>азами <strong>Д</strong>анных) такие как <strong>MySQL</strong>, <strong>Microsoft SQL Server</strong>, <strong>Oracle</strong> и многие другие.&nbsp;</p>
+		
+		<h3>Краткая история SQL</h3>
+		
+		<p>Язык <strong>SQL</strong> появился после реляционной алгебры, и его прототип был разработан в конце 70-х годов в компании&nbsp;<strong>IBM Research</strong>. Он был реализован в первом прототипе реляционной <strong>СУБД</strong> фирмы IBM System R. С тех пор этот язык использовался многими коммерческими <strong>СУБД</strong> и был настолько популярен, что постепенно стал де-факто стандартным языком манипулирования данными в реляционных <strong>СУБД</strong>.</p>
+		
+		<blockquote>
+		<p><strong>Реляционная алгебра</strong> &mdash; замкнутая система операций над отношениями в реляционной модели данных.<br />
+		Операции реляционной алгебры также называют реляционными операциями.</p>
+		</blockquote>
+		
+		<p>Первоначально язык назывался&nbsp;<strong>SEQUEL</strong>&nbsp;(<strong>S</strong>tructured <strong>E</strong>nglish <strong>Q</strong>uery <strong>L</strong>anguage), но потом слово &quot;<strong>English&quot;</strong>&nbsp;пропало из этого словосочетания. С одной стороны, <strong>SQL</strong> ориентирован на то, чтобы сделать запросы к реляционным базам данных удобными и понятными для пользователей. С другой стороны, его почти с самого начала называли &quot;<strong>полным языком баз данных</strong>&quot;.&nbsp;</p>
+		
+		<p><strong>SQL</strong> включает в себя:&nbsp;</p>
+		
+		<ul class="list-disc ml-8">
+			<li>средства для определения и управления схемой базы данных</li>
+			<li>средства для определения ограничений целостности и триггеров</li>
+			<li>средства для определения представлений БД</li>
+			<li>средства для авторизации доступа к отношениям и их полям</li>
+			<li>средства для определения структур физического уровня, поддерживающих эффективное выполнение запросов</li>
+			<li>средства для определения точек сохранения транзакции и выполнения фиксации и откатов транзакций</li>
+		</ul>
+
+		<h3>SQL Базы данных</h3>
+
+		<p><strong>SQL Базы данных</strong> (<strong>SQL Databases</strong>) — это системы для хранения и обработки данных, которые используют <strong>SQL</strong> (<strong>S</strong>tructured <strong>Q</strong>uery <strong>L</strong>anguage) для доступа и управления данными.</p>
+
+		<p>В <u>реляционной SQL базе данных</u> данные хранятся в таблицах, которые состоят из строк и столбцов. Каждая строка таблицы представляет собой запись, а каждый столбец представляет собой отдельное поле этой записи. Таким образом, таблицы в реляционной базе данных можно сравнить с таблицами в электронных таблицах или таблицами в бумажных базах данных.</p>
+
+		<p>Реляционные базы данных обладают множеством преимуществ, включая поддержку стандартного языка запросов <strong>SQL</strong>, возможность обеспечить целостность данных и контроль доступа, простоту масштабирования и поддержку транзакций.</p>
+
+		<p>Реляционные базы данных также предлагают множество возможностей для связывания таблиц друг с другом через внешние ключи. Это обеспечивает связность данных и позволяет избежать дублирования информации. Реляционные базы данных также позволяют создавать индексы для ускорения поиска и выборки данных.</p>
+
+		<p>Существует множество реализаций реляционных <strong>СУБД</strong>, которые используются в различных областях и имеют свои собственные функциональные возможности и преимущества. </p>
+
+		<p><strong>СУБД</strong> (<strong>RDBMS</strong>) означает <strong><u>R</u></strong>elational <strong><u>D</u></strong>atabase <strong><u>M</u></strong>anagement <strong><u>S</u></strong>ystem. <strong>СУБД</strong> является основой для <strong>SQL</strong>, так и для всех современных систем баз данных , таких как <strong>MySQL</strong>, <strong>MS SQL</strong> <strong>Server</strong>, <strong>Oracle</strong>, <strong>PostgreSQL</strong>, <strong>SQLite</strong> и многие другие.</p>
+
+		<h3>Таблица</h3>
+
+		<p><strong>Таблица </strong>(<strong>table</strong>) в <strong>SQL Базе данных </strong>— это основной контейнер для хранения данных в реляционной базе данных.</p>
+
+		<p>Каждая таблица состоит из строк и столбцов. Каждая строка таблицы соответствует одной записи в базе данных, а каждый столбец представляет собой отдельное поле этой записи.</p>
+
+		<p>Например, если у нас есть база данных для хранения информации о фильмах, то мы можем создать таблицу с именем <code>movies</code>, которая будет содержать столбцы такие как <code>id</code>, <code>title</code>, <code>release_year</code>, <code>genre</code>, <code>rating</code> ,и т.д. Каждая строка в этой таблице будет соответствовать одному фильму, и каждый столбец будет содержать соответствующую информацию о фильме.</p>
+
+		<p><strong>Таблица</strong> <code>movies</code></p>
+
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><strong>id</strong></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>The Shawshank Redemption</td>
+					<td>1994</td>
+					<td>Drama</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>The Godfather</td>
+					<td>1972</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>The Godfather: Part II</td>
+					<td>1974</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>The Dark Knight</td>
+					<td>2008</td>
+					<td>Action</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>12 Angry Men</td>
+					<td>1957</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>Schindlers List</td>
+					<td>1993</td>
+					<td>Biography</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>Pulp Fiction</td>
+					<td>1994</td>
+					<td>Crime</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>8</td>
+					<td>The Lord of the Rings: The Return of the King</td>
+					<td>2003</td>
+					<td>Adventure</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>9</td>
+					<td>Fight Club</td>
+					<td>1999</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>10</td>
+					<td>The Good, the Bad and the Ugly</td>
+					<td>1966</td>
+					<td>Western</td>
+					<td>8</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h3>Ячейка</h3>
+
+		<p><strong>Ячейка</strong> (<strong>item</strong>) в <strong>SQL Базе данных</strong> — это самый маленький элемент данных, который может быть сохранен в таблице.</p>
+
+		<p>Ячейки располагаются в строках таблицы, где каждая строка представляет собой запись.</p>
+
+		<p>Ячейки содержат значение определенного типа данных, которое может быть числом, строкой, датой, временем и т.д. Например, ячейка в столбце <code>title</code> может содержать строку, а ячейка в столбце <code>rating</code> может содержать целое число.</p>
+
+		<table>
+			<tbody>
+				<tr>
+					<td>The Shawshank Redemption</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h3>Запись</h3>
+
+		<p><strong>Запись</strong> (<strong>record</strong>) или <strong>строка </strong>в <strong>SQL Базе данных</strong> — это отдельная строка в таблице, которая содержит данные для одной единицы информации.</p>
+
+		<p>Например, в таблице <code>movies</code> каждая строка будет представлять собой отдельный фильм с его собственными значениями для каждого столбца.</p>
+
+		<p><strong>Таблица</strong> <code>movies</code></p>
+
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><strong>id</strong></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>The Shawshank Redemption</td>
+					<td>1994</td>
+					<td>Drama</td>
+					<td>9</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<p>В таблице <code>movies</code> имеются следующие столбцы: <code>id</code>, <code>title</code>, <code>release_year</code>, <code>genre</code>, <code>rating</code></p>
+
+		<h3>Столбец</h3>
+
+		<p><strong>Столбец</strong> (<strong>column</strong>) в <strong>SQL Базе данных</strong> — это одна из колонок в таблице, которая используется для хранения данных одного типа. Каждый столбец в таблице имеет свое имя и тип данных, который может принимать. Например, в таблице фильмов может быть столбец <code>title</code> с типом данных <code>VARCHAR</code>. </p>
+
+		<p>Термин "столбец" и "поле" часто используются как синонимы друг друга и они означают одно и то же.</p>
+
+		<p><strong>Таблица</strong> <code>movies</code></p>
+
+		<table>
+			<thead>
+				<tr>
+					<th><strong>title</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>The Shawshank Redemption</td>
+				</tr>
+				<tr>
+					<td>The Godfather</td>
+				</tr>
+				<tr>
+					<td>The Godfather: Part II</td>
+				</tr>
+				<tr>
+					<td>The Dark Knight</td>
+				</tr>
+				<tr>
+					<td>12 Angry Men</td>
+				</tr>
+				<tr>
+					<td>Schindlers List</td>
+				</tr>
+				<tr>
+					<td>Pulp Fiction</td>
+				</tr>
+				<tr>
+					<td>The Lord of the Rings: The Return of the King</td>
+				</tr>
+				<tr>
+					<td>Fight Club</td>
+				</tr>
+				<tr>
+					<td>The Good, the Bad and the Ugly</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h3>Первичный  и  Внешний ключ</h3>
+
+		<p><strong>Первичный ключ</strong> (<strong>primary key</strong>) — это уникальный идентификатор для каждой записи в таблице базы данных. Он используется для идентификации строк и обеспечения целостности данных в таблице. Первичный ключ должен быть уникальным и не может принимать значение <strong>NULL</strong>.</p>
+
+		<p>В таблице фильмов <code>movies</code>, мы можем задать колонку <code>id</code> как первичный ключ. Каждая строка в таблице будет иметь уникальное значение в этой колонке, и будет использоваться для идентификации соответствующего фильма в базе данных.</p>
+
+		<p><strong>Таблица</strong> <code>movies</code></p>
+
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><span style="color: #64b0f4;"><strong>id</strong></span></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><span style="color: #64b0f4;">1</span></td>
+					<td>The Shawshank Redemption</td>
+					<td>1994</td>
+					<td>Drama</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td><span style="color: #64b0f4;">2</span></td>
+					<td>The Godfather</td>
+					<td>1972</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td><span style="color: #64b0f4;">3</span></td>
+					<td>The Godfather: Part II</td>
+					<td>1974</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td><span style="color: #64b0f4;">4</span></td>
+					<td>The Dark Knight</td>
+					<td>2008</td>
+					<td>Action</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td><span style="color: #64b0f4;">5</span></td>
+					<td>12 Angry Men</td>
+					<td>1957</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td><span style="color: #64b0f4;">6</span></td>
+					<td>Schindlers List</td>
+					<td>1993</td>
+					<td>Biography</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td><span style="color: #64b0f4;">7</span></td>
+					<td>Pulp Fiction</td>
+					<td>1994</td>
+					<td>Crime</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td><span style="color: #64b0f4;">8</span></td>
+					<td>The Lord of the Rings: The Return of the King</td>
+					<td>2003</td>
+					<td>Adventure</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td><span style="color: #64b0f4;">9</span></td>
+					<td>Fight Club</td>
+					<td>1999</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td><span style="color: #64b0f4;">10</span></td>
+					<td>The Good, the Bad and the Ugly</td>
+					<td>1966</td>
+					<td>Western</td>
+					<td>8</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<p> </p>
+
+		<p><strong>Внешний ключ</strong> (<strong>foreign key</strong>) - это способ связывания данных в различных таблицах базы данных. Он используется для обеспечения целостности данных и соответствия между таблицами.</p>
+
+		<p><strong>Например:</strong> В таблице <code>reviews</code> есть поле <code>movie_id</code>, которое является внешним ключом связывающим данную таблицу с таблицей <code>movies</code> по столбцу <code>id</code>.</p>
+
+		<p><strong>Таблица</strong> <code>reviews</code></p>
+
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><span style="color: #64b0f4;"><strong>id</strong></span></th>
+					<th><span style="color: #66cc66;"><strong>movie_id</strong></span></th>
+					<th><strong>review</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><span style="color: #64b0f4;">1</span></td>
+					<td><span style="color: #66cc66;">1</span></td>
+					<td>This is an amazing movie with great acting and a compelling story.</td>
+				</tr>
+				<tr>
+					<td><span style="color: #64b0f4;">2</span></td>
+					<td><span style="color: #66cc66;">2</span></td>
+					<td>A classic crime drama with iconic performances and a timeless plot.</td>
+				</tr>
+				<tr>
+					<td><span style="color: #64b0f4;">3</span></td>
+					<td><span style="color: #66cc66;">3</span></td>
+					<td>A worthy sequel to The Godfather that expands on the original story.</td>
+				</tr>
+				<tr>
+					<td><span style="color: #64b0f4;">4</span></td>
+					<td><span style="color: #66cc66;">4</span></td>
+					<td>A thrilling superhero movie with incredible action and a great villain.</td>
+				</tr>
+				<tr>
+					<td><span style="color: #64b0f4;">5</span></td>
+					<td><span style="color: #66cc66;">5</span></td>
+					<td>A powerful drama about the flaws in the justice system and the power of persistence.</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h3>NULL</h3>
+
+		<p><strong>NULL</strong> в <strong>SQL Базе данных</strong> — специальное значение, которое может быть записано в поле таблицы базы данных (<strong>БД</strong>).</p>
+
+		<p><strong>NULL</strong> соответствует понятию "пустое поле", то есть "поле, не содержащее никакого значения". Введено для того, чтобы различать в полях <strong>БД</strong> пустые (визуально не отображаемые) значения (например, строку нулевой длины) и отсутствующие значения (когда в поле не записано вообще никакого значения, даже пустого).</p>
+
+		<p><strong>NULL</strong> означает отсутствие, неизвестность информации.</p>
+
+		<h3>Правила ограничения</h3>
+
+		<p>В <strong>SQL Базе данных</strong> есть различные правила ограничения, которые используются для обеспечения целостности и соответствия данных в базе данных.</p>
+
+		<ul class="list-disc ml-8">
+			<li><strong>NOT NULL</strong> — гарантирует, что в поле не может быть значения <strong>NULL</strong>.</li>
+			<li><strong>UNIQUE</strong> — гарантирует, что в поле не может быть повторяющихся значений.</li>
+			<li><strong>PRIMARY KEY</strong> — гарантирует уникальность данных в поле и используется для идентификации каждой записи в таблице.</li>
+			<li><strong>FOREIGN KEY</strong> — гарантирует ссылочную целостность, которое гарантирует, что значение в поле соответствует значению в другой таблице в качестве первичного ключа.</li>
+			<li><strong>CHECK</strong> — гарантирует, что все значения в столбце удовлетворяют определенным условиям.</li>
+		</ul>
+
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center grid grid-cols-1 lg:grid-cols-2 gap-4">
+		<a href="/courses/sql-basic/basic/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Основы</a>
+		<a href="/courses/sql-basic/basic/style-guide/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Руководство по стилю SQL</a>
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center">
+		<a target="_blank" href="https://stepik.org/a/133728" class="bg-white text-black  text-center border-2 border-black rounded hover:bg-black hover:text-white px-8 lg:px-24 py-4 mr-2  no-underline">Записаться на курс</a>
+	</div>
+</Layout>

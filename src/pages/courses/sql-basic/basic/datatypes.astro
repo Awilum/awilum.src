@@ -1,0 +1,281 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { Prism } from '@astrojs/prism';
+---
+
+<Layout title="Типы данных" 
+	    description="Типы данных в SQL" 
+		keywords="sql">	
+	<h1 class="text-4xl lg:text-5xl text-left block  border-b-2 py-14 p-10 pl-0 pr-[200px] border-solid border-black">Типы данных</h1>
+	<div class="py-4">
+		<a href="/courses/">Курсы</a> <span class="px-2">/</span> <a href="/courses/sql-basic/">SQL Базовый уровень</a> <span class="px-2">/</span> <a href="/courses/sql-basic/basic/">Основы</a>
+	</div>
+	
+	<div class="pt-10 pb-10 border-black border-t-2">
+		
+		<p>Тип данных в <strong>SQL&nbsp;</strong>&mdash;&nbsp;это атрибут, который определяет тип данных любого объекта.</p>
+
+		<p><strong>SQL</strong> предлагает шесть категорий типов данных для использования:</p>
+
+		<h3>Точные типы числовых данных</h3>
+
+		<table align="center" style="width:100%">
+			<thead>
+				<tr>
+					<th>ТИП ДАННЫХ</th>
+					<th>От</th>
+					<th>До</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>bigint</td>
+					<td>-9,223,372,036,854,775,808</td>
+					<td>9,223,372,036,854,775,807</td>
+				</tr>
+				<tr>
+					<td>int</td>
+					<td>-2,147,483,648</td>
+					<td>2,147,483,647</td>
+				</tr>
+				<tr>
+					<td>smallint</td>
+					<td>-32,768</td>
+					<td>32,767</td>
+				</tr>
+				<tr>
+					<td>tinyint</td>
+					<td>0</td>
+					<td>255</td>
+				</tr>
+				<tr>
+					<td>bit</td>
+					<td>0</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>decimal</td>
+					<td>-10^38 +1</td>
+					<td>10^38 -1</td>
+				</tr>
+				<tr>
+					<td>numeric</td>
+					<td>-10^38 +1</td>
+					<td>10^38 -1</td>
+				</tr>
+				<tr>
+					<td>money</td>
+					<td>-922,337,203,685,477.5808</td>
+					<td>+922,337,203,685,477.5807</td>
+				</tr>
+				<tr>
+					<td>smallmoney</td>
+					<td>-214,748.3648</td>
+					<td>+214,748.3647</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<p>&nbsp;</p>
+
+		<h3>Примерные типы числовых данных</h3>
+
+		<table align="center" style="width:100%">
+			<thead>
+				<tr>
+					<th>ТИП ДАННЫХ</th>
+					<th>От</th>
+					<th>До</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>float</td>
+					<td>-1.79E + 308</td>
+					<td>1.79E + 308</td>
+				</tr>
+				<tr>
+					<td>real</td>
+					<td>-3.40E + 38</td>
+					<td>3.40E + 38</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<p>&nbsp;</p>
+
+		<h3>Типы данных даты и времени</h3>
+
+		<table align="center" style="width:100%">
+			<thead>
+				<tr>
+					<th>ТИП ДАННЫХ</th>
+					<th>От</th>
+					<th>До</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>datetime</td>
+					<td>1 января 1753</td>
+					<td>31 декабря, 9999</td>
+				</tr>
+				<tr>
+					<td>smalldatetime</td>
+					<td>1 января 1900</td>
+					<td>6 июня 2079</td>
+				</tr>
+				<tr>
+					<td>date</td>
+					<td colspan="2">Сохраняет дату, как 30 июня 1991 года</td>
+				</tr>
+				<tr>
+					<td>time</td>
+					<td colspan="2">Сохраняет время суток, как 12:30</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<p>&nbsp;</p>
+
+		<h3>Типы данных символьных строк</h3>
+
+		<table align="center" style="width:100%">
+			<thead>
+				<tr>
+					<th>ТИП ДАННЫХ</th>
+					<th>Описание</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>char</td>
+					<td>Максимальная длина 8000 символов. (Фиксированная длина без Unicode символов)</td>
+				</tr>
+				<tr>
+					<td>varchar</td>
+					<td>Максимум 8000 символов. (Переменная длина данных не-Unicode).</td>
+				</tr>
+				<tr>
+					<td>varchar(max)</td>
+					<td>Максимальная длина 231 символов, переменная длина данных не Unicode (SQL Server 2005).</td>
+				</tr>
+				<tr>
+					<td>text</td>
+					<td>Переменная длина данных, не Unicode с максимальной длиной 2147483647 символов.</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<p>&nbsp;</p>
+
+		<h3>Типы строк данных&nbsp;символов&nbsp;Unicode</h3>
+
+		<table align="center" style="width:100%">
+			<thead>
+				<tr>
+					<th>ТИП ДАННЫХ</th>
+					<th>Описание</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>nchar</td>
+					<td>Максимальная длина 4000 символов. (Фиксированная длина Unicode)</td>
+				</tr>
+				<tr>
+					<td>nvarchar</td>
+					<td>Максимальная длина 4000 символов. (Переменная длина Unicode)</td>
+				</tr>
+				<tr>
+					<td>nvarchar(max)</td>
+					<td>Максимальная длина 231 символов&nbsp;(SQL Server 2005). (Переменная длина Unicode)</td>
+				</tr>
+				<tr>
+					<td>ntext</td>
+					<td>Максимальная длина 1,073,741,823 символов. (Переменная длина Unicode)</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<p>&nbsp;</p>
+
+		<h3>Двоичные типы данных</h3>
+
+		<table align="center" style="width:100%">
+			<thead>
+				<tr>
+					<th>ТИП ДАННЫХ</th>
+					<th>Описание</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>binary</td>
+					<td>Максимальная длина 8000 байт (фиксированная длина двоичных данных)</td>
+				</tr>
+				<tr>
+					<td>varbinary</td>
+					<td>Максимальная длина 8000 байт. (Переменной длины двоичных данных)</td>
+				</tr>
+				<tr>
+					<td>varbinary(max)</td>
+					<td>Максимальная длина 231 байт (SQL Server 2005). (Переменная длина двоичные данные)</td>
+				</tr>
+				<tr>
+					<td>image</td>
+					<td>Максимальная длина 2147483647 байт. (Переменная длина двоичных данных)</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<p>&nbsp;</p>
+
+		<h3>Другие типы данных</h3>
+
+		<table align="center" style="width:100%">
+			<thead>
+				<tr>
+					<th>ТИП ДАННЫХ</th>
+					<th>Описание</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>sql_variant</td>
+					<td>Сохраняет значение различных типов данных&nbsp;SQL Server с поддержкой, за исключением текста, ntext и timestamp.</td>
+				</tr>
+				<tr>
+					<td>timestamp</td>
+					<td>Хранит уникального номер базы данных, который обновляется каждый раз, когда строка получает обновление</td>
+				</tr>
+				<tr>
+					<td>uniqueidentifier</td>
+					<td>Хранит уникальный глобальный идентификатор (GUID)</td>
+				</tr>
+				<tr>
+					<td>xml</td>
+					<td>Хранит XML данные. Вы можете хранить экземпляры XML в столбце или переменной (SQL Server 2005).</td>
+				</tr>
+				<tr>
+					<td>cursor</td>
+					<td>Ссылка на объект курсора</td>
+				</tr>
+				<tr>
+					<td>table</td>
+					<td>Хранит набор результатов для последующей обработки</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center grid grid-cols-1 lg:grid-cols-2 gap-4">
+		<a href="/courses/sql-basic/basic/style-guide" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Руководство по стилю SQL</a>
+		<a href="/courses/sql-basic/basic/selecting-data" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Выборка данных</a>
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center">
+		<a target="_blank" href="https://stepik.org/a/133728" class="bg-white text-black  text-center border-2 border-black rounded hover:bg-black hover:text-white px-8 lg:px-24 py-4 mr-2  no-underline">Записаться на курс</a>
+	</div>
+</Layout>

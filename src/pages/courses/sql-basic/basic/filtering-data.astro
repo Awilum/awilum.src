@@ -1,0 +1,468 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { Prism } from '@astrojs/prism';
+---
+
+<Layout title="Фильтрация данных" 
+	    description="Фильтрация данных в SQL" 
+		keywords="sql">	
+	<h1 class="text-4xl lg:text-5xl text-left block  border-b-2 py-14 p-10 pl-0 pr-[200px] border-solid border-black">Фильтрация данных</h1>
+	<div class="py-4">
+		<a href="/courses/">Курсы</a> <span class="px-2">/</span> <a href="/courses/sql-basic/">SQL Базовый уровень</a> <span class="px-2">/</span> <a href="/courses/sql-basic/basic/">Основы</a>
+	</div>
+	
+	<div class="pt-10 pb-10 border-black border-t-2">
+				
+		<p>Фильтрация данных в <strong>SQL</strong> позволяет выбрать только те строки из таблицы, которые удовлетворяют определенным условиям.</p>
+
+		<center><img alt="" height="516" name="SQL-6.jpg" src="https://ucarecdn.com/249f0ada-06b3-4361-979e-173e53769c55/" width="800"></center>
+
+		<p>Для фильтрации данных в <strong>SQL</strong> используется оператор <code>WHERE</code>.</p>
+
+		<p><strong>Таблица</strong> <code>movies</code></p>
+
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><strong>id</strong></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>The Shawshank Redemption</td>
+					<td>1994</td>
+					<td>Drama</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>The Godfather</td>
+					<td>1972</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>The Godfather: Part II</td>
+					<td>1974</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>The Dark Knight</td>
+					<td>2008</td>
+					<td>Action</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>12 Angry Men</td>
+					<td>1957</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>Schindlers List</td>
+					<td>1993</td>
+					<td>Biography</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>Pulp Fiction</td>
+					<td>1994</td>
+					<td>Crime</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>8</td>
+					<td>The Lord of the Rings: The Return of the King</td>
+					<td>2003</td>
+					<td>Adventure</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>9</td>
+					<td>Fight Club</td>
+					<td>1999</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>10</td>
+					<td>The Good, the Bad and the Ugly</td>
+					<td>1966</td>
+					<td>Western</td>
+					<td>8</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br><br>
+
+		<p>Например, если мы хотим выбрать фильмы, выпущенные после 2000 года, мы можем использовать следующий запрос:</p>
+
+		<pre><code class="language-sql">SELECT *
+		FROM movies
+		WHERE release_year &gt; 2000;
+		</code></pre>
+
+		<p><strong>Результат</strong></p>
+
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><strong>id</strong></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>4</td>
+					<td>The Dark Knight</td>
+					<td>2008</td>
+					<td>Action</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>8</td>
+					<td>The Lord of the Rings: The Return of the King</td>
+					<td>2003</td>
+					<td>Adventure</td>
+					<td>8</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<p> </p>
+
+		<p>Если мы хотим выбрать фильмы с рейтингом выше 8 и жанром Action, мы можем использовать следующий запрос:</p>
+
+		<pre><code>SELECT *
+		FROM movies
+		WHERE rating &gt; 8
+		AND genre  = 'Action';
+		</code></pre>
+
+		<p><strong>Результат</strong></p>
+
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><strong>id</strong></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>4</td>
+					<td>The Dark Knight</td>
+					<td>2008</td>
+					<td>Action</td>
+					<td>9</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br><br>
+
+		<p>С помощью оператора <code>WHERE</code> можно составлять сложные запросы с несколькими условиями, используя логические операторы <code>AND</code>, <code>OR</code> и <code>NOT</code>.</p>
+
+		<p>Например, если мы хотим выбрать фильмы с жанром Biography или Drama, с рейтингом более 7 и выпущенные после 1990 года, мы можем использовать следующий запрос:</p>
+
+		<pre><code class="language-sql">SELECT *
+		FROM movies
+		WHERE (genre = 'Biography' 
+			OR genre = 'Drama')
+		AND rating &gt; 7
+		AND release_year &gt; 1990;
+		</code></pre>
+
+		<p>В данном запросе, мы использовали скобки для обозначения приоритета логических операций.<br>
+		Сначала будет выполняться условие внутри скобок (<code>genre = 'Biography' OR genre = 'Drama')</code>, затем с помощью <code>AND</code> будет добавляться условия <code>rating &gt; 7</code> и <code>release_year &gt; 1990</code>.</p>
+
+		<p><strong>Результат</strong></p>
+
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><strong>id</strong></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>The Shawshank Redemption</td>
+					<td>1994</td>
+					<td>Drama</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>Schindlers List</td>
+					<td>1993</td>
+					<td>Biography</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>9</td>
+					<td>Fight Club</td>
+					<td>1999</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br><br>
+
+		<p>Если использовать <code>NOT</code> в условии, оно будет отрицать условие. Является эквивалентом операции инверсии в математической логике и может применяется только для булевых значений.</p>
+
+		<p>Например, если мы хотим выбрать фильмы, которые не выпущены в 2000 и 2003 году, мы можем использовать следующий запрос:</p>
+
+		<pre><code>SELECT *
+		FROM movies
+		WHERE release_year NOT IN ( 2000, 2003 );
+		</code></pre>
+
+		<p>Здесь мы дополнительно используем оператор <code>IN</code> , который позволяет определить, совпадает ли значение поля <code>release_year</code> со значением в списке.</p>
+
+		<p><strong>Результат</strong> <code>movies</code></p>
+
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><strong>id</strong></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>The Shawshank Redemption</td>
+					<td>1994</td>
+					<td>Drama</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>The Godfather</td>
+					<td>1972</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>The Godfather: Part II</td>
+					<td>1974</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>12 Angry Men</td>
+					<td>1957</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>Schindlers List</td>
+					<td>1993</td>
+					<td>Biography</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>Pulp Fiction</td>
+					<td>1994</td>
+					<td>Crime</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>9</td>
+					<td>Fight Club</td>
+					<td>1999</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>10</td>
+					<td>The Good, the Bad and the Ugly</td>
+					<td>1966</td>
+					<td>Western</td>
+					<td>8</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<p>В <strong>SQL</strong>, оператор <code>WHERE</code> может использоваться с различными операторами для фильтрации данных в таблице.</p>
+
+		<p>Вот некоторые из них:</p>
+
+		<ul>
+			<li><strong>Равенство</strong>: <code>=</code>, <code>&lt;&gt;</code> (не равно)<br>
+			Например:
+			<pre><code class="language-sql">SELECT *
+		FROM movies
+		WHERE rating = 9;
+		
+		SELECT *
+		FROM movies
+		WHERE genre &lt;&gt; 'Action';
+		</code></pre>
+			</li>
+			<li><strong>Сравнение</strong>: <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code><br>
+			Например:
+			<pre><code class="language-sql">SELECT *
+		FROM movies
+		WHERE release_year &gt;= 2000;
+
+		SELECT *
+		FROM movies
+		WHERE rating &lt; 8;</code></pre>
+			</li>
+			<li><strong>Логические операторы</strong>: <code>AND</code>, <code>OR</code>, <code>NOT</code><br>
+			Например:
+			<pre><code class="language-sql">SELECT *
+		FROM movies
+		WHERE genre = 'Action'
+		AND release_year &gt; 2000;
+
+		SELECT *
+		FROM movies
+		WHERE rating &gt; 8
+			OR release_year &lt; 2000;
+
+		SELECT *
+		FROM movies
+		WHERE NOT (genre = 'Drama'
+				OR genre = 'Crime');
+		</code></pre>
+			</li>
+			<li><strong>Операторы</strong>: <code>IN</code> и <code>NOT IN</code><br>
+			Например:
+			<pre><code class="language-sql">SELECT *
+		FROM movies
+		WHERE genre IN ('Drama', 'Action');
+
+		SELECT *
+		FROM movies
+		WHERE release_year NOT IN (2010, 2011, 2012);</code></pre>
+			</li>
+			<li><strong>Операторы</strong>: <code>LIKE</code>, <code>NOT LIKE</code><br>
+			Например:
+			<pre><code class="language-sql">SELECT *
+		FROM movies
+		WHERE title LIKE '%father%';
+
+		SELECT *
+		FROM movies
+		WHERE title NOT LIKE '%father%';</code></pre>
+			</li>
+			<li><strong>Операторы</strong>: <code>BETWEEN..AND</code><br>
+			Например:
+			<pre><code class="language-sql">SELECT *
+		FROM movies
+		WHERE rating BETWEEN 8 AND 10;</code></pre>
+			</li>
+			<li><strong>Операторы</strong>: <code>IS NULL</code>, <code>IS NOT NULL</code><br>
+			Например:
+			<pre><code class="language-sql">SELECT *
+		FROM movies
+		WHERE title IS NULL;
+
+		SELECT *
+		FROM movies
+		WHERE rating IS NOT NULL;
+		</code></pre>
+			</li>
+		</ul>
+
+		<p>В <strong>SQL</strong>, арифметические операторы могут быть использованы в комбинации с оператором <code>SELECT</code> при фильтрации данных в таблице.</p>
+
+		<p>Вот некоторые из них:</p>
+
+		<ul>
+			<li><strong>Сложение</strong>: <code>+</code><br>
+			Например:
+			<pre><code class="language-sql">SELECT id,
+			title,
+			release_year + 1 AS release_year_next
+		FROM movies
+		WHERE release_year &gt; 2000;
+		</code></pre>
+			</li>
+			<li><strong>Вычитание</strong>: <code>-</code><br>
+			Например:
+			<pre><code class="language-sql">SELECT id,
+			title,
+			release_year - 10 AS release_year_prev
+		FROM movies
+		WHERE release_year &gt; 2010;
+		</code></pre>
+			</li>
+			<li><strong>Умножение</strong>: <code>*</code><br>
+			Например:
+			<pre><code class="language-sql">SELECT id,
+			title,
+			rating * 2 AS rating_double
+		FROM movies
+		WHERE rating &gt; 8;
+		</code></pre>
+			</li>
+			<li><strong>Деление</strong>: <code>/</code><br>
+			Например:
+			<pre><code class="language-sql">SELECT id,
+			title,
+			release_year / 10 AS release_year_decade
+		FROM movies
+		WHERE release_year &gt; 1990;
+		</code></pre>
+			</li>
+			<li><strong>Деление по модулю</strong>: <code>%</code><br>
+			Например:
+			<pre><code class="language-sql">SELECT id,
+			title,
+			release_year % 100 AS release_year_cent
+		FROM movies
+		WHERE release_year &gt; 1800;
+		</code></pre>
+			</li>
+		</ul>
+
+		<p> </p>
+
+		<p><strong>Обратите внимание</strong>, что в запросах мы использовали псевдонимы для вычисляемых полей, как <code>release_year_next</code>, <code>rating_double</code>, <code>release_year_prev</code> и т.д. Это позволяет получить новый результат с сохранением исходной таблицы, в то время как сам запрос не изменяет данные в исходной таблице.</p>
+
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center grid grid-cols-1 lg:grid-cols-2 gap-4">
+		<a href="/courses/sql-basic/basic/datatypes" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Типы данных</a>
+		<a href="javascript:;" class="bg-white text-black border-2 border-black rounded opacity-50 px-14 py-2 mr-2  no-underline">Фильтрация данных</a>
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center">
+		<a target="_blank" href="https://stepik.org/a/133728" class="bg-white text-black  text-center border-2 border-black rounded hover:bg-black hover:text-white px-8 lg:px-24 py-4 mr-2  no-underline">Записаться на курс</a>
+	</div>
+</Layout>

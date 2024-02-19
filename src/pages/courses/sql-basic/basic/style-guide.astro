@@ -1,0 +1,1154 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { Prism } from '@astrojs/prism';
+---
+
+<Layout title="Руководство по стилю SQL" 
+	    description="Руководство по стилю SQL" 
+		keywords="sql">	
+	<h1 class="text-4xl lg:text-5xl text-left block  border-b-2 py-14 p-10 pl-0 pr-[200px] border-solid border-black">Руководство по стилю SQL</h1>
+	<div class="py-4">
+		<a href="/courses/">Курсы</a> <span class="px-2">/</span> <a href="/courses/sql-basic/">SQL Базовый уровень</a> <span class="px-2">/</span> <a href="/courses/sql-basic/basic/">Основы</a>
+	</div>
+	
+	<div class="pt-10 pb-10 border-black border-t-2">
+		<h3>Основные положения</h3>
+
+		<h3>Хороший стиль</h3>
+		
+		<ul class="list-disc ml-8">
+			<li><strong>Идентификаторы и имена</strong>. Осмысленные и в едином стиле.</li>
+			<li><strong>Пробелы и отступы</strong>. Логично расставленные для лучшей читаемости кода.</li>
+			<li><strong>Дата и время</strong>. Соответствующие стандарту <a href="https://ru.wikipedia.org/wiki/ISO_8601" rel="noopener noreferrer nofollow">ISO 8601</a>: <code class="language-sql">YYYY-MM-DD HH:MM:SS.SSSSS</code>.</li>
+			<li><strong>Функции SQL</strong>. Стандартные вместо специфичных (определяемых поставщиком) с целью лучшей переносимости.</li>
+			<li><strong>Код</strong>. Лаконичный и без излишеств, как например: ненужные кавычки или скобки или неуместное использование оператора <code class="language-sql">WHERE</code>.</li>
+			<li><strong>Комментарии</strong>. Предпочтительно в <a href="https://ru.wikipedia.org/wiki/%D0%A1%D0%B8_(%D1%8F%D0%B7%D1%8B%D0%BA_%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F)#.D0.9A.D0.BE.D0.BC.D0.BC.D0.B5.D0.BD.D1.82.D0.B0.D1.80.D0.B8.D0.B8" rel="noopener noreferrer nofollow">стиле C</a> — <code class="language-sql">/*</code> (начало) и <code class="language-sql">*/</code> (конец). Либо <code class="language-sql">--</code> перед комментарием, тогда окончанием будет новая строка.</li>
+		</ul>
+
+		<br>
+		
+<Prism lang="sql" code={`SELECT file_hash -- stored ssdeep hash
+	FROM file_system
+	WHERE file_name = '.vimrc';
+`} />
+
+<Prism lang="sql" code={`/* Updating the file record after writing to the file */
+UPDATE file_system
+   SET file_modified_date = '1980-02-22 13:19:01.00000',
+		file_size = 209732
+ WHERE file_name = '.vimrc';
+`} />
+
+
+		<h3>Плохой стиль</h3>
+		
+		<ul class="list-disc ml-8">
+			<li><strong>CamelCase</strong>. Неудобочитаем.</li>
+			<li><strong>Префиксы и <a href="https://ru.wikipedia.org/wiki/%D0%92%D0%B5%D0%BD%D0%B3%D0%B5%D1%80%D1%81%D0%BA%D0%B0%D1%8F_%D0%BD%D0%BE%D1%82%D0%B0%D1%86%D0%B8%D1%8F" rel="noopener noreferrer nofollow">венгерская нотация</a></strong>. Префиксы наподобие <code class="language-sql">sp_</code> или <code class="language-sql">tbl_</code> избыточны.</li>
+			<li><strong>Множественное число</strong>. Лучше использовать более естественно звучащие собирательные понятия. Например, <code class="language-sql">staff</code> вместо <code class="language-sql">employees</code> или <code class="language-sql">people</code> вместо <code class="language-sql">individuals</code>.</li>
+			<li><strong>Идентификаторы в кавычках</strong>. Если они обязательно нужны, тогда используйте двойные кавычки, определённые в стандарте <a href="https://ru.wikipedia.org/wiki/SQL-92" rel="noopener noreferrer nofollow">SQL-92</a> с целью лучшей переносимости в дальнейшем.</li>
+			<li><strong>Принципы объектно-ориентированного проектирования</strong>. Не нужно применять к SQL или структуре базы данных.</li>
+		</ul>
+		
+		<h3>Соглашения о наименовании</h3>
+		
+		<h3>Общее</h3>
+		
+		<ul class="list-disc ml-8">
+			<li><strong>Убедитесь</strong> в том, что имя уникально и его нет в списке зарезервированных ключевых слов.</li>
+			<li><strong>Ограничивайте</strong> длину имени 30 байтами (это 30 символов, если не используется многобайтный набор символов).</li>
+			<li><strong>Начинайте</strong> имена с буквы и <strong>не заканчивайте</strong> их символом подчёркивания.</li>
+			<li><strong>Используйте</strong> в именах только буквы, цифры и символ подчёркивания.</li>
+			<li><strong>Избегайте</strong> нескольких подряд идущих символов подчёркивания.</li>
+			<li><strong>Используйте</strong> символ подчёркивания там, где вы бы поставили пробел в реальной жизни (например, <code class="language-sql">first name</code> станет <code class="language-sql">first_name</code>).</li>
+			<li><strong>Избегайте</strong> сокращений. Если их всё же нужно использовать, убедитесь в том, что они общепонятны.</li>
+		</ul>
+		
+		<br>
+
+<Prism lang="sql" code={`SELECT first_name
+	FROM staff;
+`} />
+		
+		
+		<h3>Таблицы</h3>
+		
+		<ul class="list-disc ml-8">
+			<li><strong>Используйте</strong> собирательные имена или, что менее предпочтительно, форму множественного числа. Например, <code class="language-sql">staff</code> и <code class="language-sql">employees</code> (в порядке убывания предпочтения).</li>
+			<li><strong>Не используйте</strong> описательные префиксы вида <code class="language-sql">tbl_</code> и венгерскую нотацию в целом.</li>
+			<li><strong>Не допускайте</strong> совпадений названия таблицы с названием любого из её столбцов.</li>
+			<li>По возможности <strong>избегайте</strong> объединения названий двух таблиц для построения таблицы отношений. Например, вместо названия <code class="language-sql">cars_mechanics</code> лучше подойдёт <code class="language-sql">services</code>.</li>
+		</ul>
+		
+		<h3>Столбцы</h3>
+		
+		<ul class="list-disc ml-8">
+			<li>Названия всегда <strong>давайте</strong> в единственном числе.</li>
+			<li>По возможности <strong>не используйте</strong> <code class="language-sql">id</code> в качестве первичного идентификатора таблицы.</li>
+			<li><strong>Не создавайте</strong> в таблице столбцов с таким же названием, как у неё самой.</li>
+			<li>Названия <strong>всегда пишите</strong> со строчной буквы. Могут быть исключения, например использование имени собственного.</li>
+		</ul>
+		
+		<h3>Псевдонимы/корреляции</h3>
+		
+		<ul class="list-disc ml-8">
+			<li><strong>Должны</strong> так или иначе быть связаны с объектами или выражениями, псевдонимом которых они являются.</li>
+			<li>Имя корреляции <strong>обычно составляется</strong> из первых букв каждого слова в имени объекта.</li>
+			<li><strong>Добавьте</strong> цифру к имени, если такое уже существует.</li>
+			<li>Всегда <strong>используйте</strong> ключевое слово <code class="language-sql">AS</code> для лучшей читаемости.</li>
+			<li>Для вычислимых данных (<code class="language-sql">SUM()</code> или <code class="language-sql">AVG()</code>) <strong>используйте</strong> такие имена, которые вы бы дали, будь они столбцами в таблице.</li>
+		</ul>
+		
+		<br>
+
+<Prism lang="sql" code={`SELECT first_name AS fn
+  FROM staff AS s1
+  JOIN students AS s2
+    ON s2.mentor_id = s1.staff_num;
+`} />
+
+
+<Prism lang="sql" code={`SELECT SUM(s.monitor_tally) AS monitor_total
+	FROM staff AS s;
+`} />
+		
+		<h3>Хранимые процедуры</h3>
+		
+		<ul class="list-disc ml-8">
+			<li>Имя <strong>должно</strong> содержать глагол.</li>
+			<li><strong>Не используйте</strong> описательные префиксы вида <code class="language-sql">sp_</code> и венгерскую нотацию в целом.</li>
+		</ul>
+		
+		<h3>Универсальные суффиксы</h3>
+		
+		<p>Приведённые ниже суффиксы универсальны, что гарантирует простоту понимания значения столбцов из кода SQL.</p>
+		
+		<ul class="list-disc ml-8">
+			<li><code class="language-sql">_id</code> — уникальный идентификатор, например первичный ключ.</li>
+			<li><code class="language-sql">_status</code> — флаг или любой статус, например <code class="language-sql">publication_status</code>.</li>
+			<li><code class="language-sql">_total</code> — общее количество или сумма значений.</li>
+			<li><code class="language-sql">_num</code> — поле, содержащее число.</li>
+			<li><code class="language-sql">_name</code> — любое имя, например <code class="language-sql">first_name</code>.</li>
+			<li><code class="language-sql">_seq</code> — непрерывная последовательность значений.</li>
+			<li><code class="language-sql">_date</code> — колонка, содержащая дату.</li>
+			<li><code class="language-sql">_tally</code> — счётчик.</li>
+			<li><code class="language-sql">_size</code> — размер или величина чего-либо, например размер файла.</li>
+			<li><code class="language-sql">_addr</code> — физический или абстрактный адрес, например <code class="language-sql">ip_addr</code>.</li>
+		</ul>
+		
+		<h3>Синтаксис запросов</h3>
+		
+		<h3>Зарезервированные слова</h3>
+		
+		<p>Зарезервированные ключевые слова всегда пишите прописными буквами, например <code class="language-sql">SELECT</code>, <code class="language-sql">WHERE</code>.</p>
+		
+		<p>Не используйте сокращённый вариант ключевого слова, если имеется полный. Например, используйте <code class="language-sql">ABSOLUTE</code> вместо <code class="language-sql">ABS</code>.</p>
+		
+		<p>Не используйте специфичные для какого-либо поставщика СУБД ключевые слова, если в ANSI SQL есть ключевые слова, выполняющие такие же функции. Это сделает ваш код более переносимым.</p>
+
+<Prism lang="sql" code={`SELECT model_num
+  FROM phones AS p
+ WHERE p.release_date > '2014-09-30';
+`} />
+		
+		<h3>Пробельные символы</h3>
+		
+		<p>Для лучшей удобочитаемости кода важно правильно использовать пробельные символы. Не нужно нагромождать код или удалять пробелы, присущие естественному языку.</p>
+		
+		<h3>Пробелы</h3>
+		
+		<p>Можно и нужно использовать пробелы для выравнивания основных ключевых слов по их правому краю. В типографике получающиеся таким образом «<a href="https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D1%80%D0%B8%D0%B4%D0%BE%D1%80_(%D1%82%D0%B8%D0%BF%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%B0)" rel="noopener noreferrer nofollow">коридоры</a>» стараются избегать, в то же время в нашем случае они, напротив, помогают лучше вычленять важные ключевые слова.</p>		
+
+<Prism lang="sql" code={`(SELECT f.species_name,
+	AVG(f.height) AS average_height, AVG(f.diameter) AS average_diameter
+FROM flora AS f
+WHERE f.species_name = 'Banksia'
+ OR f.species_name = 'Sheoak'
+ OR f.species_name = 'Wattle'
+GROUP BY f.species_name, f.observation_date)
+
+UNION ALL
+
+(SELECT b.species_name,
+	AVG(b.height) AS average_height, AVG(b.diameter) AS average_diameter
+FROM botanic_garden_flora AS b
+WHERE b.species_name = 'Banksia'
+ OR b.species_name = 'Sheoak'
+ OR b.species_name = 'Wattle'
+GROUP BY b.species_name, b.observation_date);
+`} />
+
+		<p>Обратите внимание, что ключевые слова <code class="language-sql">SELECT</code>, <code class="language-sql">FROM</code> и т.д. выровнены по правому краю, при этом названия столбцов и различные условия — по левому.</p>
+		
+		<p>Помимо этого, старайтесь расставлять пробелы:</p>
+		
+		<ul class="list-disc ml-8">
+			<li><strong>до</strong> и <strong>после</strong> знака равно (<code class="language-sql">=</code>)</li>
+			<li><strong>после</strong> запятых (<code class="language-sql">,</code>)</li>
+			<li><strong>до</strong> открывающего и <strong>после</strong> закрывающего апострофов (<code class="language-sql">'</code>), если последний не внутри скобок, или без последующих запятой или точки с запятой, или не в конце строки</li>
+		</ul>
+		
+
+<Prism lang="sql" code={`SELECT a.title, a.release_date, a.recording_date
+FROM albums AS a
+WHERE a.title = 'Charcoal Lane'
+	OR a.title = 'The New Danger';
+`} />
+		
+		<h3>Переводы строки</h3>
+		
+		<p>Всегда делайте перенос строки:</p>
+		
+		<ul class="list-disc ml-8">
+			<li><strong>перед</strong> <code class="language-sql">AND</code> или <code class="language-sql">OR</code></li>
+			<li><strong>после</strong> точки с запятой (для разделения запросов)</li>
+			<li><strong>после</strong> каждого основного ключевого слова</li>
+			<li><strong>после</strong> запятой (при выделении логических групп столбцов)</li>
+		</ul>
+		
+		<p>Следуя принципу, что ключевые слова выравниваются по правому краю, а всё остальное — по левому, мы добиваемся достаточно удобного расположения частей кода, вследствие чего улучшается зрительная навигация по нему.</p>
+
+<Prism lang="sql" code={`INSERT INTO albums (title, release_date, recording_date)
+	 VALUES ('Charcoal Lane', '1990-01-01 01:01:01.00000', '1990-01-01 01:01:01.00000'),
+		    ('The New Danger', '2008-01-01 01:01:01.00000', '1990-01-01 01:01:01.00000');
+`} />
+
+<Prism lang="sql" code={`UPDATE albums
+   SET release_date = '1990-01-01 01:01:01.00000'
+ WHERE title = 'The New Danger';
+`} />
+
+<Prism lang="sql" code={`SELECT a.title,
+	   a.release_date, a.recording_date, a.production_date -- grouped dates together
+ FROM albums AS a
+WHERE a.title = 'Charcoal Lane'
+   OR a.title = 'The New Danger';
+`} />
+		
+		<h3>Отступы</h3>
+		
+		<p>Для того, чтобы SQL был удобочитаем, важно также следовать стандартам расстановки отступов.</p>
+		
+		<h3><code class="language-sql">JOIN</code></h3>
+		
+		<p>Объединения (<code class="language-sql">JOIN</code>) должны располагаться по правую часть «коридора». При необходимости между ними можно добавить пустую строку.</p>
+		
+<Prism lang="sql" code={`SELECT r.last_name
+  FROM riders AS r
+	   INNER JOIN bikes AS b
+	   ON r.bike_vin_num = b.vin_num
+		  AND b.engine_tally &gt; 2
+
+	   INNER JOIN crew AS c
+	   ON r.crew_chief_last_name = c.last_name
+	      AND c.chief = 'Y';
+`} />
+		
+		<h4>Подзапросы</h4>
+		
+		<p>Подзапросы тоже должны быть выровнены по правому краю «коридора», а внутри них самих применяются те же правила форматирования, что и в любом другом запросе. Если используются вложенные подзапросы, может иметь смысл поставить закрывающую скобку на новой строке ровно под парной ей открывающей скобкой.</p>
+		
+<Prism lang="sql" code={`SELECT r.last_name,
+	(SELECT MAX(YEAR(championship_date))
+	   FROM champions AS c
+	  WHERE c.last_name = r.last_name
+		AND c.confirmed = 'Y') AS last_championship_year
+ FROM riders AS r
+WHERE r.last_name IN
+	(SELECT c.last_name
+	   FROM champions AS c
+	  WHERE YEAR(championship_date) &gt; '2008'
+		AND c.confirmed = 'Y');
+`} />		
+		
+		<h3>Формальные тонкости</h3>
+		
+		<ul class="list-disc ml-8">
+			<li><strong>Используйте</strong> <code class="language-sql">BETWEEN</code>, где возможно, вместо нагромождения условий <code class="language-sql">AND</code>.</li>
+			<li>Таким же образом старайтесь <strong>использовать</strong> <code class="language-sql">IN()</code> вместо <code class="language-sql">OR</code>.</li>
+			<li><strong>Используйте</strong> <code class="language-sql">CASE</code>, если значение должно быть интерпретировано до окончания выполнения запроса. С помощью <code class="language-sql">CASE</code> можно также формировать сложные логические структуры.</li>
+			<li>По возможности <strong>избегайте</strong> использования <code class="language-sql">UNION</code> и временных таблиц.</li>
+		</ul>
+		
+<Prism lang="sql" code={`SELECT CASE postcode
+	WHEN 'BN1' THEN 'Brighton'
+	WHEN 'EH1' THEN 'Edinburgh'
+	END AS city
+ FROM office_locations
+WHERE country = 'United Kingdom'
+  AND opening_time BETWEEN 8 AND 9
+  AND postcode IN ('EH1', 'BN1', 'NN1', 'KW1');
+`} />
+	
+		<h2>Синтаксис <code class="language-sql">CREATE</code></h2>
+		
+		<p>При разработке схемы данных важно создавать человекочитаемый код. Убедитесь в том, что объявления столбцов логически структурированы и сгруппированы.</p>
+		
+		<p>Внутри объявления <code class="language-sql">CREATE</code> делайте отступ, равный 4 пробелам.</p>
+		
+		<h3>Типы данных</h3>
+		
+		<ul class="list-disc ml-8">
+			<li>По возможности <strong>не используйте</strong> специфичные для той или иной СУБД типы данных. Это может негативно сказаться на переносимости, а также этих типов может не оказаться в старых версиях этих же СУБД.</li>
+			<li>Для работы с плавающей точкой <strong>используйте</strong> только <code class="language-sql">REAL</code> или <code class="language-sql">FLOAT</code>, но где нет необходимости в подобных вычислениях, всегда <strong>используйте</strong> <code class="language-sql">NUMERIC</code> и <code class="language-sql">DECIMAL</code>. Ошибки округления в операциях с плавающей точкой могут оказаться очень некстати.</li>
+		</ul>
+		
+		<h3>Значения по умолчанию</h3>
+		
+		<ul class="list-disc ml-8">
+			<li>Значение по умолчанию всегда должно <strong>совпадать</strong> по типу со столбцом. Если, скажем, столбец объявлен как <code class="language-sql">DECIMAL</code>, не нужно в качестве умолчания указывать значение типа <code class="language-sql">INTEGER</code>.</li>
+			<li>Значения по умолчанию должны располагаться <strong>после</strong> объявления типа столбца и <strong>перед</strong> пометкой <code class="language-sql">NOT NULL</code>.</li>
+		</ul>
+		
+		<h3>Ограничения и ключи</h3>
+		
+		<p>Ограничения и их подмножество, ключи, — важная часть любой структуры базы данных, поэтому важно следовать стандартам их объявления, чтобы избежать трудностей в последующей поддержке написанного.</p>
+		
+		<h3>Ключи</h3>
+		
+		<p>Выбор столбцов, которые будут играть роль ключей, должен быть обоснован и предельно выверен, поскольку от них напрямую зависит производительность и целостность данных.</p>
+		
+		<ol>
+			<li>Ключ должен быть в какой-то степени уникальным.</li>
+			<li>Должна быть согласованность по типу данных для значения во всей схеме, а также чем ниже вероятность того, что это изменится в будущем, тем лучше.</li>
+			<li>Можно ли проверить значение на соответствие стандарту (например, ISO)?</li>
+			<li>Ключ должен быть как можно проще, чтобы можно было без трудностей использовать составные ключи.</li>
+		</ol>
+		
+		<p>Это своего рода конвенции, которые нужно сформулировать при проектировании базы данных. Если требования впоследствии будут разрастаться, можно и нужно вносить изменения в структуру базы, чтобы поддерживать её в актуальном состоянии.</p>
+		
+		<h3>Ограничения</h3>
+		
+		<p>Как только решено, какие ключи должны использоваться, нужно определить их в базе с помощью ограничений наряду с валидацией значений полей.</p>
+		
+		<h3>Общее</h3>
+		
+		<ul class="list-disc ml-8">
+			<li>У каждой таблицы <strong>должен быть</strong> хотя бы один ключ.</li>
+			<li>Ограничениям нужно <strong>присваивать</strong> вразумительные имена. Для <code class="language-sql">UNIQUE</code>, <code class="language-sql">PRIMARY KEY</code> и <code class="language-sql">FOREIGN KEY</code> подобные имена создаются автоматически, поэтому нужно позаботиться об остальных ограничениях.</li>
+		</ul>
+		
+		<h3>Расположение и порядок</h3>
+		
+		<ul class="list-disc ml-8">
+			<li>Первичный ключ должен быть <strong>объявлен</strong> в самом начале, сразу после оператора <code class="language-sql">CREATE TABLE</code>.</li>
+			<li>Ограничения должны быть <strong>объявлены</strong> строго ниже столбца, с которым они связаны. Расставьте отступы так, чтобы объявление ограничения начиналось после названия столбца.</li>
+			<li>В случае ограничений, затрагивающих несколько столбцов, старайтесь <strong>объявлять</strong> их как можно ближе к описанию последнего из них. В крайнем случае объявляйте ограничение в конце тела <code class="language-sql">CREATE TABLE</code>.</li>
+			<li>Ограничения целостности уровня таблицы должны <strong>располагаться</strong> в конце.</li>
+			<li><strong>Используйте</strong> алфавитный порядок там, где <code class="language-sql">ON DELETE</code> предшествует <code class="language-sql">ON UPDATE</code>.</li>
+			<li>Внутри запроса можно <strong>выравнивать</strong> каждый уровень по-своему. Например, можно добавить отступы после названия столбцов, чтобы типы данных начинались с одной позиции, а затем ещё добавить отступов в нужном количестве, чтобы все объявления <code class="language-sql">NOT NULL</code> тоже были выровнены по левому краю. Подобное форматирование позволит быстрее ориентироваться в коде.</li>
+		</ul>
+		
+		<h3>Валидация</h3>
+		
+		<ul class="list-disc ml-8">
+			<li><strong>Используйте</strong> <code class="language-sql">LIKE</code> и <code class="language-sql">SIMILAR TO</code> для обеспечения целостности строк с известным форматом.</li>
+			<li>Если диапазон числовых значений для столбца известен, <strong>используйте</strong> <code class="language-sql">CHECK()</code> для предотвращения внесения в базу некорректных данных или скрытого отсечения части значения слишком больших данных. Обычно проверка делается на то, что значение больше нуля.</li>
+			<li><code class="language-sql">CHECK()</code> должен быть <strong>объявлен</strong> как отдельное ограничение для упрощения последующей отладки.</li>
+		</ul>
+		
+		<p>Пример:</p>
+
+<Prism lang="sql" code={`CREATE TABLE staff (
+	PRIMARY KEY (staff_num),
+	staff_num      INT(5)       NOT NULL,
+	first_name     VARCHAR(100) NOT NULL,
+	pens_in_drawer INT(2)       NOT NULL,
+				   CONSTRAINT pens_in_drawer_range
+				   CHECK(pens_in_drawer BETWEEN 1 AND 99)
+);
+`} />
+
+		<h3>Чего следует избегать</h3>
+		
+		<ul class="list-disc ml-8">
+			<li><strong>Не применяйте</strong> объектно-ориентированные принципы, поскольку они далеко не всегда оптимально ложатся на реляционную модель баз данных.</li>
+			<li><strong>Не разносите</strong> по разным столбцам значения и единицы измерения. Нужно создавать столбцы так, чтобы единицы измерения были чем-то самим собой разумеющимся. Для проверки корректности вставляемых в столбец данных используйте <code class="language-sql">CHECK()</code>.</li>
+			<li><strong>Избегайте</strong> паттерна <a href="https://en.wikipedia.org/wiki/Entity%E2%80%93attribute%E2%80%93value_model" rel="noopener noreferrer nofollow">EAV (Entity Attribute Value)</a>. Вместо него используйте специальные продукты, предназначенные для работы с неструктурированными данными.</li>
+			<li><strong>Не разбивайте</strong> данные, логически принадлежащие одной таблице, по разным таблицам на основании условностей, например архивации по времени или географическим атрибутам. Впоследствии для работы с несколькими подобными таблицам придётся часто использовать <code class="language-sql">UNION</code> вместо простых запросов к одной таблице.</li>
+		</ul>
+	
+		
+		<h3>Приложение</h3>
+		
+		<h3>Список зарезервированных ключевых слов</h3>
+		
+		<p>Список зарезервированных ключевых слов ANSI SQL (92, 99 and 2003), MySQL версий с 3 по 5.x, PostgreSQL 8.1, MS SQL Server 2000, MS ODBC и Oracle 10.2.</p>
+		
+		<ul class="list-disc ml-8">
+			<li>A</li>
+			<li>ABORT</li>
+			<li>ABS</li>
+			<li>ABSOLUTE</li>
+			<li>ACCESS</li>
+			<li>ACTION</li>
+			<li>ADA</li>
+			<li>ADD</li>
+			<li>ADMIN</li>
+			<li>AFTER</li>
+			<li>AGGREGATE</li>
+			<li>ALIAS</li>
+			<li>ALL</li>
+			<li>ALLOCATE</li>
+			<li>ALSO</li>
+			<li>ALTER</li>
+			<li>ALWAYS</li>
+			<li>ANALYSE</li>
+			<li>ANALYZE</li>
+			<li>AND</li>
+			<li>ANY</li>
+			<li>ARE</li>
+			<li>ARRAY</li>
+			<li>AS</li>
+			<li>ASC</li>
+			<li>ASENSITIVE</li>
+			<li>ASSERTION</li>
+			<li>ASSIGNMENT</li>
+			<li>ASYMMETRIC</li>
+			<li>AT</li>
+			<li>ATOMIC</li>
+			<li>ATTRIBUTE</li>
+			<li>ATTRIBUTES</li>
+			<li>AUDIT</li>
+			<li>AUTHORIZATION</li>
+			<li>AUTO_INCREMENT</li>
+			<li>AVG</li>
+			<li>AVG_ROW_LENGTH</li>
+			<li>BACKUP</li>
+			<li>BACKWARD</li>
+			<li>BEFORE</li>
+			<li>BEGIN</li>
+			<li>BERNOULLI</li>
+			<li>BETWEEN</li>
+			<li>BIGINT</li>
+			<li>BINARY</li>
+			<li>BIT</li>
+			<li>BIT_LENGTH</li>
+			<li>BITVAR</li>
+			<li>BLOB</li>
+			<li>BOOL</li>
+			<li>BOOLEAN</li>
+			<li>BOTH</li>
+			<li>BREADTH</li>
+			<li>BREAK</li>
+			<li>BROWSE</li>
+			<li>BULK</li>
+			<li>BY</li>
+			<li>C</li>
+			<li>CACHE</li>
+			<li>CALL</li>
+			<li>CALLED</li>
+			<li>CARDINALITY</li>
+			<li>CASCADE</li>
+			<li>CASCADED</li>
+			<li>CASE</li>
+			<li>CAST</li>
+			<li>CATALOG</li>
+			<li>CATALOG_NAME</li>
+			<li>CEIL</li>
+			<li>CEILING</li>
+			<li>CHAIN</li>
+			<li>CHANGE</li>
+			<li>CHAR</li>
+			<li>CHAR_LENGTH</li>
+			<li>CHARACTER</li>
+			<li>CHARACTER_LENGTH</li>
+			<li>CHARACTER_SET_CATALOG</li>
+			<li>CHARACTER_SET_NAME</li>
+			<li>CHARACTER_SET_SCHEMA</li>
+			<li>CHARACTERISTICS</li>
+			<li>CHARACTERS</li>
+			<li>CHECK</li>
+			<li>CHECKED</li>
+			<li>CHECKPOINT</li>
+			<li>CHECKSUM</li>
+			<li>CLASS</li>
+			<li>CLASS_ORIGIN</li>
+			<li>CLOB</li>
+			<li>CLOSE</li>
+			<li>CLUSTER</li>
+			<li>CLUSTERED</li>
+			<li>COALESCE</li>
+			<li>COBOL</li>
+			<li>COLLATE</li>
+			<li>COLLATION</li>
+			<li>COLLATION_CATALOG</li>
+			<li>COLLATION_NAME</li>
+			<li>COLLATION_SCHEMA</li>
+			<li>COLLECT</li>
+			<li>COLUMN</li>
+			<li>COLUMN_NAME</li>
+			<li>COLUMNS</li>
+			<li>COMMAND_FUNCTION</li>
+			<li>COMMAND_FUNCTION_CODE</li>
+			<li>COMMENT</li>
+			<li>COMMIT</li>
+			<li>COMMITTED</li>
+			<li>COMPLETION</li>
+			<li>COMPRESS</li>
+			<li>COMPUTE</li>
+			<li>CONDITION</li>
+			<li>CONDITION_NUMBER</li>
+			<li>CONNECT</li>
+			<li>CONNECTION</li>
+			<li>CONNECTION_NAME</li>
+			<li>CONSTRAINT</li>
+			<li>CONSTRAINT_CATALOG</li>
+			<li>CONSTRAINT_NAME</li>
+			<li>CONSTRAINT_SCHEMA</li>
+			<li>CONSTRAINTS</li>
+			<li>CONSTRUCTOR</li>
+			<li>CONTAINS</li>
+			<li>CONTAINSTABLE</li>
+			<li>CONTINUE</li>
+			<li>CONVERSION</li>
+			<li>CONVERT</li>
+			<li>COPY</li>
+			<li>CORR</li>
+			<li>CORRESPONDING</li>
+			<li>COUNT</li>
+			<li>COVAR_POP</li>
+			<li>COVAR_SAMP</li>
+			<li>CREATE</li>
+			<li>CREATEDB</li>
+			<li>CREATEROLE</li>
+			<li>CREATEUSER</li>
+			<li>CROSS</li>
+			<li>CUBE</li>
+			<li>CUME_DIST</li>
+			<li>CURRENT</li>
+			<li>CURRENT_DATE</li>
+			<li>CURRENT_DEFAULT_TRANSFORM_GROUP</li>
+			<li>CURRENT_PATH</li>
+			<li>CURRENT_ROLE</li>
+			<li>CURRENT_TIME</li>
+			<li>CURRENT_TIMESTAMP</li>
+			<li>CURRENT_TRANSFORM_GROUP_FOR_TYPE</li>
+			<li>CURRENT_USER</li>
+			<li>CURSOR</li>
+			<li>CURSOR_NAME</li>
+			<li>CYCLE</li>
+			<li>D</li>
+			<li>DATALINK</li>
+			<li>DATE</li>
+			<li>DAY</li>
+			<li>DBCC</li>
+			<li>DEALLOCATE</li>
+			<li>DEC</li>
+			<li>DECIMAL</li>
+			<li>DECLARE</li>
+			<li>DEFAULT</li>
+			<li>DEFAULTS</li>
+			<li>DEFERRABLE</li>
+			<li>DEFERRED</li>
+			<li>DEFINED</li>
+			<li>DEFINER</li>
+			<li>DEGREE</li>
+			<li>DELAY_KEY_WRITE</li>
+			<li>DELAYED</li>
+			<li>DELETE</li>
+			<li>DELIMITER</li>
+			<li>DENSE_RANK</li>
+			<li>DENY</li>
+			<li>DEPTH</li>
+			<li>DEREF</li>
+			<li>DERIVED</li>
+			<li>DESC</li>
+			<li>DESCRIBE</li>
+			<li>DESCRIPTOR</li>
+			<li>DESTROY</li>
+			<li>DESTRUCTOR</li>
+			<li>DETERMINISTIC</li>
+			<li>DIAGNOSTICS</li>
+			<li>DICTIONARY</li>
+			<li>DISABLE</li>
+			<li>DISCONNECT</li>
+			<li>DISK</li>
+			<li>DISTINCT</li>
+			<li>DISTINCTROW</li>
+			<li>DISTRIBUTED</li>
+			<li>DO</li>
+			<li>DOMAIN</li>
+			<li>DOUBLE</li>
+			<li>DROP</li>
+			<li>DUMP</li>
+			<li>DYNAMIC</li>
+			<li>DYNAMIC_FUNCTION</li>
+			<li>DYNAMIC_FUNCTION_CODE</li>
+			<li>EACH</li>
+			<li>ELEMENT</li>
+			<li>ELSE</li>
+			<li>ELSEIF</li>
+			<li>ENABLE</li>
+			<li>ENCLOSED</li>
+			<li>ENCODING</li>
+			<li>ENCRYPTED</li>
+			<li>END</li>
+			<li>END-EXEC</li>
+			<li>ENUM</li>
+			<li>EQUALS</li>
+			<li>ERRLVL</li>
+			<li>ESCAPE</li>
+			<li>ESCAPED</li>
+			<li>EVERY</li>
+			<li>EXCEPT</li>
+			<li>EXCEPTION</li>
+			<li>EXCLUDE</li>
+			<li>EXCLUDING</li>
+			<li>EXCLUSIVE</li>
+			<li>EXEC</li>
+			<li>EXECUTE</li>
+			<li>EXISTING</li>
+			<li>EXISTS</li>
+			<li>EXIT</li>
+			<li>EXP</li>
+			<li>EXPLAIN</li>
+			<li>EXTERNAL</li>
+			<li>EXTRACT</li>
+			<li>FALSE</li>
+			<li>FAMILY</li>
+			<li>FEDERATED</li>
+			<li>FETCH</li>
+			<li>FIELD</li>
+			<li>FIELDS</li>
+			<li>FILE</li>
+			<li>FILE_BLOCK_SIZE</li>
+			<li>FILECLOSE</li>
+			<li>FILEDATA</li>
+			<li>FILEGROUP</li>
+			<li>FILEHANDLE</li>
+			<li>FILENAME</li>
+			<li>FILEOPEN</li>
+			<li>FILES</li>
+			<li>FILESTREAM</li>
+			<li>FILETABLE</li>
+			<li>FILLFACTOR</li>
+			<li>FILTER</li>
+			<li>FINAL</li>
+			<li>FINISH</li>
+			<li>FIRST</li>
+			<li>FIRST_VALUE</li>
+			<li>FLOAT</li>
+			<li>FLOOR</li>
+			<li>FLUSH</li>
+			<li>FOLLOWING</li>
+			<li>FOR</li>
+			<li>FORCE</li>
+			<li>FOREIGN</li>
+			<li>FORTRAN</li>
+			<li>FORWARD</li>
+			<li>FOUND</li>
+			<li>FREE</li>
+			<li>FREETEXT</li>
+			<li>FREETEXTTABLE</li>
+			<li>FREEZE</li>
+			<li>FROM</li>
+			<li>FULL</li>
+			<li>FUNCTION</li>
+			<li>FUSION</li>
+			<li>G</li>
+			<li>GENERAL</li>
+			<li>GENERATED</li>
+			<li>GET</li>
+			<li>GLOBAL</li>
+			<li>GO</li>
+			<li>GOTO</li>
+			<li>GRANT</li>
+			<li>GRANTED</li>
+			<li>GREATEST</li>
+			<li>GROUP</li>
+			<li>GROUPING</li>
+			<li>GROUPS</li>
+			<li>GUID</li>
+			<li>HANDLER</li>
+			<li>HAVING</li>
+			<li>HEADER</li>
+			<li>HEAP</li>
+			<li>HIERARCHY</li>
+			<li>HIGH_PRIORITY</li>
+			<li>HOLD</li>
+			<li>HOLDLOCK</li>
+			<li>HOUR</li>
+			<li>IDENTIFIED</li>
+			<li>IDENTITY</li>
+			<li>IF</li>
+			<li>IGNORE</li>
+			<li>ILIKE</li>
+			<li>IMMEDIATE</li>
+			<li>IMMEDIATELY</li>
+			<li>IMMUTABLE</li>
+			<li>IMPLEMENTATION</li>
+			<li>IMPLICIT</li>
+			<li>IN</li>
+			<li>INCLUDING</li>
+			<li>INCREMENT</li>
+			<li>INDEX</li>
+			<li>INDICATOR</li>
+			<li>INFILE</li>
+			<li>INFIX</li>
+			<li>INHERIT</li>
+			<li>INHERITS</li>
+			<li>INITIAL</li>
+			<li>INITIALIZE</li>
+			<li>INITIALLY</li>
+			<li>INNER</li>
+			<li>INOUT</li>
+			<li>INPUT</li>
+			<li>INSENSITIVE</li>
+			<li>INSERT</li>
+			<li>INSTANCE</li>
+			<li>INSTANTIABLE</li>
+			<li>INSTEAD</li>
+			<li>INT</li>
+			<li>INTEGER</li>
+			<li>INTEGRITY</li>
+			<li>INTERSECT</li>
+			<li>INTERSECTION</li>
+			<li>INTERVAL</li>
+			<li>INTO</li>
+			<li>INVALIDATE</li>
+			<li>INVOKER</li>
+			<li>IS</li>
+			<li>ISNULL</li>
+			<li>ISOLATION</li>
+			<li>ITERATE</li>
+			<li>JOIN</li>
+			<li>K</li>
+			<li>KEY</li>
+			<li>KEY_MEMBER</li>
+			<li>KEY_TYPE</li>
+			<li>KEYS</li>
+			<li>KILL</li>
+			<li>LANGUAGE</li>
+			<li>LARGE</li>
+			<li>LAST</li>
+			<li>LAST_VALUE</li>
+			<li>LATERAL</li>
+			<li>LEAD</li>
+			<li>LEADING</li>
+			<li>LEAKPROOF</li>
+			<li>LEAST</li>
+			<li>LEAVE</li>
+			<li>LEFT</li>
+			<li>LENGTH</li>
+			<li>LESS</li>
+			<li>LEVEL</li>
+			<li>LIKE</li>
+			<li>LIKE_REGEX</li>
+			<li>LIMIT</li>
+			<li>LISTEN</li>
+			<li>LN</li>
+			<li>LOAD</li>
+			<li>LOCAL</li>
+			<li>LOCALTIME</li>
+			<li>LOCALTIMESTAMP</li>
+			<li>LOCATION</li>
+			<li>LOCATOR</li>
+			<li>LOCK</li>
+			<li>LOCKS</li>
+			<li>LOG</li>
+			<li>LOG10</li>
+			<li>LOGGED</li>
+			<li>LOWER</li>
+			<li>M</li>
+			<li>MAPPING</li>
+			<li>MATCH</li>
+			<li>MATCHED</li>
+			<li>MATCHES</li>
+			<li>MATCHING</li>
+			<li>MATERIALIZE</li>
+			<li>MAX</li>
+			<li>MAX_CARDINALITY</li>
+			<li>MAXVALUE</li>
+			<li>MEASURE</li>
+			<li>MEDIAN</li>
+			<li>MERGE</li>
+			<li>MESSAGE_LENGTH</li>
+			<li>MESSAGE_OCTET_LENGTH</li>
+			<li>MESSAGE_TEXT</li>
+			<li>METHOD</li>
+			<li>MIN</li>
+			<li>MINUTE</li>
+			<li>MINVALUE</li>
+			<li>MOD</li>
+			<li>MODE</li>
+			<li>MODIFIES</li>
+			<li>MODULE</li>
+			<li>MONTH</li>
+			<li>MORE</li>
+			<li>MULTISET</li>
+			<li>MUMPS</li>
+			<li>NAME</li>
+			<li>NAMES</li>
+			<li>NATIONAL</li>
+			<li>NATURAL</li>
+			<li>NCHAR</li>
+			<li>NCLOB</li>
+			<li>NESTING</li>
+			<li>NEW</li>
+			<li>NEXT</li>
+			<li>NFC</li>
+			<li>NFD</li>
+			<li>NFKC</li>
+			<li>NFKD</li>
+			<li>NO</li>
+			<li>NOCREATEDB</li>
+			<li>NOCREATEROLE</li>
+			<li>NOCREATEUSER</li>
+			<li>NODE</li>
+			<li>NODES</li>
+			<li>NOINHERIT</li>
+			<li>NOLOGIN</li>
+			<li>NON</li>
+			<li>NONE</li>
+			<li>NORMALIZE</li>
+			<li>NORMALIZED</li>
+			<li>NOSUPERUSER</li>
+			<li>NOT</li>
+			<li>NOTHING</li>
+			<li>NOTIFY</li>
+			<li>NOTNULL</li>
+			<li>NOWAIT</li>
+			<li>NTH_VALUE</li>
+			<li>NTILE</li>
+			<li>NULL</li>
+			<li>NULLABLE</li>
+			<li>NULLIF</li>
+			<li>NULLS</li>
+			<li>NUMBER</li>
+			<li>NUMERIC</li>
+			<li>OBJECT</li>
+			<li>OCCURRENCES_REGEX</li>
+			<li>OCTETS</li>
+			<li>OCTET_LENGTH</li>
+			<li>OF</li>
+			<li>OFF</li>
+			<li>OFFSET</li>
+			<li>OIDS</li>
+			<li>OLD</li>
+			<li>ON</li>
+			<li>ONLY</li>
+			<li>OPEN</li>
+			<li>OPERATION</li>
+			<li>OPERATOR</li>
+			<li>OPTION</li>
+			<li>OPTIONS</li>
+			<li>OR</li>
+			<li>ORDER</li>
+			<li>ORDERING</li>
+			<li>ORDINALITY</li>
+			<li>OTHERS</li>
+			<li>OUT</li>
+			<li>OUTER</li>
+			<li>OUTPUT</li>
+			<li>OVER</li>
+			<li>OVERLAPS</li>
+			<li>OVERLAY</li>
+			<li>OVERRIDING</li>
+			<li>OWNER</li>
+			<li>PAD</li>
+			<li>PARALLEL</li>
+			<li>PARENS</li>
+			<li>PARTIAL</li>
+			<li>PARTITION</li>
+			<li>PASCAL</li>
+			<li>PASSING</li>
+			<li>PASSWORD</li>
+			<li>PATH</li>
+			<li>PER</li>
+			<li>PERCENT</li>
+			<li>PERCENTILE_CONT</li>
+			<li>PERCENTILE_DISC</li>
+			<li>PERCENT_RANK</li>
+			<li>PERIOD</li>
+			<li>PERM</li>
+			<li>PERMANENT</li>
+			<li>PLACING</li>
+			<li>PLAN</li>
+			<li>PLI</li>
+			<li>POSITION</li>
+			<li>POSTFIX</li>
+			<li>POWER</li>
+			<li>PRECEDES</li>
+			<li>PRECEDING</li>
+			<li>PRECISION</li>
+			<li>PREFIX</li>
+			<li>PREORDER</li>
+			<li>PREPARE</li>
+			<li>PRESERVE</li>
+			<li>PRIMARY</li>
+			<li>PRIOR</li>
+			<li>PRIVATE</li>
+			<li>PRIVILEGES</li>
+			<li>PROCEDURAL</li>
+			<li>PROCEDURE</li>
+			<li>PROCESS</li>
+			<li>PROCESSLIST</li>
+			<li>PUBLIC</li>
+			<li>PURGE</li>
+			<li>QUOTE</li>
+			<li>R</li>
+			<li>RANGE</li>
+			<li>RANK</li>
+			<li>READ</li>
+			<li>READS</li>
+			<li>READ_WRITE</li>
+			<li>REAL</li>
+			<li>RECHECK</li>
+			<li>RECURSIVE</li>
+			<li>REF</li>
+			<li>REFERENCES</li>
+			<li>REFERENCING</li>
+			<li>REGCLASS</li>
+			<li>REGR_AVGX</li>
+			<li>REGR_AVGY</li>
+			<li>REGR_COUNT</li>
+			<li>REGR_INTERCEPT</li>
+			<li>REGR_R2</li>
+			<li>REGR_SLOPE</li>
+			<li>REGR_SXX</li>
+			<li>REGR_SXY</li>
+			<li>REGR_SYY</li>
+			<li>REINDEX</li>
+			<li>RELATIVE</li>
+			<li>RELEASE</li>
+			<li>RELOAD</li>
+			<li>RENAME</li>
+			<li>REPEAT</li>
+			<li>REPLACE</li>
+			<li>REPLICATION</li>
+			<li>REQUIRE</li>
+			<li>RESET</li>
+			<li>RESIGNAL</li>
+			<li>RESOURCE</li>
+			<li>RESTART</li>
+			<li>RESTORE</li>
+			<li>RESTRICT</li>
+			<li>RESULT</li>
+			<li>RETURN</li>
+			<li>RETURNED_LENGTH</li>
+			<li>RETURNED_OCTET_LENGTH</li>
+			<li>RETURNED_SQLSTATE</li>
+			<li>RETURNING</li>
+			<li>RETURNS</li>
+			<li>REVOKE</li>
+			<li>RIGHT</li>
+			<li>ROLE</li>
+			<li>ROLLBACK</li>
+			<li>ROLLUP</li>
+			<li>ROUTINE</li>
+			<li>ROUTINE_CATALOG</li>
+			<li>ROUTINE_NAME</li>
+			<li>ROUTINE_SCHEMA</li>
+			<li>ROW</li>
+			<li>ROW_COUNT</li>
+			<li>ROW_NUMBER</li>
+			<li>ROWS</li>
+			<li>ROWTYPE</li>
+			<li>RRN</li>
+			<li>RUNNING</li>
+			<li>SAVEPOINT</li>
+			<li>SCALE</li>
+			<li>SCHEMA</li>
+			<li>SCHEMA_NAME</li>
+			<li>SCHEMAS</li>
+			<li>SCOPE</li>
+			<li>SCOPE_CATALOG</li>
+			<li>SCOPE_NAME</li>
+			<li>SCOPE_SCHEMA</li>
+			<li>SCROLL</li>
+			<li>SEARCH</li>
+			<li>SECOND</li>
+			<li>SECTION</li>
+			<li>SECURITY</li>
+			<li>SELECT</li>
+			<li>SELF</li>
+			<li>SENSITIVE</li>
+			<li>SEPARATOR</li>
+			<li>SEQUENCE</li>
+			<li>SERIALIZABLE</li>
+			<li>SERVER</li>
+			<li>SERVER_NAME</li>
+			<li>SESSION</li>
+			<li>SESSION_USER</li>
+			<li>SET</li>
+			<li>SETOF</li>
+			<li>SETS</li>
+			<li>SHARE</li>
+			<li>SHOW</li>
+			<li>SHUTDOWN</li>
+			<li>SIGN</li>
+			<li>SIGNAL</li>
+			<li>SIMILAR</li>
+			<li>SIMPLE</li>
+			<li>SIZE</li>
+			<li>SMALLINT</li>
+			<li>SOME</li>
+			<li>SONAME</li>
+			<li>SOURCE</li>
+			<li>SPACE</li>
+			<li>SPATIAL</li>
+			<li>SPECIFIC</li>
+			<li>SPECIFICTYPE</li>
+			<li>SQL</li>
+			<li>SQLCODE</li>
+			<li>SQLERROR</li>
+			<li>SQLEXCEPTION</li>
+			<li>SQLSTATE</li>
+			<li>SQLWARNING</li>
+			<li>SQRT</li>
+			<li>STABLE</li>
+			<li>STANDALONE</li>
+			<li>START</li>
+			<li>STATE</li>
+			<li>STATEMENT</li>
+			<li>STATIC</li>
+			<li>STATISTICS</li>
+			<li>STDDEV_POP</li>
+			<li>STDDEV_SAMP</li>
+			<li>STDIN</li>
+			<li>STDOUT</li>
+			<li>STORAGE</li>
+			<li>STORED</li>
+			<li>STRICT</li>
+			<li>STRING</li>
+			<li>STRUCTURE</li>
+			<li>STYLE</li>
+			<li>SUBCLASS_ORIGIN</li>
+			<li>SUBLIST</li>
+			<li>SUBMULTISET</li>
+			<li>SUBSTRING</li>
+			<li>SUCCEEDS</li>
+			<li>SUM</li>
+			<li>SUPERUSER</li>
+			<li>SYMMETRIC</li>
+			<li>SYNONYM</li>
+			<li>SYSTEM</li>
+			<li>SYSTEM_USER</li>
+			<li>T</li>
+			<li>TABLE</li>
+			<li>TABLE_NAME</li>
+			<li>TEMP</li>
+			<li>TEMPLATE</li>
+			<li>TEMPORARY</li>
+			<li>TERMINATE</li>
+			<li>TERMINATED</li>
+			<li>TEXT</li>
+			<li>TEXTSIZE</li>
+			<li>THAN</li>
+			<li>THEN</li>
+			<li>TIES</li>
+			<li>TIME</li>
+			<li>TIMESTAMP</li>
+			<li>TIMEZONE_HOUR</li>
+			<li>TIMEZONE_MINUTE</li>
+			<li>TINYBLOB</li>
+			<li>TINYINT</li>
+			<li>TINYTEXT</li>
+			<li>TO</li>
+			<li>TOP</li>
+			<li>TRAILING</li>
+			<li>TRAN</li>
+			<li>TRANSACTION</li>
+			<li>TRANSACTION_ACTIVE</li>
+			<li>TRANSACTIONS_COMMITTED</li>
+			<li>TRANSACTIONS_ROLLED_BACK</li>
+			<li>TRANSFORM</li>
+			<li>TRANSFORMS</li>
+			<li>TRANSLATE</li>
+			<li>TRANSLATION</li>
+			<li>TREAT</li>
+			<li>TRIGGER</li>
+			<li>TRIGGER_CATALOG</li>
+			<li>TRIGGER_NAME</li>
+			<li>TRIGGER_SCHEMA</li>
+			<li>TRIM</li>
+			<li>TRUE</li>
+			<li>TRUNCATE</li>
+			<li>TRUSTED</li>
+			<li>TSEQUAL</li>
+			<li>UESCAPE</li>
+			<li>UID</li>
+			<li>UNBOUNDED</li>
+			<li>UNCOMMITTED</li>
+			<li>UNDER</li>
+			<li>UNDO</li>
+			<li>UNENCRYPTED</li>
+			<li>UNION</li>
+			<li>UNIQUE</li>
+			<li>UNKNOWN</li>
+			<li>UNLISTEN</li>
+			<li>UNLOCK</li>
+			<li>UNNAMED</li>
+			<li>UNNEST</li>
+			<li>UNSIGNED</li>
+			<li>UNTIL</li>
+			<li>UPDATE</li>
+			<li>UPDATETEXT</li>
+			<li>UPPER</li>
+			<li>USAGE</li>
+			<li>USE</li>
+			<li>USER</li>
+			<li>USER_DEFINED_TYPE_CATALOG</li>
+			<li>USER_DEFINED_TYPE_CODE</li>
+			<li>USER_DEFINED_TYPE_NAME</li>
+			<li>USER_DEFINED_TYPE_SCHEMA</li>
+			<li>USING</li>
+			<li>VACUUM</li>
+			<li>VALID</li>
+			<li>VALIDATE</li>
+			<li>VALIDATOR</li>
+			<li>VALUE</li>
+			<li>VALUES</li>
+			<li>VAR_POP</li>
+			<li>VAR_SAMP</li>
+			<li>VARBINARY</li>
+			<li>VARCHAR</li>
+			<li>VARCHAR2</li>
+			<li>VARIABLE</li>
+			<li>VARIABLES</li>
+			<li>VCAT</li>
+			<li>VERBOSE</li>
+			<li>VIEW</li>
+			<li>VOLATILE</li>
+			<li>WAITFOR</li>
+			<li>WHEN</li>
+			<li>WHENEVER</li>
+			<li>WHERE</li>
+			<li>WHILE</li>
+			<li>WIDTH_BUCKET</li>
+			<li>WINDOW</li>
+			<li>WITH</li>
+			<li>WITHIN</li>
+			<li>WITHOUT</li>
+			<li>WORK</li>
+			<li>WRAPPER</li>
+			<li>WRITE</li>
+			<li>WRITETEXT</li>
+			<li>X509</li>
+			<li>XOR</li>
+			<li>YEAR</li>
+			<li>YES</li>
+			<li>ZONE</li>
+		</ul>
+		
+		
+		<p> </p>
+		
+		<blockquote>Рекомендации, описанные в этом руководстве, во многом пересекаются с описанными в книге Джо Селко «Стиль программирования Джо Селко на SQL» (оригинал: SQL Programming Style).</blockquote>
+		
+		<blockquote>
+		<p><strong>SQL: Руководство по стилю</strong> (<strong>SQL style guide</strong>) за авторством Саймона Холиуэлла (Simon Holywell) находится под лицензией Creative Commons. Оригинал — https://www.sqlstyle.guide. Перевел <a href="https://github.com/denpatin" rel="noopener noreferrer nofollow">Den Patin</a></p>
+		</blockquote>
+
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center grid grid-cols-1 lg:grid-cols-2 gap-4">
+		<a href="/courses/sql-basic/basic/introduction/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Введение в SQL</a>
+		<a href="/courses/sql-basic/basic/datatypes/" class="bg-white text-black border-2 border-black rounded  px-14 py-2 mr-2 hover:bg-black hover:text-white no-underline">Типы данных</a>
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center">
+		<a target="_blank" href="https://stepik.org/a/133728" class="bg-white text-black  text-center border-2 border-black rounded hover:bg-black hover:text-white px-8 lg:px-24 py-4 mr-2  no-underline">Записаться на курс</a>
+	</div>
+</Layout>
