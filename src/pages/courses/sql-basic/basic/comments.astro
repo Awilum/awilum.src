@@ -1,0 +1,58 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { Prism } from '@astrojs/prism';
+---
+
+<Layout title="Комментарии" 
+	    description="Комментарии в SQL" 
+		keywords="sql">	
+	<h1 class="text-4xl lg:text-5xl text-left block  border-b-2 py-14 p-10 pl-0 pr-[200px] border-solid border-black">Комментарии</h1>
+	<div class="py-4">
+		<a href="/courses/">Курсы</a> <span class="px-2">/</span> <a href="/courses/sql-basic/">SQL Базовый уровень</a> <span class="px-2">/</span> <a href="/courses/sql-basic/basic/">Основы</a>
+	</div>
+	
+	<div class="pt-10 pb-10 border-black border-t-2">
+		
+		<p>В <strong>SQL</strong> вы можете комментировать свой код, как и в любом другом языке программирования.</p>
+
+		<p>Комментарии могут занимать одну или несколько строк.</p>
+
+		<p>Вот несколько примеров запросов с комментариями:</p>
+
+<Prism lang="sql" code={`SELECT *
+  FROM movies; -- выбрать все фильмы
+
+/* выбрать все фильмы и вернуть только столбцы title, rating */
+SELECT title,
+       rating
+  FROM movies;
+
+
+/* 
+* выбрать все фильмы
+* вернуть только столбцы title, rating, release_year 
+*/
+SELECT title,
+	   rating,
+	   release_year
+  FROM movies;
+
+/* этот код закомментирован и выполняться не будет
+SELECT title,
+	   rating,
+	   release_year
+  FROM movies;
+*/
+`} />
+
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center grid grid-cols-1 lg:grid-cols-2 gap-4">
+		<a href="/courses/sql-basic/basic/filtering-data/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Фильтрация данных</a>
+		<a href="/courses/sql-basic/basic/variables/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Переменные</a>
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center">
+		<a target="_blank" href="https://stepik.org/a/133728" class="bg-white text-black  text-center border-2 border-black rounded hover:bg-black hover:text-white px-8 lg:px-24 py-4 mr-2  no-underline">Записаться на курс</a>
+	</div>
+</Layout>

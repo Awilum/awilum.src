@@ -1,0 +1,284 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { Prism } from '@astrojs/prism';
+---
+
+<Layout title="Переменные" 
+	    description="Переменные в SQL" 
+		keywords="sql">	
+	<h1 class="text-4xl lg:text-5xl text-left block  border-b-2 py-14 p-10 pl-0 pr-[200px] border-solid border-black">Переменные</h1>
+	<div class="py-4">
+		<a href="/courses/">Курсы</a> <span class="px-2">/</span> <a href="/courses/sql-basic/">SQL Базовый уровень</a> <span class="px-2">/</span> <a href="/courses/sql-basic/basic/">Основы</a>
+	</div>
+	
+	<div class="pt-10 pb-10 border-black border-t-2">
+				
+		<p>В <strong>SQL</strong> переменная — это именованное хранилище данных.</p>
+
+		<center><img alt="" height="555" name="SQL-5.jpg" src="https://ik.imagekit.io/awilum/awilum-ru/SQL-variables.jpg?updatedAt=1708397970505" width="800"></center>
+
+		<p>Переменные используются для хранения данных и результатов вычислений.</p>
+
+		<p>Названия переменных начинаются с символа <code>@</code>, после которого могут использоваться буквы латинского алфавита, цифры и знаки <code>$</code>, <code>_</code>.</p>
+
+		<p>Переменные не чувствительны к регистру. Это означает, что <code>@year</code> и <code>@YEAR</code> то же самое.</p>
+
+		<p>Далее будут рассмотрены примеры работы с пользовательскими<em> </em>переменными в <strong>SQL</strong> на примере <strong>MySQL</strong>.</p>
+
+		<br>
+
+		<p><strong>Таблица</strong> <code>movies</code></p>
+
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><strong>id</strong></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>The Shawshank Redemption</td>
+					<td>1994</td>
+					<td>Drama</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>The Godfather</td>
+					<td>1972</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>The Godfather: Part II</td>
+					<td>1974</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>The Dark Knight</td>
+					<td>2008</td>
+					<td>Action</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>12 Angry Men</td>
+					<td>1957</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>Schindlers List</td>
+					<td>1993</td>
+					<td>Biography</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>Pulp Fiction</td>
+					<td>1994</td>
+					<td>Crime</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>8</td>
+					<td>The Lord of the Rings: The Return of the King</td>
+					<td>2003</td>
+					<td>Adventure</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>9</td>
+					<td>Fight Club</td>
+					<td>1999</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>10</td>
+					<td>The Good, the Bad and the Ugly</td>
+					<td>1966</td>
+					<td>Western</td>
+					<td>8</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br>
+
+		<p>Есть два способа создать переменную и присвоить ей значение.</p>
+
+		<br>
+
+		<h3>Первый способ</h3>
+
+		<p>Синтаксис создания переменной с присвоением выглядит так:</p>
+
+		<Prism lang="sql" code={`SET @variable_name := value;`} />
+
+		<p>Начинаем с ключевого слова <code>SET</code>, далее после символа <code>@</code> указываем название переменной и присваиваем ей значение после оператора <code>:=</code></p>
+
+		<p>Например, если мы хотим выбрать фильмы, которые были выпущены в 1994 году, мы можем использовать следующий запрос:</p>
+
+<Prism lang="sql" code={`SET @year := 1994;
+
+SELECT title
+  FROM movies
+ WHERE release_year = @year;
+`} />
+
+		<p><strong>Результат</strong></p>
+
+		<table>
+			<thead>
+				<tr>
+					<th><strong>title</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>The Shawshank Redemption</td>
+				</tr>
+				<tr>
+					<td>Pulp Fiction</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br><br>
+
+		<p>Например, если мы хотим выбрать фильмы, которые выпущены между 1994 и 2000 годом, мы можем использовать следующий запрос:</p>
+
+<Prism lang="sql" code={`SET @year := 1994;
+
+SELECT title
+  FROM movies
+ WHERE release_year = @year;
+`} />
+		<p>Обратите внимание на то что объявление переменных (с присваиванием) можно записывать через запятую после ключевого слова <code>SET</code></p>
+
+		<p><strong>Результат</strong></p>
+
+		<table>
+			<thead>
+				<tr>
+					<th><strong>title</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>The Shawshank Redemption</td>
+				</tr>
+				<tr>
+					<td>Pulp Fiction</td>
+				</tr>
+				<tr>
+					<td>Fight Club</td>
+				</tr>
+				<tr>
+					<td>The Matrix</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br><br>
+
+		<p>Например, если мы хотим выбрать фильмы, заголовок которых начинается с "The", мы можем использовать следующий запрос:</p>
+
+<Prism lang="sql" code={`SET @search := 'The%';
+
+SELECT title
+  FROM movies
+ WHERE title LIKE @search;
+`} />
+		
+		<p><strong>Результат</strong></p>
+
+		<table>
+			<thead>
+				<tr>
+					<th><strong>title</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>The Shawshank Redemption</td>
+				</tr>
+				<tr>
+					<td>The Godfather</td>
+				</tr>
+				<tr>
+					<td>The Godfather: Part II</td>
+				</tr>
+				<tr>
+					<td>The Dark Knight</td>
+				</tr>
+				<tr>
+					<td>The Lord of the Rings: The Return of the King</td>
+				</tr>
+				<tr>
+					<td>The Good, the Bad and the Ugly</td>
+				</tr>
+				<tr>
+					<td>The Matrix</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br><br>
+
+		<h3>Второй способ</h3>
+
+		<p>Синтаксис создания переменной с присвоением выглядит так:</p>
+
+		<Prism lang="sql" code={`SELECT @variable_name := value;`} />
+
+		<p>Начинаем с ключевого слова <code>SELECT</code>, далее после символа <code>@</code> указываем имя переменной и присваиваем ей значение после оператора <code>:=</code></p>
+
+		<p>После назначения вы можете использовать переменную в последующем операторе, где выражение разрешено, например, в  предложении <code>WHERE</code>, операторе <code>INSERT</code> или <code>UPDATE</code>.</p>
+
+		<p><strong>Например:</strong></p>
+
+<Prism lang="sql" code={`SELECT @max_year := MAX(release_year)
+  FROM movies;
+
+SELECT title
+  FROM movies
+ WHERE release_year = @max_year;
+`} />
+
+		<p><strong>Результат</strong></p>
+
+		<table>
+			<thead>
+				<tr>
+					<th><strong>title</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>The Dark Knight</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center grid grid-cols-1 lg:grid-cols-2 gap-4">
+		<a href="/courses/sql-basic/basic/selecting-data" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Выборка данных</a>
+		<a href="javascript:;" class="bg-white text-black border-2 border-black rounded cursor-not-allowed opacity-50 px-14 py-2 mr-2  no-underline">Псевдонимы</a>
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center">
+		<a target="_blank" href="https://stepik.org/a/133728" class="bg-white text-black  text-center border-2 border-black rounded hover:bg-black hover:text-white px-8 lg:px-24 py-4 mr-2  no-underline">Записаться на курс</a>
+	</div>
+</Layout>

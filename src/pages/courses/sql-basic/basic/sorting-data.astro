@@ -17,14 +17,14 @@ import { Prism } from '@astrojs/prism';
 
 		<p>Этот оператор используется в запросе <code>SELECT</code> для определения порядка сортировки результирующего набора данных.</p>
 
-		<center><img alt="" height="437" name="SQL-14.jpg" src="https://ucarecdn.com/d052459f-9e1b-4f66-9985-f45a61f27f61/" width="900" /></center>
+		<center><img alt="" height="437" name="SQL-14.jpg" src="https://ik.imagekit.io/awilum/awilum-ru/SQL-14-2.jpg?updatedAt=1708343419185" width="900" /></center>
 
 		<p>Синтаксис для сортировки данных в <strong>SQL</strong> такой:</p>
 
 <Prism lang="sql" code={`SELECT column1,
-	column2,
-	...
-FROM table_name
+	   column2,
+       ...
+   FROM table_name
 ORDER BY column1 [ASC|DESC],
 		column2 [ASC|DESC], 
 		...;
@@ -128,8 +128,8 @@ ORDER BY column1 [ASC|DESC],
 		<p>Например, если мы хотим отсортировать фильмы по году выпуска в порядке возрастания, мы можем использовать следующий запрос:</p>
 
 <Prism lang="sql" code={`SELECT *
-	FROM movies
-	ORDER BY release_year ASC;
+  FROM movies
+ ORDER BY release_year ASC;
 `} />
 
 		<p><strong>Результат</strong></p>
@@ -223,8 +223,8 @@ ORDER BY column1 [ASC|DESC],
 		<p>Если мы хотим отсортировать фильмы по рейтингу в порядке убывания, мы можем использовать следующий запрос:</p>
 
 <Prism lang="sql" code={`SELECT *
-	FROM movies
-	ORDER BY rating DESC;
+  FROM movies
+ ORDER BY rating DESC;
 `} />
 
 		<p><strong>Результат</strong></p>
@@ -318,9 +318,9 @@ ORDER BY column1 [ASC|DESC],
 		<p>Если мы хотим отсортировать фильмы по жанру в алфавитном порядке и по году выпуска в порядке убывания, мы можем использовать следующий запрос:</p>
 
 <Prism lang="sql" code={`SELECT *
-	FROM movies
-	ORDER BY genre ASC,
-			release_year DESC;
+  FROM movies
+ ORDER BY genre ASC,
+	      release_year DESC;
 `} />
 
 		<p>Здесь, сначала будут отсортированы фильмы по жанру в алфавитном порядке, затем внутри каждого жанра фильмы будут отсортированы по году выпуска в порядке убывания.</p>
@@ -414,8 +414,8 @@ ORDER BY column1 [ASC|DESC],
 	</div>
 
 	<div class="pt-10 pb-10 border-black border-t-2 text-center grid grid-cols-1 lg:grid-cols-2 gap-4">
-		<a href="/courses/sql-basic/basic/datatypes" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Типы данных</a>
-		<a href="javascript:;" class="bg-white text-black border-2 border-black rounded opacity-50 px-14 py-2 mr-2  no-underline">Фильтрация данных</a>
+		<a href="/courses/sql-basic/basic/selecting-data" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Выборка данных</a>
+		<a href="/courses/sql-basic/basic/filtering-data" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Фильтрация данных</a>
 	</div>
 
 	<div class="pt-10 pb-10 border-black border-t-2 text-center">
