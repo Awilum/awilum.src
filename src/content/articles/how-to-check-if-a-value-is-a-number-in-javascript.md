@@ -3,7 +3,7 @@ title: Как проверить, является ли значение чис�
 layout: ../../layouts/ArticleEntry.astro
 categories: [javascript]
 pubDate: 2024-01-10
-description: Удалить все node_modules
+description: Как проверить, является ли значение числом в JavaScript
 keywords: javascript, number, NaN
 ---
 
