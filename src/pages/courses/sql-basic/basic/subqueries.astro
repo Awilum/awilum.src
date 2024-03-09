@@ -1,0 +1,623 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { Prism } from '@astrojs/prism';
+---
+
+<Layout title="Подзапросы" 
+	    description="Подзапросы в SQL" 
+		keywords="sql">	
+	<h1 class="text-4xl lg:text-5xl text-left block  border-b-2 py-14 p-10 pl-0 pr-[200px] border-solid border-black">Подзапросы</h1>
+	<div class="py-4">
+		<a href="/courses/">Курсы</a> <span class="px-2">/</span> <a href="/courses/sql-basic/">SQL Базовый уровень</a> <span class="px-2">/</span> <a href="/courses/sql-basic/basic/">Основы</a>
+	</div>
+	
+	<div class="pt-10 pb-10 border-black border-t-2">
+		
+		<p>В <strong>SQL</strong> вы можете использовать подзапросы для выполнения вложенного запроса внутри другого запроса. </p>
+
+		<center><img alt="" height="515" name="SQL-9.jpg" src="https://ik.imagekit.io/awilum/awilum-ru/SQL-subquiers.jpeg?updatedAt=1708420177981" width="800"></center>
+		
+		<p><strong>Таблица</strong> <code>movies</code></p>
+		
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><strong>id</strong></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>The Shawshank Redemption</td>
+					<td>1994</td>
+					<td>Drama</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>The Godfather</td>
+					<td>1972</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>The Godfather: Part II</td>
+					<td>1974</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>The Dark Knight</td>
+					<td>2008</td>
+					<td>Action</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>12 Angry Men</td>
+					<td>1957</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>Schindlers List</td>
+					<td>1993</td>
+					<td>Biography</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>Pulp Fiction</td>
+					<td>1994</td>
+					<td>Crime</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>8</td>
+					<td>The Lord of the Rings: The Return of the King</td>
+					<td>2003</td>
+					<td>Adventure</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>9</td>
+					<td>Fight Club</td>
+					<td>1999</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>10</td>
+					<td>The Good, the Bad and the Ugly</td>
+					<td>1966</td>
+					<td>Western</td>
+					<td>8</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<br><br>
+		
+		<p>Например вы можете использовать подзапрос в операторе <code>SELECT</code>, чтобы выбрать только те фильмы, которые имеют рейтинг выше среднего рейтинга всех фильмов в таблице:</p>
+
+<Prism lang="sql" code={`SELECT *
+  FROM movies
+ WHERE rating > (SELECT AVG(rating) 
+				   FROM movies);
+`} />
+		
+		<p><strong>Результат</strong></p>
+		
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><strong>id</strong></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>The Shawshank Redemption</td>
+					<td>1994</td>
+					<td>Drama</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>The Godfather</td>
+					<td>1972</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>The Godfather: Part II</td>
+					<td>1974</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>The Dark Knight</td>
+					<td>2008</td>
+					<td>Action</td>
+					<td>9</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<br><br>
+		
+		<p>Для того что бы получить все фильмы из таблицы <code>movies</code>, где год выпуска совпадает с минимальным годом выпуска в таблице <code>movies</code> вы можете использовать следующий <strong>SQL </strong>запрос:  </p>
+		
+<Prism lang="sql" code={`SELECT *
+  FROM movies
+ WHERE release_year = (SELECT MIN(release_year)
+					     FROM movies);
+  `} />
+		
+		<p><strong>Результат</strong></p>
+		
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><strong>id</strong></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>5</td>
+					<td>12 Angry Men</td>
+					<td>1957</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<br><br>
+		
+		<p>Для того что бы получить все фильмы из таблицы <code>movies</code>, где год выпуска совпадает с максимальным годом выпуска в таблице <code>movies</code> вы можете использовать следующий <strong>SQL </strong>запрос:  </p>
+		
+
+<Prism lang="sql" code={`SELECT *
+  FROM movies
+ WHERE release_year = (SELECT MAX(release_year) 
+			             FROM movies);
+`} />
+
+		<p><strong>Результат</strong></p>
+		
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><strong>id</strong></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>4</td>
+					<td>The Dark Knight</td>
+					<td>2008</td>
+					<td>Action</td>
+					<td>9</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<br><br>
+		
+		<p>Подзапросы являются очень мощным инструментом в обработке данных, но их следует использовать с осторожностью, поскольку они могут значительно ухудшить производительность запроса, если объем данных или структура запроса не оптимальны.</p>
+		
+		<p>Тестирование и оптимизация запросов с подзапросами очень важно для обеспечения максимальной производительности и корректности результатов.</p>
+
+		<br><br>
+
+		<p>Оператор <code>ANY</code> используется в <strong>SQL</strong> для сравнения значения какого-либо столбца в одной таблице с набором значений, возвращаемым подзапросом другой таблицы. Он возвращает <code>true</code>, если хотя бы одно значение из набора возвращаемого подзапросом совпадает с значением столбца в основной таблице.</p>
+
+		<p><strong>Таблица</strong> <code>movies</code></p>
+
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><strong>id</strong></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>The Shawshank Redemption</td>
+					<td>1994</td>
+					<td>Drama</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>The Godfather</td>
+					<td>1972</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>The Godfather: Part II</td>
+					<td>1974</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>The Dark Knight</td>
+					<td>2008</td>
+					<td>Action</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>12 Angry Men</td>
+					<td>1957</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>Schindlers List</td>
+					<td>1993</td>
+					<td>Biography</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>Pulp Fiction</td>
+					<td>1994</td>
+					<td>Crime</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>8</td>
+					<td>The Lord of the Rings: The Return of the King</td>
+					<td>2003</td>
+					<td>Adventure</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>9</td>
+					<td>Fight Club</td>
+					<td>1999</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>10</td>
+					<td>The Good, the Bad and the Ugly</td>
+					<td>1966</td>
+					<td>Western</td>
+					<td>8</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br><br>
+
+		<p><strong>Таблица</strong> <code>top_rated_movies</code></p>
+
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><strong>id</strong></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>The Shawshank Redemption</td>
+					<td>1994</td>
+					<td>Drama</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>The Godfather</td>
+					<td>1972</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>The Godfather: Part II</td>
+					<td>1974</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>The Dark Knight</td>
+					<td>2008</td>
+					<td>Action</td>
+					<td>9</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br><br>
+
+		<p>Например, если вы хотите найти все фильмы из таблицы <code>movies</code>, которые также присутствуют во второй таблице <code>top_rated_movies</code>, вы можете использовать следующий запрос:</p>
+
+<Prism lang="sql" code={`SELECT *
+  FROM movies
+ WHERE title = ANY (SELECT title 
+                      FROM top_rated_movies);
+`} />
+
+		<p><strong>Результат</strong></p>
+
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><strong>id</strong></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>The Shawshank Redemption</td>
+					<td>1994</td>
+					<td>Drama</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>The Godfather</td>
+					<td>1972</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>The Godfather: Part II</td>
+					<td>1974</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>The Dark Knight</td>
+					<td>2008</td>
+					<td>Action</td>
+					<td>9</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br><br>
+
+		<p>Оператор <code>ALL</code> используется в условии подзапроса в <strong>SQL</strong>, когда вы хотите сравнить значение из основного запроса со всеми значениями из подзапроса. Оператор <code>ALL</code> сравнивает каждое значение со всеми значениями из подзапроса.</p>
+
+		<p><strong>Таблица</strong> <code>movies</code></p>
+
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><strong>id</strong></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>The Shawshank Redemption</td>
+					<td>1994</td>
+					<td>Drama</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>The Godfather</td>
+					<td>1972</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>The Godfather: Part II</td>
+					<td>1974</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>The Dark Knight</td>
+					<td>2008</td>
+					<td>Action</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>12 Angry Men</td>
+					<td>1957</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>Schindlers List</td>
+					<td>1993</td>
+					<td>Biography</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>Pulp Fiction</td>
+					<td>1994</td>
+					<td>Crime</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>8</td>
+					<td>The Lord of the Rings: The Return of the King</td>
+					<td>2003</td>
+					<td>Adventure</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>9</td>
+					<td>Fight Club</td>
+					<td>1999</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>10</td>
+					<td>The Good, the Bad and the Ugly</td>
+					<td>1966</td>
+					<td>Western</td>
+					<td>8</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br><br>
+
+		<p><strong>Таблица</strong> <code>top_rated_movies</code></p>
+
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><strong>id</strong></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>The Shawshank Redemption</td>
+					<td>1994</td>
+					<td>Drama</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>The Godfather</td>
+					<td>1972</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>The Godfather: Part II</td>
+					<td>1974</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>The Dark Knight</td>
+					<td>2008</td>
+					<td>Action</td>
+					<td>9</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br><br>
+
+		<p>Например, чтобы найти все фильмы, рейтинг которых больше или равен всем рейтингам во второй таблице <code>top_rated_movies</code>, вы можете использовать следующий запрос:</p>
+
+<Prism lang="sql" code={`SELECT *
+  FROM movies
+ WHERE rating >= ALL (SELECT rating 
+                        FROM top_rated_movies);
+`} />
+
+		<p><strong>Результат</strong></p>
+
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><strong>id</strong></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>The Shawshank Redemption</td>
+					<td>1994</td>
+					<td>Drama</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>The Godfather</td>
+					<td>1972</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>The Godfather: Part II</td>
+					<td>1974</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>The Dark Knight</td>
+					<td>2008</td>
+					<td>Action</td>
+					<td>9</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center grid grid-cols-1 lg:grid-cols-2 gap-4">
+		<a href="/courses/sql-basic/basic/group/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Группировка</a>
+		<a href="/courses/sql-basic/basic/union/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Объединение запросов</a>
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center">
+		<a target="_blank" href="https://stepik.org/a/133728" class="bg-white text-black  text-center border-2 border-black rounded hover:bg-black hover:text-white px-8 lg:px-24 py-4 mr-2  no-underline">Записаться на курс</a>
+	</div>
+</Layout>

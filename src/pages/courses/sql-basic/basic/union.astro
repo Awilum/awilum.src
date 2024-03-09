@@ -1,0 +1,167 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { Prism } from '@astrojs/prism';
+---
+
+<Layout title="Объединение запросов" 
+	    description="Объединение запросов в SQL" 
+		keywords="sql">	
+	<h1 class="text-4xl lg:text-5xl text-left block  border-b-2 py-14 p-10 pl-0 pr-[200px] border-solid border-black">Объединение запросов</h1>
+	<div class="py-4">
+		<a href="/courses/">Курсы</a> <span class="px-2">/</span> <a href="/courses/sql-basic/">SQL Базовый уровень</a> <span class="px-2">/</span> <a href="/courses/sql-basic/basic/">Основы</a>
+	</div>
+	
+	<div class="pt-10 pb-10 border-black border-t-2">
+		
+		<p><code>UNION</code> в <strong>SQL</strong> используется для объединения двух или более запросов оператора <code>SELECT</code>. </p>
+
+		<center><img alt="" height="403" name="SQL-16.jpg" src="https://ik.imagekit.io/awilum/awilum-ru/SQL-union.jpeg?updatedAt=1708420481373" width="800"></center>
+
+		<p><strong>Таблица</strong> <code>movies</code></p>
+
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><strong>id</strong></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>The Shawshank Redemption</td>
+					<td>1994</td>
+					<td>Drama</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>The Godfather</td>
+					<td>1972</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>The Godfather: Part II</td>
+					<td>1974</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>The Dark Knight</td>
+					<td>2008</td>
+					<td>Action</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>12 Angry Men</td>
+					<td>1957</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>Schindlers List</td>
+					<td>1993</td>
+					<td>Biography</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>Pulp Fiction</td>
+					<td>1994</td>
+					<td>Crime</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>8</td>
+					<td>The Lord of the Rings: The Return of the King</td>
+					<td>2003</td>
+					<td>Adventure</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>9</td>
+					<td>Fight Club</td>
+					<td>1999</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>10</td>
+					<td>The Good, the Bad and the Ugly</td>
+					<td>1966</td>
+					<td>Western</td>
+					<td>8</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br><br>
+
+		<p>Оператор <strong>SQL</strong> <code>UNION</code> имеет следующий синтаксис:</p>
+
+<Prism lang="sql" code={`SELECT column1,
+	  column2,
+	  ...
+  FROM table_name_1
+ UNION
+SELECT column1,
+	   column2,
+	   ...
+  FROM table_name_2
+`} />
+
+		<p>Важно отметить, что каждый из операторов <code>SELECT</code> должен иметь в своем запросе одинаковое количество столбцов и типы возвращаемых данных, иначе произойдет ошибка при формировании результирующей таблицы.</p>
+
+		<br><br>
+
+		<p>Например, если вы хотите получить список всех фильмов и их жанров из таблицы <code>movies</code>, вы можете использовать следующий запрос:</p>
+
+<Prism lang="sql" code={`SELECT title,
+	   genre
+  FROM movies
+ UNION
+SELECT title,
+   	   genre
+  FROM movies;
+`} />
+
+		<p>Этот запрос вернет список всех фильмов и их жанров, исключая дубликаты.</p>
+
+		<br><br>
+
+		<p>Еще один пример, если вы хотите соединить две таблицы с разными названиями и получить список всех фильмов и их жанров из обеих таблиц, вы можете использовать следующий запрос:</p>
+
+<Prism lang="sql" code={`SELECT title,
+   	   genre
+  FROM movies
+ UNION
+SELECT title,
+	   genre
+  FROM top_rated_movies;
+`} />
+
+		<p>Этот запрос объединит результаты из двух таблиц и вернет список всех фильмов и их жанров из обеих таблиц без дубликатов.</p>
+
+		<br><br>
+
+		<p>Еще одна важная особенность <code>UNION</code> он делает автоматический <code>DISTINCT</code> (уникальные записи), то есть он не возвращает дублирующиеся записи. Если вы хотите включить дубликаты в результат, используйте <code>UNION ALL</code>.</p>
+
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center grid grid-cols-1 lg:grid-cols-2 gap-4">
+		<a href="/courses/sql-basic/basic/subqueries/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Подзапросы</a>
+		<a href="/courses/sql-basic/basic/views/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Представление</a>
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center">
+		<a target="_blank" href="https://stepik.org/a/133728" class="bg-white text-black  text-center border-2 border-black rounded hover:bg-black hover:text-white px-8 lg:px-24 py-4 mr-2  no-underline">Записаться на курс</a>
+	</div>
+</Layout>

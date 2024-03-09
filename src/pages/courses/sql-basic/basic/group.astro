@@ -1,0 +1,507 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { Prism } from '@astrojs/prism';
+---
+
+<Layout title="Группировка" 
+	    description="Группировка в SQL" 
+		keywords="sql">	
+	<h1 class="text-4xl lg:text-5xl text-left block  border-b-2 py-14 p-10 pl-0 pr-[200px] border-solid border-black">Группировка</h1>
+	<div class="py-4">
+		<a href="/courses/">Курсы</a> <span class="px-2">/</span> <a href="/courses/sql-basic/">SQL Базовый уровень</a> <span class="px-2">/</span> <a href="/courses/sql-basic/basic/">Основы</a>
+	</div>
+	
+	<div class="pt-10 pb-10 border-black border-t-2">
+				
+		<p><strong>Группировка</strong> в <strong>SQL</strong> позволяет объединять данные по определенному полю или списку полей, чтобы вычислить агрегированные значения, такие как сумма, среднее, максимум и минимум.</p>
+
+		<center><img alt="" height="693" name="SQL-7.jpg" src="https://ik.imagekit.io/awilum/awilum-ru/SQL-group.jpeg?updatedAt=1708418161838" width="800" /></center>
+
+		<p>Чтобы группировать данные по определенному полю, вам нужно использовать ключевое слово <code>GROUP BY</code> в запросе, и указать поле или набор полей, по которым вы хотите группировать данные.</p>
+
+		<p><code>GROUP BY</code> часто используется в сочетании с агрегатными функциями, такими как <code>MIN</code>, <code>MAX</code>, <code>SUM</code>, <code>AVG</code> и <code>COUNT</code>, для выполнения вычислений над сгруппированными данными.</p>
+
+		<p><strong>Таблица</strong> <code>movies</code></p>
+
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><strong>id</strong></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>The Shawshank Redemption</td>
+					<td>1994</td>
+					<td>Drama</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>The Godfather</td>
+					<td>1972</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>The Godfather: Part II</td>
+					<td>1974</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>The Dark Knight</td>
+					<td>2008</td>
+					<td>Action</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>12 Angry Men</td>
+					<td>1957</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>Schindlers List</td>
+					<td>1993</td>
+					<td>Biography</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>Pulp Fiction</td>
+					<td>1994</td>
+					<td>Crime</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>8</td>
+					<td>The Lord of the Rings: The Return of the King</td>
+					<td>2003</td>
+					<td>Adventure</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>9</td>
+					<td>Fight Club</td>
+					<td>1999</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>10</td>
+					<td>The Good, the Bad and the Ugly</td>
+					<td>1966</td>
+					<td>Western</td>
+					<td>8</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br><br>
+
+		<p>Чтобы сгруппировать фильмы по жанрам&nbsp;<code>genre</code> и рассчитать средний рейтинг&nbsp;<code>rating</code> для каждого жанра, вы можете использовать следующий <strong>SQL&nbsp;</strong>запрос:</p>
+
+<Prism lang="sql" code={`SELECT genre,
+	   AVG(rating) AS avg_rating
+  FROM movies
+ GROUP BY genre;
+`} />
+
+		<p><strong>Результат</strong></p>
+
+		<table>
+			<thead>
+				<tr>
+					<th><strong>genre</strong></th>
+					<th><strong>avg_rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Action</td>
+					<td>9.0</td>
+				</tr>
+				<tr>
+					<td>Adventure</td>
+					<td>8.0</td>
+				</tr>
+				<tr>
+					<td>Biography</td>
+					<td>8.0</td>
+				</tr>
+				<tr>
+					<td>Crime</td>
+					<td>8.66666666666667</td>
+				</tr>
+				<tr>
+					<td>Drama</td>
+					<td>8.33333333333333</td>
+				</tr>
+				<tr>
+					<td>Western</td>
+					<td>8.0</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br><br>
+
+		<p>Чтобы округлить результаты агрегатной функции, такой как <code>AVG</code>, вы можете использовать функцию <code>ROUND</code>.<br />
+		Функция <code>ROUND</code> принимает два аргумента: значение, которое нужно округлить, и количество десятичных разрядов, до которого нужно округлить.</p>
+
+		<p>Например, чтобы округлить средний рейтинг до одного десятичного знака, можно использовать следующий запрос:</p>
+
+<Prism lang="sql" code={`SELECT genre,
+	   ROUND(AVG(rating), 1) AS avg_rating
+  FROM movies
+ GROUP BY genre;
+`} />
+
+		<p><strong>Результат</strong></p>
+
+		<table>
+			<thead>
+				<tr>
+					<th><strong>genre</strong></th>
+					<th><strong>avg_rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Action</td>
+					<td>9.0</td>
+				</tr>
+				<tr>
+					<td>Adventure</td>
+					<td>8.0</td>
+				</tr>
+				<tr>
+					<td>Biography</td>
+					<td>8.0</td>
+				</tr>
+				<tr>
+					<td>Crime</td>
+					<td>8.7</td>
+				</tr>
+				<tr>
+					<td>Drama</td>
+					<td>8.3</td>
+				</tr>
+				<tr>
+					<td>Western</td>
+					<td>8.0</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br><br>
+
+		<p>Для того чтобы показать сколько фильмов в каждом жанре, вы можете использовать следующий <strong>SQL&nbsp;</strong>запрос:</p>
+
+<Prism lang="sql" code={`SELECT genre,
+       COUNT(id) AS count
+  FROM movies
+ GROUP BY genre;
+`} />
+
+		<p><strong>Результат</strong></p>
+
+		<table>
+			<thead>
+				<tr>
+					<th><strong>genre</strong></th>
+					<th><strong>count</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Action</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>Adventure</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>Biography</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>Crime</td>
+					<td>3</td>
+				</tr>
+				<tr>
+					<td>Drama</td>
+					<td>3</td>
+				</tr>
+				<tr>
+					<td>Western</td>
+					<td>1</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br><br>
+
+		<p>Вы также можете использовать <code>HAVING</code> для фильтрации групп на основе условия.<br />
+		Например для того чтобы показать сколько фильмов в каждом жанре, при условии что фильмов в жанре больше чем 1, вы можете использовать следующий <strong>SQL</strong>&nbsp;запрос:</p>
+
+<Prism lang="sql" code={`SELECT genre,
+   	   COUNT(id) AS count
+  FROM movies
+ GROUP BY genre
+HAVING COUNT(id) > 1;
+`} />
+
+		<p><strong>Результат</strong></p>
+
+		<table>
+			<thead>
+				<tr>
+					<th><strong>genre</strong></th>
+					<th><strong>count</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Crime</td>
+					<td>3</td>
+				</tr>
+				<tr>
+					<td>Drama</td>
+					<td>3</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br><br>
+
+		<p>Также вы можете отсортировать сгруппированный и отфильтрованный&nbsp;результат, например по полю&nbsp;<code>genre</code>:</p>
+
+<Prism lang="sql" code={`SELECT genre,
+	   COUNT(id) AS count
+  FROM movies
+ GROUP BY genre
+HAVING COUNT(id) > 1
+ ORDER BY genre DESC;
+`} />
+
+		<p><strong>Результат</strong></p>
+
+		<table>
+			<thead>
+				<tr>
+					<th><strong>genre</strong></th>
+					<th><strong>count</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Drama</td>
+					<td>3</td>
+				</tr>
+				<tr>
+					<td>Crime</td>
+					<td>3</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br><br>
+
+		<p>Для того чтобы показать максимальный рейтинг фильмов в каждом жанре, вы можете использовать следующий <strong>SQL&nbsp;</strong>запрос:</p>
+
+<Prism lang="sql" code={`SELECT genre,
+	   MAX(rating) AS max_rating
+  FROM movies
+ GROUP BY genre;
+`} />
+
+		<p><strong>Результат</strong></p>
+
+		<table>
+			<thead>
+				<tr>
+					<th><strong>genre</strong></th>
+					<th><strong>max_rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Action</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>Adventure</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>Biography</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>Drama</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>Western</td>
+					<td>8</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br><br>
+
+		<p>Для того чтобы показать минимальный рейтинг фильмов в каждом жанре, вы можете использовать следующий <strong>SQL&nbsp;</strong>запрос:</p>
+
+<Prism lang="sql" code={`SELECT genre,
+	   MIN(rating) AS min_rating
+  FROM movies
+ GROUP BY genre;
+`} />
+
+		<p><strong>Результат</strong></p>
+
+		<table>
+			<thead>
+				<tr>
+					<th><strong>genre</strong></th>
+					<th><strong>min_rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Action</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>Adventure</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>Biography</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>Crime</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>Western</td>
+					<td>8</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br><br>
+
+		<p>Вы можете группировать по нескольким полям.&nbsp;<br />
+		Например, следующий запрос будет&nbsp;группировать все строки из таблицы <code>movies</code> по полям&nbsp;<code>release_year</code> и <code>genre</code> и возвращать количество фильмов для каждой комбинации года выпуска и жанра:</p>
+
+<Prism lang="sql" code={`SELECT release_year,
+	   genre,
+	   COUNT(id) AS count
+ FROM movies
+GROUP BY release_year,
+		genre;
+`} />
+
+		<p><strong>Результат</strong></p>
+
+		<table>
+			<thead>
+				<tr>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>count</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1957</td>
+					<td>Drama</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>1966</td>
+					<td>Western</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>1972</td>
+					<td>Crime</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>1974</td>
+					<td>Crime</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>1993</td>
+					<td>Biography</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>1994</td>
+					<td>Crime</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>1994</td>
+					<td>Drama</td>
+					<td>2</td>
+				</tr>
+				<tr>
+					<td>1999</td>
+					<td>Drama</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>2003</td>
+					<td>Adventure</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>2008</td>
+					<td>Action</td>
+					<td>1</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br><br>
+
+		<h3>Разница между использованием <code>where</code> и <code>having</code></h3>
+
+		<p>Основное отличие&nbsp;<strong>WHERE</strong>&nbsp;от&nbsp;<strong>HAVING</strong>&nbsp;заключается в том, что&nbsp;<strong>WHERE</strong>&nbsp;сначала выбирает строки, а затем группирует их и вычисляет агрегатные функции (таким образом, она отбирает строки для вычисления агрегатов (агрегатными функциями)), тогда как&nbsp;<strong>HAVING&nbsp;</strong>отбирает строки групп после группировки и вычисления агрегатных функций.</p>
+
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center grid grid-cols-1 lg:grid-cols-2 gap-4">
+		<a href="/courses/sql-basic/basic/alias/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Псевдонимы</a>
+		<a href="/courses/sql-basic/basic/subqueries/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Подзапросы</a>
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center">
+		<a target="_blank" href="https://stepik.org/a/133728" class="bg-white text-black  text-center border-2 border-black rounded hover:bg-black hover:text-white px-8 lg:px-24 py-4 mr-2  no-underline">Записаться на курс</a>
+	</div>
+</Layout>

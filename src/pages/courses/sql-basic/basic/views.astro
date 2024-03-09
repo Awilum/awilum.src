@@ -1,0 +1,166 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { Prism } from '@astrojs/prism';
+---
+
+<Layout title="Представления" 
+	    description="Представления в SQL" 
+		keywords="sql">	
+	<h1 class="text-4xl lg:text-5xl text-left block  border-b-2 py-14 p-10 pl-0 pr-[200px] border-solid border-black">Представления</h1>
+	<div class="py-4">
+		<a href="/courses/">Курсы</a> <span class="px-2">/</span> <a href="/courses/sql-basic/">SQL Базовый уровень</a> <span class="px-2">/</span> <a href="/courses/sql-basic/basic/">Основы</a>
+	</div>
+	
+	<div class="pt-10 pb-10 border-black border-t-2">
+		
+		<p><strong>Представления</strong> в <strong>SQL</strong> — это виртуальные таблицы, которые содержат результаты запроса, как будто они являются обычными таблицами в базе данных. Они позволяют вам избежать дублирования кода и упростить запросы, так как вы можете использовать их как единый источник данных в нескольких местах.</p>
+
+		<center><img alt="" height="369" name="SQL-8.jpg" src="https://ik.imagekit.io/awilum/awilum-ru/SQL-views.jpeg?updatedAt=1708420831853" width="800"></center>
+
+		<p><strong>Таблица</strong> <code>movies</code></p>
+
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><strong>id</strong></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>The Shawshank Redemption</td>
+					<td>1994</td>
+					<td>Drama</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>The Godfather</td>
+					<td>1972</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>The Godfather: Part II</td>
+					<td>1974</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>The Dark Knight</td>
+					<td>2008</td>
+					<td>Action</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>12 Angry Men</td>
+					<td>1957</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>Schindlers List</td>
+					<td>1993</td>
+					<td>Biography</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>Pulp Fiction</td>
+					<td>1994</td>
+					<td>Crime</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>8</td>
+					<td>The Lord of the Rings: The Return of the King</td>
+					<td>2003</td>
+					<td>Adventure</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>9</td>
+					<td>Fight Club</td>
+					<td>1999</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>10</td>
+					<td>The Good, the Bad and the Ugly</td>
+					<td>1966</td>
+					<td>Western</td>
+					<td>8</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<p> </p>
+
+		<p>Например, вы можете создать представление, которое отображает только фильмы с рейтингом больше 8 из таблицы <code>movies</code></p>
+
+<Prism lang="sql" code={`CREATE VIEW high_rated_movies
+    AS
+SELECT title,
+       rating
+  FROM movies
+ WHERE rating > 8;
+`} />
+
+		<p>Это новое представление называется <code>high_rated_movies</code> и состоит из двух колонок: title и rating. В запросе мы указываем, что мы хотим выбрать значения из таблицы <code>movies</code>, где рейтинг больше 8. Таким образом, когда мы запрашиваем данные из этого представления, мы получим только фильмы с рейтингом больше 8.</p>
+
+		<p>Чтобы получить данные из этого представления, мы можем использовать обычный <strong>SQL </strong>запрос, например:</p>
+
+
+<Prism lang="sql" code={`SELECT *
+  FROM high_rated_movies;
+`} />
+
+		<p><strong>Результат</strong></p>
+
+		<table>
+			<thead>
+				<tr>
+					<th><strong>title</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>The Shawshank Redemption</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>The Godfather</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>The Godfather: Part II</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>The Dark Knight</td>
+					<td>9</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center grid grid-cols-1 lg:grid-cols-2 gap-4">
+		<a href="/courses/sql-basic/basic/union/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Объединение запросов</a>
+		<a href="javascript:;" class="bg-white text-black border-2 border-black rounded opacity-50 cursor-not-allowed px-14 py-2 mr-2  no-underline">Агрегатные функции</a>
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center">
+		<a target="_blank" href="https://stepik.org/a/133728" class="bg-white text-black  text-center border-2 border-black rounded hover:bg-black hover:text-white px-8 lg:px-24 py-4 mr-2  no-underline">Записаться на курс</a>
+	</div>
+</Layout>

@@ -1,0 +1,137 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { Prism } from '@astrojs/prism';
+---
+
+<Layout title="Псевдонимы" 
+	    description="Псевдонимы в SQL" 
+		keywords="sql">	
+	<h1 class="text-4xl lg:text-5xl text-left block  border-b-2 py-14 p-10 pl-0 pr-[200px] border-solid border-black">Псевдонимы</h1>
+	<div class="py-4">
+		<a href="/courses/">Курсы</a> <span class="px-2">/</span> <a href="/courses/sql-basic/">SQL Базовый уровень</a> <span class="px-2">/</span> <a href="/courses/sql-basic/basic/">Основы</a>
+	</div>
+	
+	<div class="pt-10 pb-10 border-black border-t-2">
+		
+		<p><strong>Alias</strong> (псевдоним) &mdash; это имя, назначенное источнику данных в запросе при использовании выражения в качестве источника данных или для упрощения ввода и прочтения инструкции <strong>SQL</strong>. Такая возможность полезна, если имя источника данных слишком длинное. Псевдонимы могут быть использованы для переименования таблиц и полей.</p>
+
+		<p>В <strong>SQL</strong> псевдонимы&nbsp;можно создавать таблицам и полям, используя ключевое слово <code>AS</code></p>
+		
+		<p><strong>Таблица</strong> <code>movies</code></p>
+		
+		<table width="100%">
+			<thead>
+				<tr>
+					<th><strong>id</strong></th>
+					<th><strong>title</strong></th>
+					<th><strong>release_year</strong></th>
+					<th><strong>genre</strong></th>
+					<th><strong>rating</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>The Shawshank Redemption</td>
+					<td>1994</td>
+					<td>Drama</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>The Godfather</td>
+					<td>1972</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>The Godfather: Part II</td>
+					<td>1974</td>
+					<td>Crime</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>The Dark Knight</td>
+					<td>2008</td>
+					<td>Action</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>12 Angry Men</td>
+					<td>1957</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>Schindlers List</td>
+					<td>1993</td>
+					<td>Biography</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>Pulp Fiction</td>
+					<td>1994</td>
+					<td>Crime</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>8</td>
+					<td>The Lord of the Rings: The Return of the King</td>
+					<td>2003</td>
+					<td>Adventure</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>9</td>
+					<td>Fight Club</td>
+					<td>1999</td>
+					<td>Drama</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>10</td>
+					<td>The Good, the Bad and the Ugly</td>
+					<td>1966</td>
+					<td>Western</td>
+					<td>8</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<br><br>
+		
+		<p>Пример создания псевдонимов:</p>
+		
+<Prism lang="sql" code={`SELECT id AS movie_id,
+       title AS movie_title,
+       release_year AS release_year,
+       genre AS movie_genre,
+       rating AS movie_rating
+  FROM movies;
+`} />
+	
+		<br><br>
+		
+		<p>Вот та же таблица&nbsp;<code>movies</code>&nbsp;но с псевдонимом <code>m</code>:</p>
+	
+<Prism lang="sql" code={`SELECT m.id,
+	   m.title AS movie_title
+  FROM movies AS m;
+`} />
+
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center grid grid-cols-1 lg:grid-cols-2 gap-4">
+		<a href="/courses/sql-basic/basic/variables" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Переменные</a>
+		<a href="/courses/sql-basic/basic/group/" class="bg-white text-black border-2 border-black rounded hover:bg-black hover:text-white px-14 py-2 mr-2  no-underline">Группировка</a>
+	</div>
+
+	<div class="pt-10 pb-10 border-black border-t-2 text-center">
+		<a target="_blank" href="https://stepik.org/a/133728" class="bg-white text-black  text-center border-2 border-black rounded hover:bg-black hover:text-white px-8 lg:px-24 py-4 mr-2  no-underline">Записаться на курс</a>
+	</div>
+</Layout>
