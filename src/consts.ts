@@ -5,7 +5,16 @@ export const SITE_TITLE = "AWILUM";
 export const SITE_DESCRIPTION =
   "Digital Nomad. Software Engineer. E-Learning Instructor.";
 
-export const categories = {
+export const categoriesArticles = {
+  javascript: {
+    title: "JavaScript",
+  },
+  canvas: {
+    title: "Canvas",
+  },
+  php: {
+    title: "PHP",
+  },
   python: {
     title: "Python",
   },
@@ -14,11 +23,8 @@ export const categories = {
   }
 };
 
-export const categoriesNotes = {
-  javascript: {
-    title: "JavaScript",
-  },
-  php: {
-    title: "PHP",
+export const categoriesTools = {
+  text: {
+    title: "Текст",
   },
 };
