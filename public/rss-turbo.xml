@@ -1,0 +1,232 @@
+<rss version="2.0">
+<channel>
+<title>Статьи | awilum.ru</title>
+<description>Про разработку программного обеспечения, образование и IT в целом.</description>
+<link>https://awilum.ru/</link>
+<language>en-us</language>
+<item turbo="true">
+<title>Преимущества использования let и const по сравнению с var в JavaScript</title>
+<link>https://awilum.ru/articles/advantages-of-using-let-and-const-over-var-in-javascript/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/advantages-of-using-let-and-const-over-var-in-javascript/</guid>
+<description>Преимущества использования let и const по сравнению с var в JavaScript</description>
+<pubDate>Mon, 19 Feb 2024 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Как проверить пустой объект в JavaScript?</title>
+<link>https://awilum.ru/articles/how-to-test-for-an-empty-object-in-javascript/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/how-to-test-for-an-empty-object-in-javascript/</guid>
+<description>Как проверить пустой объект в JavaScript?</description>
+<pubDate>Mon, 19 Feb 2024 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Как исправить арифметику с десятичными числами в JavaScript?</title>
+<link>https://awilum.ru/articles/how-to-fix-decimals-arithmetic-in-javascript/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/how-to-fix-decimals-arithmetic-in-javascript/</guid>
+<description>Статья рассматривает понятие "ошибка выжившего" в контексте информационных технологий (IT). Описывается, как это искажение может влиять на принятие решений, основанных только на успешных кейсах, и предоставляются примеры из сферы IT. В частности, подчеркивается важность анализа не только успешных, но и неудачных опытов для более обоснованных стратегических решений в IT.</description>
+<pubDate>Wed, 14 Feb 2024 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Принципы проектирования программного обеспечения</title>
+<link>https://awilum.ru/articles/software-design-principles/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/software-design-principles/</guid>
+<description>Принципы проектирования программного обеспечения</description>
+<pubDate>Tue, 16 Jan 2024 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Что такое hard skills и как их развить</title>
+<link>https://awilum.ru/articles/hard-skills/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/hard-skills/</guid>
+<description>Что такое hard skills и как их развить</description>
+<pubDate>Mon, 15 Jan 2024 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Разница между простым и строгим равенством в JavaScript</title>
+<link>https://awilum.ru/articles/difference-between-simple-and-strict-equality-in-javascript/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/difference-between-simple-and-strict-equality-in-javascript/</guid>
+<description>Разница между простым и строгим равенством в JavaScript</description>
+<pubDate>Sun, 14 Jan 2024 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Список ключевых слов и зарезервированных слов в JavaScript</title>
+<link>https://awilum.ru/articles/list-of-keywords-and-reserved-words-in-javascript/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/list-of-keywords-and-reserved-words-in-javascript/</guid>
+<description>Список ключевых слов и зарезервированных слов в JavaScript</description>
+<pubDate>Sat, 13 Jan 2024 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Как соединить две строки в PHP?</title>
+<link>https://awilum.ru/articles/how-to-join-two-strings-in-php/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/how-to-join-two-strings-in-php/</guid>
+<description>Как соединить две строки в PHP</description>
+<pubDate>Fri, 12 Jan 2024 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Как соединить две строки в JavaScript?</title>
+<link>https://awilum.ru/articles/how-to-join-two-strings-in-javascript/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/how-to-join-two-strings-in-javascript/</guid>
+<description>Как соединить две строки в JavaScript</description>
+<pubDate>Thu, 11 Jan 2024 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Как проверить, является ли значение числом в JavaScript</title>
+<link>https://awilum.ru/articles/how-to-check-if-a-value-is-a-number-in-javascript/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/how-to-check-if-a-value-is-a-number-in-javascript/</guid>
+<description>Удалить все node_modules</description>
+<pubDate>Wed, 10 Jan 2024 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Удалить все node_modules</title>
+<link>https://awilum.ru/articles/delete-all-node-modules/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/delete-all-node-modules/</guid>
+<description>Удалить все node_modules</description>
+<pubDate>Tue, 09 Jan 2024 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Как узнать версию PHP?</title>
+<link>https://awilum.ru/articles/how-to-find-out-the-version-of-php/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/how-to-find-out-the-version-of-php/</guid>
+<description>Как узнать версию PHP?</description>
+<pubDate>Mon, 08 Jan 2024 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Как узнать версию Node.js?</title>
+<link>https://awilum.ru/articles/how-to-find-out-the-version-of-nodejs/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/how-to-find-out-the-version-of-nodejs/</guid>
+<description>Как узнать версию Node.js?</description>
+<pubDate>Sun, 07 Jan 2024 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Выбор регистра букв для имен констант в JavaScript</title>
+<link>https://awilum.ru/articles/selecting-letter-case-for-constant-names-in-javascript/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/selecting-letter-case-for-constant-names-in-javascript/</guid>
+<description>Выбор регистра букв для имен констант в JavaScript</description>
+<pubDate>Sat, 06 Jan 2024 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Разница между методом forEach() и map() в JavaScript</title>
+<link>https://awilum.ru/articles/difference-between-foreach-and-map-method-in-javascript/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/difference-between-foreach-and-map-method-in-javascript/</guid>
+<description>Разница между методом forEach() и map() в JavaScript</description>
+<pubDate>Fri, 05 Jan 2024 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Разница между методом some() и every() в JavaScript</title>
+<link>https://awilum.ru/articles/difference-between-some-and-every-method-in-javascript/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/difference-between-some-and-every-method-in-javascript/</guid>
+<description>Разница между методом some() и every() в JavaScript</description>
+<pubDate>Thu, 04 Jan 2024 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Сортировки массивов в JavaScript</title>
+<link>https://awilum.ru/articles/sort-array-in-javascript/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/sort-array-in-javascript/</guid>
+<description>Сортировки массивов в JavaScript</description>
+<pubDate>Wed, 03 Jan 2024 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Поиск символа в строке JavaScript</title>
+<link>https://awilum.ru/articles/finding-a-character-in-a-string-in-javascript/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/finding-a-character-in-a-string-in-javascript/</guid>
+<description>Методы поиска символа в строке JavaScript</description>
+<pubDate>Tue, 02 Jan 2024 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Поиск символа в строке PHP</title>
+<link>https://awilum.ru/articles/finding-a-character-in-a-string-in-php/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/finding-a-character-in-a-string-in-php/</guid>
+<description>Способы поиска символа в строке PHP</description>
+<pubDate>Mon, 01 Jan 2024 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Язык программирования как инструмент программиста</title>
+<link>https://awilum.ru/articles/programming-language-as-a-developers-tool/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/programming-language-as-a-developers-tool/</guid>
+<description>Узнайте, почему гибкие навыки так важны для разработчика. Статья расскажет о влиянии личностных качеств на успешное взаимодействие в команде и достижение целей в IT.</description>
+<pubDate>Thu, 30 Nov 2023 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Что такое soft skills и как их развить</title>
+<link>https://awilum.ru/articles/soft-skills/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/soft-skills/</guid>
+<description>Узнайте, почему гибкие навыки так важны для разработчика. Статья расскажет о влиянии личностных качеств на успешное взаимодействие в команде и достижение целей в IT.</description>
+<pubDate>Thu, 30 Nov 2023 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Ошибка выжившего</title>
+<link>https://awilum.ru/articles/survivorship-bias/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/survivorship-bias/</guid>
+<description>Статья рассматривает понятие "ошибка выжившего" в контексте информационных технологий (IT). Описывается, как это искажение может влиять на принятие решений, основанных только на успешных кейсах, и предоставляются примеры из сферы IT. В частности, подчеркивается важность анализа не только успешных, но и неудачных опытов для более обоснованных стратегических решений в IT.</description>
+<pubDate>Mon, 27 Nov 2023 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Зачем начинающему разработчику создавать пет-проекты</title>
+<link>https://awilum.ru/articles/benefits-of-personal-projects-for-beginners/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/benefits-of-personal-projects-for-beginners/</guid>
+<description>Исследование концепции пет-проекта в IT-сфере, как создание личных проектов способствует развитию навыков, углублению в технологии, и почему они важны для портфолио начинающего разработчика. Узнайте, как публичный доступ через GitHub и другие платформы может подчеркнуть ваш профессиональный потенциал.</description>
+<pubDate>Mon, 20 Nov 2023 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>PEP 8 - Правила оформления Python-кода</title>
+<link>https://awilum.ru/articles/pep8/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/pep8/</guid>
+<description>Познакомьтесь с важностью соблюдения стандартов оформления Python-кода по PEP8. Улучшите читаемость, сотрудничество в команде и производительность своего Python-кода. Наша статья расскажет вам, почему следование этим правилам является ключевым фактором для успешной разработки на Python.</description>
+<pubDate>Fri, 13 Oct 2023 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Технический долг</title>
+<link>https://awilum.ru/articles/technical-debt/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/technical-debt/</guid>
+<description>Узнайте, что такое технический долг и как он влияет на разработку ПО. Разбираем причины, последствия и методы управления. Осознайте важность приоритизации, создания плана и активного управления для повышения качества кода и надежности системы.</description>
+<pubDate>Fri, 06 Oct 2023 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Важность теории и практики при изучении программирования.</title>
+<link>https://awilum.ru/articles/the-importance-of-theory-and-practice-when-learning-programming/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/the-importance-of-theory-and-practice-when-learning-programming/</guid>
+<description>Откройте для себя идеальный баланс между теорией и практикой в обучении программированию. Узнайте, как освоить фундаментальные концепции и применять их в разработке, обеспечивая успешный путь в мире программирования.</description>
+<pubDate>Wed, 04 Oct 2023 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Как не стать code monkey программистом</title>
+<link>https://awilum.ru/articles/how-not-to-become-a-code-monkey-programmer/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/how-not-to-become-a-code-monkey-programmer/</guid>
+<description>Code monkey – программист, который выполняет механические задачи по написанию кода без особого понимания или вовлеченности в широкий контекст разработки. Чтобы не превратиться в "code monkey" и стать опытным разработчиком, вам пригодятся следующие рекомендации.</description>
+<pubDate>Tue, 03 Oct 2023 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Улучшайте свои фундаментальные знания!</title>
+<link>https://awilum.ru/articles/improve-your-fundamental-knowledge/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/improve-your-fundamental-knowledge/</guid>
+<description>Освоение программирования – вызов для многих, но развитие фундаментальных знаний в математике, информатике и логике становится ключом к успешной карьере. Практика, терпение и настойчивость в учебе помогут вам преодолеть трудности и стать опытным разработчиком.</description>
+<pubDate>Tue, 03 Oct 2023 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Качества хорошего разработчика</title>
+<link>https://awilum.ru/articles/qualities-of-a-good-developer/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/qualities-of-a-good-developer/</guid>
+<description>Статья раскрывает ключевые качества успешного разработчика, такие как технические навыки, творческий подход, аналитическое мышление, самоорганизация, коммуникация, стрессоустойчивость. Узнайте, как развить навыки, стать профессионалом и справиться с вызовами в сфере разработки.</description>
+<pubDate>Sun, 01 Oct 2023 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Роль языка программирования в создании программного обеспечения</title>
+<link>https://awilum.ru/articles/the-role-of-programming-language-in-software-creation/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/the-role-of-programming-language-in-software-creation/</guid>
+<description>Узнайте о важности выбора правильного языка программирования в создании программного обеспечения. Успех зависит от навыков программиста, его понимания алгоритмов и эффективного использования инструментов языка. Выберите подходящий язык для проекта и улучшите свои навыки для создания надежных решений.</description>
+<pubDate>Wed, 27 Sep 2023 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Программирование – это не только знание языка программирования</title>
+<link>https://awilum.ru/articles/programming-is-not-just-about-knowing-a-programming-language/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/programming-is-not-just-about-knowing-a-programming-language/</guid>
+<description>Узнайте, что такое истинное программирование от владения языками программирования до коммуникативных навыков. Статья расскрывает важность анализа ошибок, учета особенностей области применения ПО, и необходимость эффективного сотрудничества в команде.</description>
+<pubDate>Tue, 26 Sep 2023 00:00:00 GMT</pubDate>
+</item>
+<item turbo="true">
+<title>Важность развития логического мышления для программиста</title>
+<link>https://awilum.ru/articles/the-importance-of-developing-logical-thinking-for-a-programmer/</link>
+<guid isPermaLink="true">https://awilum.ru/articles/the-importance-of-developing-logical-thinking-for-a-programmer/</guid>
+<description>Откройте важность логического мышления для программиста. Логическое мышление применяется при разработке алгоритмов, отладке, повышении эффективности и разработке архитектуры программного обеспечения.</description>
+<pubDate>Mon, 25 Sep 2023 00:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>
