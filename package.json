@@ -10,18 +10,24 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/alpinejs": "^0.3.0",
+    "@astrojs/alpinejs": "^0.3.2",
+    "@astrojs/mdx": "^2.1.1",
     "@astrojs/prism": "^3.0.0",
+    "@astrojs/rss": "^4.0.4",
     "@astrojs/sitemap": "^3.0.0",
-    "@astrojs/tailwind": "^5.0.0",
-    "@types/alpinejs": "^3.13.2",
-    "alpinejs": "^3.13.0",
-    "astro": "^3.0.12",
+    "@astrojs/tailwind": "^5.1.0",
+    "@astrojs/vue": "^4.0.8",
+    "@types/alpinejs": "^3.13.6",
+    "alpinejs": "^3.13.5",
+    "astro": "^4.4",
     "astro-pagefind": "^1.4.0",
     "chroma-js": "^2.4.2",
-    "daisyui": "^4.4.19",
+    "daisyui": "^4.6.1",
+    "markdown-it": "^14.0.0",
+    "sanitize-html": "^2.11.0",
     "sass": "^1.63.4",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.3.3",
+    "vue": "^3.4.15"
   },
   "devDependencies": {
     "prettier": "3.1.0",
