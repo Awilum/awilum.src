@@ -1,0 +1,42 @@
+---
+import Layout from '../../layouts/ToolsLayout.astro';
+import { getCollection } from 'astro:content';
+import { categoriesTools } from '../../consts';
+import Search from "astro-pagefind/components/Search";
+
+const tools = (await getCollection('tools')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout title="Cтатьи про разработку программного обеспечения, образование и IT в целом" description="Погрузитесь в мир разработки. Узнайте что такое технический долг, качества хорошего разработчика и важность развития логического мышления. Улучшайте свои навыки программирования!" keywords="PEP 8, разработка, технический долг, программирование, качества разработчика, логическое мышление, python, javascript, php, code monkey, фундаментальные знания">	
+	<h1 class="text-4xl lg:text-5xl text-left py-14 pb-0">Инструменты</h1>
+	<h2 class="font-semibold">Бесплатные онлайн-инструменты для решения разных задач.</h2>
+
+	<div class="text-left py-10 mt-10 border-b-2 border-t-2 border-solid border-black py-10">{
+		Object.keys(categoriesTools).map((category, i) => (
+			<a href=`/tools/categories/${category}/` class="bg-gray-200 px-3 py-1 mr-2 no-underline text-sm">{categoriesTools[category].title}</a>
+		))
+	} </div>
+	<div>
+	{
+		tools.map((note, index) => (
+			<div class=`lg:flex ${index < tools.length - 1 ? "border-b border-dashed border-slate-500" : ""} py-4 items-center`>
+				<div class="lg:w-9/12 w-full pb-0 pt-0">
+					<a href=`/tools/${note.slug}/` class="text-xl no-underline hover:underline">{note.data.title}</a>
+				</div>
+				<div class="lg:w-3/12 mt-4 lg:mt-0 w-full lg:text-right pb-0 pt-0">
+					{
+						note.data.categories.map((category) => (
+								<a href=`/tools/categories/${category}/` class="bg-gray-200 px-3 py-1 lg:ml-2 no-underline text-sm">
+									{categoriesTools[category]['title']}
+								</a>
+							)
+						)
+					}
+				</div>
+			</div>
+		))
+	}
+	</div>
+</Layout>
