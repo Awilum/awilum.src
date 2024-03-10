@@ -26,8 +26,8 @@ articles.sort(
 );
 ---
 
-<Layout title={category ?? ""}>
-	<h3 class="py-14 text-2xl lg:text-5xl text-left block   border-b-2 border-solid border-black">Статьи <br>в категории "{categoriesArticles[category ?? ""].title}"</h3>
+<Layout title={`Статьи в категории ${categoriesArticles[category].title}` ?? ""} description=`Статьи в категории ${categoriesArticles[category].title}` keywords=`${category}`>
+	<h1 class="py-14 text-2xl lg:text-5xl text-left block   border-b-2 border-solid border-black">Статьи <br>в категории "{categoriesArticles[category ?? ""].title}"</h1>
 	<div class="text-left text-xl  border-b-2 border-solid border-black py-10">{
 		<span><a href=`/articles/` class="bg-gray-200 px-3 py-1 mr-2 no-underline text-sm">Все статьи</a></span>
 	} </div>
