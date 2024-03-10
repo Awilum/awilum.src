@@ -1,14 +1,24 @@
 --- 
-import { categories } from '../consts';
+import { categoriesArticles } from '../consts';
+
+let id = Astro.url.pathname.replaceAll("articles/", "").replaceAll("/", "");
+
 ---
 <h1 class="text-2xl lg:text-6xl py-14 text-left block border-b-2 border-solid border-black">{Astro.props.frontmatter.title}</h1>
 <div class="text-lg py-10 mx-auto">
 	<slot />
 </div>
+<div class="py-10 px-10 text-center border-t-2 border-solid border-black bg-yellow-50">
+	Хотите освоить <strong>JavaScript</strong> и стать востребованным разработчиком?<br>Присоединяйтесь к курсу <strong><a href="/courses/javascript-basic/">JavaScript Базовый уровень</a></strong> прямо сейчас!<br>Изучите основы и продвинутые концепции, создавайте интерактивные веб-приложения и воплотите свои идеи в реальности. Не упустите шанс стать экспертом в мире разработки – начните свой путь прямо сейчас!
+</div>
+<div class="text-sm py-10 text-center border-t-2 border-solid border-black">
+	Обнаружили ошибку в этой статье? Хотите уточнить, обновить или добавить что-то?<br>
+	Все мои статьи доступны для <a target="_blank" href={`https://github.com/Awilum/awilum.src/blob/master/src/content/articles/${id}.md`}>редактирования на GitHub</a>. Буду благодарен за любое улучшение или исправление!
+</div>
 <div class="lg:flex py-10 border-t-2 border-solid border-black">
 	<div class="lg:flex-auto text-left">
 		<!-- AddToAny BEGIN -->
-		<div class="mb-10 lg:mb-0">
+		<div class="mb-10 lg:mb-0 flex">
 			<div class="a2a_kit a2a_kit_size_32 a2a_default_style">
 				<a class="a2a_dd grayscale" href="https://www.addtoany.com/share"></a>
 				<a class="a2a_button_twitter grayscale"></a>
@@ -26,10 +36,11 @@ import { categories } from '../consts';
 	<div class="lg:flex-auto lg:text-right">
 		{
 			Astro.props.frontmatter.categories.map((category) => (
-					<a href=`/articles/categories/${category}/` class="bg-gray-200 px-3 py-1 mr-2 no-underline text-sm">{categories[category]['title']}</a>
+					<a href=`/articles/categories/${category}/` class="bg-gray-200 px-3 py-1 ml-4 no-underline text-sm">{categoriesArticles[category]['title']}</a>
 				)
 			)
 		}
-		<a href="/articles/" class="bg-gray-200 px-3 py-1 mr-2 no-underline text-sm">Все статьи</a>
+		<span class="mx-2 opacity-10">|</span>
+		<a href="/articles/" class="bg-gray-200 px-3 py-1 no-underline text-sm">Все статьи</a>
 	</div> 
 </div>
