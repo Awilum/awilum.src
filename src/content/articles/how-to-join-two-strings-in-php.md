@@ -3,7 +3,7 @@ title: Как соединить две строки в PHP?
 layout: ../../layouts/ArticleEntry.astro
 categories: [php]
 pubDate: 2024-01-12
-description: Как соединить две строки в PHP
+description: Как соединить две строки в PHP?
 keywords: php, strings, concat
 ---
 

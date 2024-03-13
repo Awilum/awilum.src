@@ -1,9 +1,9 @@
 ---
-title: Как получить текущую метку времени в JavaScript
+title: Как получить текущую метку времени в JavaScript?
 layout: ../../layouts/ArticleEntry.astro
 categories: [javascript]
 pubDate: 2024-03-03
-description: Как получить текущую метку времени в JavaScript
+description: Как получить текущую метку времени в JavaScript?
 keywords: javascript, timestamp, date
 ---
 

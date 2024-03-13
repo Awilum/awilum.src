@@ -1,9 +1,9 @@
 ---
-title: Как проверить наличие дубликатов слов в строке на JavaScript
+title: Как проверить наличие дубликатов слов в строке на JavaScript?
 layout: ../../layouts/ArticleEntry.astro
 categories: [javascript]
 pubDate: 2024-03-13
-description: Как проверить наличие дубликатов слов в строке на JavaScript
+description: Как проверить наличие дубликатов слов в строке на JavaScript?
 keywords: javascript
 ---
 

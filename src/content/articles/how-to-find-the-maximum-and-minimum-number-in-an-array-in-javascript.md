@@ -1,9 +1,9 @@
 ---
-title: Как найти максимальное и минимальное число в массиве в JavaScript 
+title: Как найти максимальное и минимальное число в массиве в JavaScript?
 layout: ../../layouts/ArticleEntry.astro
 categories: [javascript]
 pubDate: 2024-03-13
-description: Как найти максимальное и минимальное число в массиве в JavaScript 
+description: Как найти максимальное и минимальное число в массиве в JavaScript?
 keywords: javascript, math, arrays
 ---
 

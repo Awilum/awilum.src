@@ -1,9 +1,9 @@
 ---
-title: Как получить текущую метку времени в Python
+title: Как получить текущую метку времени в Python?
 layout: ../../layouts/ArticleEntry.astro
 categories: [python]
 pubDate: 2024-03-12
-description: Как получить текущую метку времени в Python
+description: Как получить текущую метку времени в Python?
 keywords: python, timestamp, date, time
 ---
 

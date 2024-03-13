@@ -1,9 +1,9 @@
 ---
-title: Как подсчитать количество вхождений определённой буквы в строку в JavaScript
+title: Как подсчитать количество вхождений определённой буквы в строку в JavaScript?
 layout: ../../layouts/ArticleEntry.astro
 categories: [javascript]
 pubDate: 2024-03-13
-description: Как подсчитать количество вхождений определённой буквы в строку в JavaScript
+description: Как подсчитать количество вхождений определённой буквы в строку в JavaScript?
 keywords: javascript
 ---
 

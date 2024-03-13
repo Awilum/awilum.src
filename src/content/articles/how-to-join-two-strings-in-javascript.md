@@ -3,7 +3,7 @@ title: Как соединить две строки в JavaScript?
 layout: ../../layouts/ArticleEntry.astro
 categories: [javascript]
 pubDate: 2024-01-11
-description: Как соединить две строки в JavaScript
+description: Как соединить две строки в JavaScript?
 keywords: javascript, strings, concat
 ---
 

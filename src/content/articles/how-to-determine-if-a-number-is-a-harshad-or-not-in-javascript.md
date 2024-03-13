@@ -1,9 +1,9 @@
 ---
-title: Как определить, является ли число харшадом или нет в JavaScript
+title: Как определить, является ли число харшадом или нет в JavaScript?
 layout: ../../layouts/ArticleEntry.astro
 categories: [javascript]
 pubDate: 2024-03-12
-description: Как определить, является ли число харшадом или нет в JavaScript
+description: Как определить, является ли число харшадом или нет в JavaScript?
 keywords: javascript
 ---
 

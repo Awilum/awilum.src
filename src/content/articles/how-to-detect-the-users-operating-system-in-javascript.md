@@ -1,9 +1,9 @@
 ---
-title: Как определить операционную систему пользователя в JavaScript
+title: Как определить операционную систему пользователя в JavaScript?
 layout: ../../layouts/ArticleEntry.astro
 categories: [javascript]
 pubDate: 2024-03-08
-description: Как определить операционную систему пользователя в JavaScript
+description: Как определить операционную систему пользователя в JavaScript?
 keywords: javascript
 ---
 

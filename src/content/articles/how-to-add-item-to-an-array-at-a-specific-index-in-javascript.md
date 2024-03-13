@@ -1,9 +1,9 @@
 ---
-title: Как добавить элемент в массив по определенному индексу в JavaScript
+title: Как добавить элемент в массив по определенному индексу в JavaScript?
 layout: ../../layouts/ArticleEntry.astro
 categories: [javascript]
 pubDate: 2024-03-02
-description: Как добавить элемент в массив по определенному индексу в JavaScript
+description: Как добавить элемент в массив по определенному индексу в JavaScript?
 keywords: javascript, array
 ---
 

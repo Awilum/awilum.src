@@ -1,9 +1,9 @@
 ---
-title: Как удалить первый символ строки в JavaScript
+title: Как удалить первый символ строки в JavaScript?
 layout: ../../layouts/ArticleEntry.astro
 categories: [javascript]
 pubDate: 2024-03-06
-description: Как удалить первый символ строки в JavaScript
+description: Как удалить первый символ строки в JavaScript?
 keywords: javascript
 ---
 
