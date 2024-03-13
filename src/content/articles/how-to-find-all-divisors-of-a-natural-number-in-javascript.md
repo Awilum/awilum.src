@@ -14,10 +14,10 @@ keywords: javascript
 ```javascript
 function findDivisors(number) {
     // Создаем массив для хранения делителей
-    var divisors = [];
+    let divisors = [];
 
     // Проверяем делители от 1 до половины числа (включительно)
-    for (var i = 1; i <= number / 2; i++) {
+    for (let i = 1; i <= number / 2; i++) {
         // Если число делится без остатка, добавляем его в массив делителей
         if (number % i === 0) {
             divisors.push(i);

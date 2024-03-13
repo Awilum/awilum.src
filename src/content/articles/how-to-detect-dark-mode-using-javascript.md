@@ -1,9 +1,9 @@
 ---
-title: Как определить темный режим с помощью JavaScript
+title: Как определить темный режим с помощью JavaScript?
 layout: ../../layouts/ArticleEntry.astro
 categories: [javascript]
 pubDate: 2024-03-06
-description: Как определить темный режим с помощью JavaScript
+description: Как определить темный режим с помощью JavaScript?
 keywords: javascript
 ---
 

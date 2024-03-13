@@ -1,9 +1,9 @@
 ---
-title: Как проверить, является ли значение числом в JavaScript
+title: Как проверить, является ли значение числом в JavaScript?
 layout: ../../layouts/ArticleEntry.astro
 categories: [javascript]
 pubDate: 2024-01-10
-description: Как проверить, является ли значение числом в JavaScript
+description: Как проверить, является ли значение числом в JavaScript?
 keywords: javascript, number, NaN
 ---
 
