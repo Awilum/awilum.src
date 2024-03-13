@@ -5,7 +5,6 @@ import pagefind from "astro-pagefind";
 import mdx from '@astrojs/mdx';
 import vue from "@astrojs/vue";
 
-// https://astro.build/config
 export default defineConfig({
   outDir: "./dist",
   site: "https://awilum.ru",
@@ -19,5 +18,14 @@ export default defineConfig({
   },
   integrations: [tailwind({
     applyBaseStyles: false
-  }), sitemap(), pagefind(), mdx(), vue({ jsx: true })]
+  }), 
+  sitemap({
+    serialize(item) {
+      if (item.url.includes(`/articles/1/`)) {
+        return undefined;
+      }
+      return item;
+    },
+  }),
+  pagefind(), mdx(), vue({ jsx: true })]
 });
