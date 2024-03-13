@@ -34,9 +34,9 @@ articles = articles.slice(0, sliceSize);
 							}} />
 	</div>
 
-	<div class="text-left py-10 border-b-2 border-solid border-black">{
+	<div class="text-left py-4 border-b-2 border-solid border-black flex flex-wrap">{
 		Object.keys(categoriesArticles).map((category, i) => (
-			<a href=`/articles/categories/${category}/` class="bg-gray-200 px-3 py-1 mr-2 no-underline text-sm">{categoriesArticles[category].title}</a>
+			<a href=`/articles/categories/${category}/` class="p-2 no-underline"><span class="bg-gray-200 px-3 py-1 text-sm">{categoriesArticles[category].title}</span></a>
 		))
 	} </div>
 	<div>
