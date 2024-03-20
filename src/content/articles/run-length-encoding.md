@@ -1,10 +1,10 @@
 ---
-title: Кодирование длин серий в JavaScript
+title: Кодирование длин серий
 layout: ../../layouts/ArticleEntry.astro
-categories: [javascript, algorithms]
-pubDate: 2024-03-15
-description: Кодирование длин серий в JavaScript
-keywords: javascript, кодирование, RLE, алгоритмы
+categories: [algorithms]
+pubDate: 2024-03-20
+description: Кодирование длин серий
+keywords: алгоритмы, RLE
 ---
 
 Кодирование длин серий (англ. run-length encoding, RLE) или кодирование повторов — алгоритм сжатия данных, заменяющий повторяющиеся символы (серии) на один символ и число его повторов. Серией называется последовательность, состоящая из нескольких одинаковых символов. При кодировании (упаковке, сжатии) строка одинаковых символов, составляющих серию, заменяется строкой, содержащей сам повторяющийся символ и количество его повторов.
@@ -55,62 +55,6 @@ RLE особенно хорошо работает с данными, содер
 В случае, если данные имеют низкую степень повторяемости (например, случайный шум), алгоритм RLE может увеличить размер данных из-за добавления счетчиков.
 2. **Ограничение на сжатие.**   
 RLE не всегда достигает высокой степени сжатия по сравнению с более сложными алгоритмами сжатия данных.
-
-### Релизация на JavaScript
-
-```javascript
-function runLengthEncode(input) {
-    let encoded = '';
-    let count = 1;
-    
-    // Проходим по всем символам в строке, начиная с первого
-    for (let i = 0; i < input.length; i++) {
-        // Если текущий символ равен следующему, увеличиваем счетчик
-        if (input[i] === input[i + 1]) {
-            count++;
-        } else {
-            // Иначе добавляем текущий символ и количество его повторов к закодированной строке
-            encoded += count + input[i];
-            // Сбрасываем счетчик
-            count = 1;
-        }
-    }
-    
-    return encoded;
-}
-
-function runLengthDecode(input) {
-    let decoded = '';
-    
-    // Проходим по всей строке
-    for (let i = 0; i < input.length; i++) {
-        // Если текущий символ - число, это количество повторений
-        if (!isNaN(input[i])) {
-            // Повторяем следующий символ указанное количество раз
-            decoded += input[i + 1].repeat(Number(input[i]));
-            // Пропускаем повторенный символ
-            i++;
-        } else {
-            // Если текущий символ не является числом, добавляем его к раскодированной строке
-            decoded += input[i];
-        }
-    }
-    
-    return decoded;
-}
-```
-
-### Пример использования
-
-```javascript
-let originalString = 'AAABBBCCCCDDDD';
-let encodedString = runLengthEncode(originalString);
-let decodedString = runLengthDecode(encodedString);
-
-console.log('Original: ', originalString);  // Original:  AAABBBCCCCDDDD
-console.log('Encoded: ', encodedString);    // Encoded:  3A3B4C4D
-console.log('Decoded: ', decodedString);    // Decoded:  AAABBBCCCCDDDD
-```
 
 <br>
 

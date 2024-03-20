@@ -20,6 +20,9 @@ export const categoriesArticles = {
   },
   growth: {
     title: "Развитие", 
+  },
+  algorithms: {
+    title: "Алгоритмы", 
   }
 };
 
