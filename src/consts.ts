@@ -9,11 +9,17 @@ export const categoriesArticles = {
   javascript: {
     title: "JavaScript",
   },
+  java: {
+    title: "Java",
+  },
   canvas: {
     title: "Canvas",
   },
   php: {
     title: "PHP",
+  },
+  sql: {
+    title: "SQL",
   },
   python: {
     title: "Python",
