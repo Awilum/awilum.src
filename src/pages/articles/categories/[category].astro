@@ -24,13 +24,21 @@ let { articles } = Astro.props;
 articles.sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+let articlesCount = articles.length + 1;
 ---
 
 <Layout title={`Статьи в категории ${categoriesArticles[category].title}` ?? ""} description=`Статьи в категории ${categoriesArticles[category].title}` keywords=`${category}`>
-	<h1 class="py-14 text-2xl lg:text-5xl text-left block border-b-2 border-solid border-black">Статьи <br>в категории "{categoriesArticles[category ?? ""].title}"</h1>
-	<div class="text-left text-xl  border-b-2 border-solid border-black py-4 flex">{
+	<h1 class="text-4xl lg:text-5xl text-left py-14 pb-0">Статьи <br>в категории "{categoriesArticles[category ?? ""].title}"</h1>
+	
+	<p class="text-xs py-4">
+		Всего статей в категории "{categoriesArticles[category ?? ""].title}": {articlesCount}
+	</p>
+	
+	<div class="text-left text-xl border-t-2 border-b-2 border-solid border-black py-4 flex">{
 		<span><a href=`/articles/` class="p-2 no-underline"><span class="bg-gray-200 px-3 py-1 text-sm">Все статьи</span></a></span>
 	} </div>
+
 	<div>
 		{
 			articles.map((note, index) => (

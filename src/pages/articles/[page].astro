@@ -13,6 +13,11 @@ export async function getStaticPaths({ paginate }) {
 }
 // All paginated data is passed on the "page" prop
 const { page } = Astro.props;
+
+let articles = (await getCollection('articles')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+let articlesCount = articles.length + 1;
 ---
 
 <Layout title="Cтатьи про разработку программного обеспечения, образование и IT в целом" description="Погрузитесь в мир разработки. Узнайте что такое технический долг, качества хорошего разработчика и важность развития логического мышления. Улучшайте свои навыки программирования!" keywords="PEP 8, разработка, технический долг, программирование, качества разработчика, логическое мышление, python, javascript, php, code monkey, фундаментальные знания">	
@@ -21,6 +26,10 @@ const { page } = Astro.props;
 
 	<p class="mt-4 text-xs">
 		&#9655; Подпишитесь, чтобы быть в курсе выхода моих новых статей в вашем любимом <a href="/articles/rss.xml">RSS-ридере</a>.
+	</p>
+
+	<p class="mt-4 text-xs">
+		Всего статей: {articlesCount}
 	</p>
 
 	<div class="border-b-2 border-solid border-black py-10 pt-3">
