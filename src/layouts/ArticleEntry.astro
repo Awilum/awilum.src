@@ -15,7 +15,10 @@ let id = Astro.url.pathname.replaceAll("articles/", "").replaceAll("/", "");
 	<div class="py-10 px-10 text-center border-t-2 border-solid border-black bg-yellow-50">
 		Хотите стать востребованным <strong>Python</strong> разработчиком?<br>Присоединяйтесь к курсу <strong><a href="https://stepik.org/a/173184?utm_source=awilum&utm_medium=article&utm_campaign=sale&utm_content=article+page">Python Тренажер</a></strong> прямо сейчас!<br> Научитесь решать разнообразные практические задачи по программированию, которые помогут улучшить ваш уровень программирования на <strong>Python</strong>. <br> Не упустите шанс стать экспертом в мире разработки – начните свой путь прямо сейчас!
 	</div>
-	: ""
+	: Astro.props.frontmatter.categories.includes("java") ?
+	<div class="py-10 px-10 text-center border-t-2 border-solid border-black bg-yellow-50">
+		Хотите стать востребованным <strong>Java</strong> разработчиком?<br>Присоединяйтесь к курсу <strong><a href="https://stepik.org/course/182389/">Java Тренажер</a></strong> прямо сейчас!<br> Научитесь решать разнообразные практические задачи по программированию, которые помогут улучшить ваш уровень программирования на <strong>Java</strong>. <br> Не упустите шанс стать экспертом в мире разработки – начните свой путь прямо сейчас!
+	</div> : ""
 }
 <div class="text-sm py-10 text-center border-t-2 border-solid border-black">
 	Обнаружили ошибку в этой статье? Хотите уточнить, обновить или добавить что-то?<br>
