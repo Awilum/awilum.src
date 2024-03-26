@@ -54,7 +54,7 @@ print(list(zipped))  # [(1, 'a'), (2, 'b')]
 
 #### Пример 3: Распаковка zip объекта
 
-```pytnon
+```python
 pairs = [(1, 'a'), (2, 'b'), (3, 'c')]
 numbers, letters = zip(*pairs)
 
