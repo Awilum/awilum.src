@@ -25,7 +25,7 @@ articles.sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
-let articlesCount = articles.length + 1;
+let articlesCount = articles.length;
 ---
 
 <Layout title={`Статьи в категории ${categoriesArticles[category].title}` ?? ""} description=`Статьи в категории ${categoriesArticles[category].title}` keywords=`${category}`>
