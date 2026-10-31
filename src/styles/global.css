@@ -1,0 +1,1323 @@
+@import 'tailwindcss';
+
+/* ==========================================================================
+   DESIGN SYSTEM — Sergey Romanenko
+   --------------------------------------------------------------------------
+   Warm sand paper, cream surfaces, soft editorial typography.
+
+   `ink` and `paper` are the two anchor tokens the whole codebase already
+   speaks (`text-ink`, `bg-paper`, `border-ink/15`, …), so re-pointing their
+   values re-themes every page at once. Everything else is layered on top as a
+   named surface / line / label / accent.
+   ========================================================================== */
+
+@theme {
+  /* --- Type ---------------------------------------------------------------
+     Three families, one weight each, loaded from Google Fonts in Layout.astro
+     as a single combined request.
+
+       display — Instrument Serif. High-contrast, tight, old-style. Carries
+                  every headline, standfirst and pull quote. Regular weight
+                  only: at this optical size the hairline serifs do the
+                  character, and a bold weight would close them up.
+       sans    — Inter. Body copy, navigation, interface.
+       mono    — IBM Plex Mono, 400 only. Coordinates, dates, durations,
+                  counters, course figures — the technical marginalia that
+                  keeps a page reading like a field notebook rather than a
+                  landing page.
+
+     The `--text-*` entries below are the whole type scale. They generate
+     `text-<name>` utilities that carry their own line-height and tracking, so a
+     headline is one class instead of `text-[clamp(...)] leading-[...] tracking-[...]`
+     repeated across a dozen files. */
+  --font-display:
+    'Instrument Serif', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia,
+    'Times New Roman', serif;
+  --font-sans:
+    'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono:
+    'IBM Plex Mono', ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* The scale. Sizes step by roughly 1.25 (major third) and tighten as they
+     grow: display type needs negative tracking or it reads as a paragraph set
+     very large, body type needs none. */
+  --text-display: clamp(3.25rem, 11.5vw, 9.5rem);
+  --text-display--line-height: 0.92;
+  --text-display--letter-spacing: -0.03em;
+
+  --text-title: clamp(2.5rem, 7vw, 5.5rem);
+  --text-title--line-height: 1;
+  --text-title--letter-spacing: -0.02em;
+
+  --text-head: clamp(1.875rem, 4.5vw, 3.5rem);
+  --text-head--line-height: 1.06;
+  --text-head--letter-spacing: -0.015em;
+
+  --text-subhead: clamp(1.375rem, 2.5vw, 2.125rem);
+  --text-subhead--line-height: 1.14;
+  --text-subhead--letter-spacing: -0.01em;
+
+  --text-entry: clamp(1.25rem, 1.8vw, 1.625rem);
+  --text-entry--line-height: 1.24;
+  --text-entry--letter-spacing: -0.005em;
+
+  --text-standfirst: clamp(1.1875rem, 2vw, 1.625rem);
+  --text-standfirst--line-height: 1.45;
+  --text-standfirst--letter-spacing: -0.01em;
+
+  --text-lede: clamp(1.0625rem, 1.3vw, 1.1875rem);
+  --text-lede--line-height: 1.72;
+
+  --text-meta: 0.8125rem;
+  --text-meta--line-height: 1.5;
+
+  --text-micro: 0.75rem;
+  --text-micro--line-height: 1.45;
+
+  /* Measures. Long-form prose is capped well short of the page container: an
+     editorial column is a column, not a page width. */
+  --container-measure: 34rem;
+  --container-measure-wide: 44rem;
+  --container-page: 88rem;
+
+  /* --- Surfaces ----------------------------------------------------------- */
+/* Page. Warm sand — never pure white. Value refined from the MaPC
+      reference site (`--bg: #f1ede6`), reduced ~5% yellow cast for a more
+      neutral paper ground. Everything downstream derives from this one token:
+      `html`, `body`, `bg-paper`, `--background`, and the ink-on-button
+      foreground all follow it, so re-pointing it re-themes every page at once. */
+  --color-paper: #f3f0eb;
+  /* Recessed sections and quiet panels. */
+  --color-surface: #faf7f2;
+  /* Elevated: cards, tiles, raised panels. A half-step lighter than paper. */
+  --color-card: #fffefd;
+  /* Soft hover wash. */
+  --color-hover: #f1ebe1;
+
+  /* --- Ink ----------------------------------------------------------------
+     Three steps, each verified against the sand background for WCAG AA.
+     The muted and label steps were darkened from the softer #777168 / #8b8276
+     because those only reached 4.4:1 and 3.3:1 — too low for small italic
+     labels. Italic must not cost legibility, so the palette bends instead:
+       ink   #302D29  ~12.0:1   primary text
+       muted #655D51  ~5.7:1    secondary prose
+       label #726857  ~4.7:1    muted labels, always italic  → AA
+
+     `label` was darkened one further step from #746A5C when the page ground
+     moved to the MaPC background #F1EDE6. The old value cleared 4.5:1 against
+     the previous sand and measured 4.49:1 against the new one: a hair under AA,
+     which is exactly the kind of margin that fails an audit and passes a
+     glance. Two units of the same hue buy the headroom back.
+  */
+  --color-ink: #302d29;
+  --color-muted: #655d51;
+  --color-label: #726857;
+
+  /* --- Lines -------------------------------------------------------------- */
+  /* The default hairline. Warm beige, deliberately low contrast. */
+  --color-line: #e4dcce;
+
+  /* --- Accents ------------------------------------------------------------
+     Four accents, all drawn from the same earth family and all used
+     sparingly. Terracotta is the site's voice: links, active navigation,
+     hover states, the single most important action on a page, the focus ring.
+     Deepened from #B87556 so it works in all three of its roles at once —
+     white text on an accent button (~5.1:1), accent text on the sand page
+     (~4.6:1), and as a focus ring (~3.2:1, where 3:1 is the requirement for
+     non-text indicators).
+
+     Olive and ochre are section colours, not decoration: they mark a
+     photograph, a place, a field observation. Each is dark enough to carry
+     small text on paper (olive ~5.0:1, ochre is for fills and rules only,
+     never for type).
+  */
+  --color-accent: #9a5b3c;
+  /* Dusty olive — the reference avatar's camouflage field, desaturated to fit. */
+  --color-olive: #5f6647;
+  /* Weathered ochre — the sand underfoot, the dry-season light. */
+  --color-ochre: #a8863c;
+  /* Warmer stone, for secondary accents and quiet fills. */
+  --color-stone: #b8a994;
+  /* Deep ink for inverse surfaces (lightbox, footer blocks). */
+  --color-ink-deep: #24211e;
+
+  /* --- Rules ---------------------------------------------------------------
+     Two hairlines, because one cannot do both jobs. `line` separates
+     editorial blocks and stays quiet. `rule` is the firmer stroke under a
+     display headline or around an inverted panel, and is what makes the
+     page read as printed rather than as a stack of divs. */
+  --color-rule: #cfc3ae;
+
+  /* --- Radius scale -------------------------------------------------------
+     The scale, and the reason it is a scale. Five roles, each one a decision
+     about what the thing is rather than how big it renders:
+
+       panel    20px   large panels, primary cards, containers
+       media    16px   image and video previews, thumbnails, nested media
+       button   12px   buttons, dropdown menus, popovers
+       control  10px   inputs, compact controls, chips, toggles
+       xs        6px   micro marks: focus rings, inline code, checkboxes
+       pill     9999px circular avatars, capsule controls
+
+     Ordered from the largest surface to the smallest so the eye reads a
+     hierarchy — a 20px card holding a 10px chip inside reads as three
+     deliberate layers rather than one flat rounding.
+
+     `xs`, `sm`, `md` and `lg` are the size names Tailwind's `rounded-*`
+     utilities compile against, so they stay named for size and the role lives
+     in a comment. A size name cannot carry a role: `rounded-md` is correct on
+     a button and wrong on an input, so any component whose role differs from
+     its size step names the role directly via `--radius-media` (see
+     `.frame`) instead of borrowing a step that happens to be close. */
+  --radius-xs: 0.375rem;
+  --radius-sm: 0.625rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-media: 1rem;
+
+  /* --- Solar bands on the day/night timeline -------------------------------
+     These encode time of day, so they stay literal and are exempt from the
+     warm-neutral palette. */
+  --color-daylight: #e8c37a;
+  --color-night: #203453;
+  /* Dawn and dusk share a colour: they are the same event seen from either end
+     of the day, and a difference between them would imply one that isn't there. */
+  --color-twilight: #b07a9c;
+
+  /* --- Semantic radius aliases ---------------------------------------------
+     The roles from the scale above, named once here so hand-written CSS can ask
+     for "the button radius" instead of restating 12px and drifting. These point
+     at the size steps above rather than repeating their values, so a change to
+     a step propagates everywhere at once and no two files disagree.
+
+     The named roles exist because a size name cannot express intent:
+     `--radius-md` (12px) is right on a button and right on a dropdown menu but
+     wrong on an input, which wants `--radius-control`. Any component that needs
+     the role rather than the size reads the alias. */
+  --radius-panel: var(--radius-lg);
+  --radius-media-cap: var(--radius-media);
+  --radius-button: var(--radius-md);
+  --radius-control: var(--radius-sm);
+  --radius-pill: 9999px;
+
+  /* --- shadcn/ui design tokens mapped to the website's existing palette --- */
+  --color-background: var(--color-paper);
+  --color-foreground: var(--color-ink);
+  --color-primary: var(--color-ink);
+  --color-primary-foreground: var(--color-paper);
+  --color-secondary: var(--color-surface);
+  --color-secondary-foreground: var(--color-ink);
+  --color-muted-bg: var(--color-hover);
+  --color-muted-foreground: var(--color-muted);
+  --color-accent-foreground: #fffaf5;
+  --color-destructive: #a83a2a;
+  --color-destructive-foreground: #fffaf5;
+  --color-border: var(--color-line);
+  --color-input: var(--color-line);
+  --color-ring: var(--color-accent);
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+  font-family: var(--font-sans);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* shadcn/ui tokens */
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+  --card: var(--color-card);
+  --card-foreground: var(--color-ink);
+  --popover: var(--color-card);
+  --popover-foreground: var(--color-ink);
+  --primary: var(--color-ink);
+  --primary-foreground: var(--color-paper);
+  --secondary: var(--color-surface);
+  --secondary-foreground: var(--color-ink);
+  --muted: var(--color-hover);
+  --muted-foreground: var(--color-muted);
+  --accent: var(--color-accent);
+  --accent-foreground: #fffaf5;
+  --destructive: #a83a2a;
+  --destructive-foreground: #fffaf5;
+  --border: var(--color-line);
+  --input: var(--color-line);
+  --ring: var(--color-accent);
+  /* shadcn/radix primitives inherit their corner from the control step, which
+     is the step their triggers and popovers are sized for. */
+  --radius: var(--radius-control);
+}
+
+html {
+  background: var(--color-paper);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  /* `hidden` makes the body a scroll container, which stops the sticky masthead
+     from sticking. `clip` contains the same overflow without doing that. */
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+/*
+  Underline off by default; `.link-quiet` brings it back on hover.
+  `color` is deliberately NOT set here. An unlayered `a { color: … }` rule
+  outranks every `@layer components` rule, which silently beat `.btn-accent`
+  and rendered the CTA ink-on-terracotta. Anchors already inherit colour, so
+  stating it buys nothing and costs the button palette.
+*/
+a {
+  text-decoration: none;
+}
+
+/* Quiet, warm selection rather than an ink-on-paper slab. */
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 22%, transparent);
+  color: var(--color-ink);
+}
+
+/* Focus is an accent ring with a paper-coloured offset, so it reads on both
+   the sand page and the cream card surfaces. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-xs);
+}
+
+/* Editorial link underline: appears on hover, never permanently. */
+.link-quiet {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  transition: background-size 180ms ease;
+}
+.link-quiet:hover,
+.link-quiet:focus-visible {
+  background-size: 100% 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+  /* Disable transforms that could cause motion sickness */
+  .img-settle,
+  .ease-out-quiet {
+    transition: none !important;
+  }
+}
+
+/* ==========================================================================
+   DISPLAY TYPE
+   Large, soft, editorial. Serif, regular weight, open leading — the opposite
+   of the condensed black sans it replaces.
+   ========================================================================== */
+
+@layer components {
+  /* `.display` is the family + weight + optical correction only. Size comes
+     from a `--text-*` utility (`text-display`, `text-title`, `text-head`,
+     `text-subhead`) so the scale lives in one place. */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+
+  /* Standfirst: the sentence under a headline. The one place body type is
+     allowed to be larger than the text around it. */
+  .standfirst {
+    font-size: var(--text-standfirst);
+    line-height: var(--text-standfirst--line-height);
+    letter-spacing: var(--text-standfirst--letter-spacing);
+    color: var(--color-muted);
+    text-wrap: pretty;
+  }
+
+
+  /* A pull quote. Set in the display serif, italic, hanging in the margin on
+     wide screens and full-measure below them. Used sparingly — one per long
+     page, and only where the words earn it. */
+  .pullquote {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.5rem, 2.6vw, 2.375rem);
+    line-height: 1.24;
+    letter-spacing: -0.015em;
+    color: var(--color-ink);
+    text-wrap: pretty;
+  }
+
+  /* Numerals that must not jitter as they change — live clocks, day counters,
+     coordinates, course figures. */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Technical marginalia: coordinates, dates, durations, project numbers.
+     The mono family carries this role site-wide so a page reads like a field
+     notebook — the serif says who is speaking, the mono says what was
+     measured. */
+  .meta-mono {
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ==========================================================================
+   THE MUTED LABEL RULE
+   --------------------------------------------------------------------------
+   Mandatory, global, and non-negotiable: every muted, dimmed, low-emphasis
+   label or secondary metadata element is italic.
+
+   One class, applied everywhere the role appears — eyebrows, category
+   markers, statistic descriptors, `<dt>` terms, captions, metadata rows.
+   Understated comes from colour and size, never from opacity
+   low enough to hurt contrast, and never from replacing italics with
+   uppercase.
+
+   Do NOT apply to headlines, body paragraphs, nav links, buttons or CTAs.
+   ========================================================================== */
+
+@layer components {
+  .label {
+    font-style: italic;
+    color: var(--color-label);
+    font-weight: 400;
+    font-size: var(--text-meta);
+    letter-spacing: 0.005em;
+  }
+
+  /* The eyebrow that sits above a headline. Italic still carries the
+     "annotation" reading; the capitalisation only sets the rhythm, and it is
+     kept to a single token so it reads as a small printed running head rather
+     than as shouting. No extra tracking — italic is already spaced out, and
+     `0.08em` on top of it turned these into the site's loudest element. */
+  .label-eyebrow {
+    font-style: italic;
+    color: var(--color-label);
+    font-size: var(--text-meta);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Micro label: the tiniest descriptors (captions, chips, `<dt>` terms). */
+  .label-micro {
+    font-style: italic;
+    color: var(--color-label);
+    font-size: var(--text-micro);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  /* The mono variant, for the same role when the content is a measurement
+     rather than a description: dates, durations, coordinates, counts. */
+  .label-mono {
+    font-family: var(--font-mono);
+    font-style: normal;
+    color: var(--color-label);
+    font-size: var(--text-micro);
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    font-variant-numeric: tabular-nums;
+  }
+
+}
+
+/* ==========================================================================
+   SURFACES
+   ========================================================================== */
+
+@layer components {
+  /* Elevated card: cream, hairline border, panel radius. No drop shadow —
+     depth comes from the surface step and the border. */
+  .card {
+    background: var(--color-card);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-panel);
+  }
+
+  /* Recessed panel: sits a half-step *below* the page, for tool walls and
+     quiet secondary blocks. Same radius as a card: the two are distinguished by
+     which side of the page they sit on, not by their corner shape, and letting
+     the shape differ would make two identical containers look like two
+     different kinds of thing. */
+  .panel {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-panel);
+  }
+
+  /* An inverted editorial panel. The one place the site goes dark: used for
+     the foot of a long page, so a chapter ends on a deliberate contrast
+     rather than trailing off. */
+  .plate-dark {
+    background: var(--color-ink-deep);
+    color: var(--color-surface);
+  }
+
+  /* The application container: the frame that says "this is the program you are
+     working with", and separates a tool's interface from the editorial page
+     around it.
+
+     Deliberately a surface and a border, not a window — no title bar, no
+     simulated chrome, no fixed dimensions. The tool inside decides how its own
+     controls stack; the container only establishes the boundary and gives the
+     header a hairline to sit on. `overflow: hidden` is what lets that hairline
+     run edge to edge while the body inside keeps its own padding.
+
+     `--radius-panel` rather than `--radius-lg`: the size names and the role
+     names agree here, so the role is used and the two can never drift apart. */
+  .tool-app {
+    background: var(--color-card);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-panel);
+    overflow: hidden;
+  }
+}
+
+/* ==========================================================================
+   BUTTONS
+   A call to action is the button step: 12px, wide enough to read as a soft
+   rectangle, shallow enough to stay a ruled block rather than a lozenge. Pills
+   are the other site's signature; a printed publication sets its calls to
+   action as ruled blocks, and a pill at this width stops reading as ruled.
+   ========================================================================== */
+
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.375rem;
+    border-radius: var(--radius-button);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.25;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .btn:active {
+    transform: translateY(1px) scale(0.99);
+  }
+
+  .btn:disabled,
+  .btn[aria-disabled='true'] {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+
+  /* Accent: terracotta, for the single most important action on a page. */
+  .btn-accent {
+    background: var(--color-accent);
+    color: #fffaf5;
+    border: 1px solid var(--color-accent);
+  }
+  .btn-accent:hover {
+    background: color-mix(in srgb, var(--color-accent) 86%, black);
+    border-color: color-mix(in srgb, var(--color-accent) 86%, black);
+  }
+
+  /* Secondary: cream fill, beige border, charcoal text. */
+  .btn-secondary {
+    background: var(--color-card);
+    color: var(--color-ink);
+    border: 1px solid var(--color-line);
+  }
+  .btn-secondary:hover {
+    background: var(--color-hover);
+    border-color: var(--color-stone);
+  }
+
+  /* Ghost: no fill until hover. For tertiary actions and inline links. */
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-ink);
+    border: 1px solid transparent;
+  }
+  .btn-ghost:hover {
+    background: var(--color-hover);
+  }
+  .btn-ghost:active {
+    background: var(--color-hover);
+  }
+
+  /* Smaller variant for dense toolbars and chip groups. */
+  .btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.8125rem;
+  }
+}
+
+/*
+  Touch targets.
+
+  WCAG 2.5.5 asks for 44 CSS pixels on every interactive control, and the visual
+  language of this site is deliberately compact — a button sized by its padding
+  alone lands around 43px, and the dense variant around 34px. Both are comfortable
+  on desktop and both are under the minimum on a phone, where the pointer is a
+  fingertip rather than a mouse cursor.
+
+  The height is set only where the pointer is coarse, so the compact density that
+  the desktop layout depends on is unchanged. Nothing is gained by making a mouse
+  cursor aim at a 44px target, and a great deal is lost by inflating a toolbar.
+*/
+@media (pointer: coarse) {
+  @layer components {
+    .btn,
+    .btn-sm,
+    .btn-accent,
+    .btn-secondary,
+    .btn-ghost {
+      min-height: 2.75rem;
+    }
+
+    /*
+      Chips used as interactive filters (category pickers, emoji categories, etc.).
+      Their base padding gives ~24px height; on a coarse pointer they need the
+      44px minimum so a fingertip can reliably tap them.
+    */
+    .chip-outline,
+    .chip-solid,
+    .chip-accent {
+      min-height: 2.75rem;
+      padding-block: 0.75rem;
+    }
+
+    /*
+      Inline disclosures, such as the stop-word list under the Text Analyzer's
+      frequency ranking. They are typographic rather than toolbar controls, so the
+      height is added around the text rather than to the text itself: inline-flex
+      keeps the words where they were and the padding is invisible on a page whose
+      metrics are set by the line box.
+    */
+    p.label button,
+    .label button {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.75rem;
+      padding-block: 0.5rem;
+      margin-block: -0.5rem;
+    }
+  }
+}
+
+/* ==========================================================================
+   CHIPS / TAGS
+   Small rectangular tags for audience, availability, topics and awards. Kept
+   rounded-square rather than pill-shaped for the same reason the buttons are:
+   everything on this page should look ruled, not inflated.
+   ========================================================================== */
+
+@layer components {
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.625rem;
+    /* The control step, matching the buttons and inputs a chip sits beside. At
+       roughly 24px tall a 6px radius would read as nearly square against a 12px
+       button next to it, so the chip matches the control rather than the
+       smallest step on the scale. */
+    border-radius: var(--radius-control);
+    font-size: var(--text-micro);
+    font-weight: 500;
+    line-height: 1.45;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .chip:active {
+    transform: scale(0.97);
+  }
+
+  /* Outline chip — the default. */
+  .chip-outline {
+    background: transparent;
+    color: var(--color-muted);
+    border: 1px solid var(--color-line);
+  }
+  .chip-outline:hover {
+    background: var(--color-hover);
+    color: var(--color-ink);
+  }
+  .chip-outline:active {
+    background: var(--color-hover);
+  }
+
+  /* Filled chip — for the active/selected state. */
+  .chip-solid {
+    background: var(--color-ink);
+    color: var(--color-paper);
+    border: 1px solid var(--color-ink);
+  }
+  .chip-solid:active {
+    background: color-mix(in srgb, var(--color-ink) 86%, black);
+    border-color: color-mix(in srgb, var(--color-ink) 86%, black);
+  }
+
+  /* Accent chip — sparingly, for a highlight. */
+  .chip-accent {
+    background: color-mix(in srgb, var(--color-accent) 12%, var(--color-card));
+    color: color-mix(in srgb, var(--color-accent) 80%, black);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 30%, transparent);
+  }
+  .chip-accent:active {
+    background: color-mix(in srgb, var(--color-accent) 18%, var(--color-card));
+  }
+}
+
+/* ==========================================================================
+   STATISTICS
+   A label (italic, muted) above a value (upright, ink). Used by the courses
+   catalog, the growth block and anywhere else a number needs a caption.
+   ========================================================================== */
+
+@layer components {
+}
+
+/* ==========================================================================
+   PHOTOGRAPHY
+   Soft corners, no filters, no overlays. The photograph is the interface.
+   ========================================================================== */
+
+@layer components {
+  /* Photographs. Soft corners, no filters, no overlays — the photograph is the
+     interface.
+
+     Media sits one step below a panel (16px against a card's 20px), because a
+     photograph is content *inside* a surface, not another surface. The step is
+     what makes a nested image read as nested: identical radii on parent and
+     child flatten into one shape, whereas a 4px difference keeps the panel edge
+     and the image edge legible as two edges. */
+  .frame {
+    overflow: hidden;
+    border-radius: var(--radius-media);
+    background: var(--color-hover);
+  }
+
+  /* The placeholder tone behind a loading photograph. */
+  .frame-plate {
+    background: color-mix(in srgb, var(--color-hover) 70%, var(--color-stone));
+  }
+}
+
+/* ==========================================================================
+   PROSE
+   Long-form MDX bodies: photography projects, publications, tool write-ups.
+   ========================================================================== */
+
+.project-prose {
+  color: var(--color-ink);
+}
+
+.project-prose > :first-child {
+  margin-top: 0;
+}
+
+.project-prose h2,
+.project-prose h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--color-ink);
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.project-prose h2 {
+  font-size: var(--text-subhead);
+  line-height: var(--text-subhead--line-height);
+  letter-spacing: var(--text-subhead--letter-spacing);
+}
+
+.project-prose h3 {
+  font-size: var(--text-entry);
+  line-height: var(--text-entry--line-height);
+}
+
+.project-prose p {
+  margin-top: 1.375rem;
+  font-size: var(--text-lede);
+  line-height: var(--text-lede--line-height);
+}
+
+/* The opening sentence of a project essay, written in the source as a bolded
+   lead. Set larger than the surrounding prose so the page opens with a
+   statement rather than with a paragraph. */
+.project-prose > p:first-of-type {
+  font-size: var(--text-entry);
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+
+.project-prose strong {
+  font-weight: 600;
+}
+
+.project-prose a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.project-prose a:hover {
+  text-decoration-thickness: 2px;
+}
+
+.project-prose ul,
+.project-prose ol {
+  margin-top: 1.375rem;
+  padding-left: 1.25rem;
+  line-height: 1.75;
+}
+.project-prose ul {
+  list-style: disc;
+}
+.project-prose ol {
+  list-style: decimal;
+}
+
+.project-prose blockquote {
+  margin-top: 1.75rem;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--color-accent);
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+/* An attributed quotation. The `cite` is the author's name, rendered as a mono
+   marginal note so a reader can always tell whose words they are reading. */
+.project-prose blockquote cite {
+  display: block;
+  margin-top: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-style: normal;
+  letter-spacing: 0.02em;
+  color: var(--color-label);
+}
+
+/* Tables inside a long-form body (course facts, specifications). */
+.project-prose table {
+  width: 100%;
+  margin-top: 1.75rem;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+.project-prose th,
+.project-prose td {
+  padding: 0.625rem 0.75rem;
+  border-bottom: 1px solid var(--color-line);
+  text-align: left;
+  vertical-align: top;
+}
+.project-prose th {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--color-label);
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   MOTION
+   One duration and one easing for the whole site. Transitions are limited to
+   properties that do not reflow — colour, opacity, and a small transform on
+   images. Nothing scrolls, nothing parallaxes, nothing counts up.
+   ========================================================================== */
+
+@layer utilities {
+  /* The standard hover transition. Applies to any element that changes colour
+     or opacity in response to the pointer. */
+  .ease-out-quiet {
+    transition-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  /* A slow image settle on hover. Small enough to read as the photograph
+     coming forward rather than as an effect. */
+  .img-settle {
+    transition: transform 700ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+}
+
+/* Markdown Editor preview */
+.markdown-preview {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  line-height: 1.65;
+}
+.markdown-preview h1,
+.markdown-preview h2,
+.markdown-preview h3,
+.markdown-preview h4 {
+  font-family: var(--font-display);
+  color: var(--color-ink);
+  margin: 1.5em 0 0.6em;
+  line-height: 1.1;
+}
+.markdown-preview h1 { font-size: 2rem; }
+.markdown-preview h2 { font-size: 1.5rem; }
+.markdown-preview h3 { font-size: 1.25rem; }
+.markdown-preview h4 { font-size: 1.1rem; }
+.markdown-preview p { margin: 0 0 1em 0; }
+.markdown-preview ul,
+.markdown-preview ol { margin: 0 0 1em 1.5em; padding: 0; }
+.markdown-preview li { margin: 0.25em 0; }
+.markdown-preview li > ul,
+.markdown-preview li > ol { margin: 0.25em 0 0.25em 1.5em; }
+.markdown-preview blockquote {
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  border-left: 3px solid var(--color-accent);
+  color: var(--color-muted);
+  background: var(--color-surface);
+}
+.markdown-preview code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--color-hover);
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-xs);
+}
+.markdown-preview pre {
+  margin: 1em 0;
+  padding: 1em;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  overflow: auto;
+  /* Matches `.markdown-editor-host` above: the rendered view and the editor it
+     shares a pane with are the same surface at the same step. */
+  border-radius: var(--radius-control);
+}
+.markdown-preview pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 0.85rem;
+}
+.markdown-preview table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+.markdown-preview th,
+.markdown-preview td { border: 1px solid var(--color-line); padding: 0.5em 0.75em; }
+.markdown-preview th {
+  background: var(--color-surface);
+  text-align: left;
+}
+.markdown-preview img { max-width: 100%; height: auto; }
+.markdown-preview hr { border: none; border-top: 1px solid var(--color-line); margin: 2em 0; }
+.markdown-preview a { color: var(--color-accent); text-decoration: underline; }
+.markdown-preview .task-list-item { list-style: none; }
+.markdown-preview .task-list-item input { margin-right: 0.4em; }
+.markdown-preview .footnotes {
+  margin-top: 2em;
+  font-size: 0.9em;
+  color: var(--color-muted);
+  border-top: 1px solid var(--color-line);
+  padding-top: 1em;
+}
+.markdown-preview .markdown-fallback {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+}
+
+/* CodeMirror host height */
+.markdown-editor-host {
+  height: 100%;
+  min-height: 22rem;
+  border: 1px solid var(--color-line);
+  /* A control, not a panel: this is an editable field that happens to be tall,
+     so it sits on the input step rather than the card step. */
+  border-radius: var(--radius-control);
+  overflow: hidden;
+}
+.markdown-editor-host .cm-editor { height: 100%; }
+.markdown-editor-host .cm-scroller { overflow: auto; }
+
+/* ==========================================================================
+   BRAINFUCK EDITOR
+   ========================================================================== */
+.brainfuck-editor-host {
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-control);
+  overflow: hidden;
+  background: var(--color-card);
+}
+
+.brainfuck-source-input,
+.brainfuck-data-input {
+  display: block;
+  width: 100%;
+  min-height: 8rem;
+  padding: 0.75rem 0.875rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-control);
+  background: var(--color-card);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  tab-size: 2;
+  resize: vertical;
+}
+.brainfuck-source-input::placeholder,
+.brainfuck-data-input::placeholder {
+  color: var(--color-label);
+  font-style: italic;
+}
+.brainfuck-source-input:focus-visible,
+.brainfuck-data-input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+.brainfuck-output-scroll {
+  overflow: auto;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-control);
+}
+.brainfuck-output-view {
+  margin: 0;
+  padding: 0.875rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--color-ink);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ==========================================================================
+   SQL EDITOR
+   The editor host, the results table and the schema explorer. Every rule here
+   is the site's own surface language applied to a grid of data: hairline
+   borders, tabular numerals, and horizontal scrolling inside the card rather
+   than a wide table pushing the page sideways on a phone.
+   ========================================================================== */
+
+/* CodeMirror host, sized like the Markdown editor's so the two tools' panes
+   match. The height comes from the component's Tailwind classes, which is where
+   the breakpoint to a taller pane lives. */
+.sql-editor-host {
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-control);
+  overflow: hidden;
+}
+.sql-editor-host .cm-editor { height: 100%; }
+.sql-editor-host .cm-scroller { overflow: auto; }
+
+/* The results. A scroll container of its own, so a wide table scrolls inside
+   the card: the page never moves sideways and the summary under the table stays
+   where it is. */
+.sql-results-scroll {
+  overflow: auto;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-control);
+}
+
+/* The grid itself. Cells are the page's smallest readable size, and the header
+   row is the paper one step below the card so it reads as a rule rather than as
+   a second header. */
+.sql-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.sql-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-weight: 500;
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--color-line);
+  white-space: nowrap;
+}
+
+.sql-table tbody td {
+  padding: 0.4375rem 0.75rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-line) 60%, transparent);
+  color: var(--color-ink);
+  vertical-align: top;
+  /* A long value wraps instead of stretching the column past the viewport, and
+     a value that came back with its line breaks keeps them. */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.sql-table tbody tr:last-child td { border-bottom: none; }
+
+/* NULL. The word is the primary channel; the italic is the second. A reader who
+   cannot see the colour is still told which cells hold SQL NULL. */
+.sql-cell-null {
+  color: var(--color-label);
+  font-style: italic;
+}
+
+/* The Markdown, JSON and YAML views. They are text, shown as text, in the same
+   mono measure the editor uses: what is on screen is exactly what the copy
+   buttons put on the clipboard. */
+.sql-text-scroll {
+  overflow: auto;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-control);
+}
+
+.sql-text-view {
+  margin: 0;
+  padding: 0.875rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--color-ink);
+  white-space: pre;
+}
+
+/* The schema script. A textarea rather than a second CodeMirror instance: it is
+   a script to paste and build, and the things that matter are a tall box, no
+   spellcheck, and the mono measure the query is written in. */
+.sql-schema-input {
+  display: block;
+  width: 100%;
+  min-height: 12rem;
+  margin-top: 0.375rem;
+  padding: 0.75rem 0.875rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-control);
+  background: var(--color-card);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  tab-size: 2;
+  resize: vertical;
+}
+
+.sql-schema-input::placeholder {
+  color: var(--color-label);
+  font-style: italic;
+}
+
+.sql-schema-input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+/* The Markdown view. It is text, shown as text, in the same measure the site
+   uses for code. */
+.sql-markdown-scroll {
+  overflow: auto;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-control);
+}
+
+.sql-markdown {
+  margin: 0;
+  padding: 0.875rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--color-ink);
+  white-space: pre;
+}
+
+/* The explorer. One row per table: a summary that toggles, and the query
+   action beside it. */
+.sql-explorer-table {
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-control);
+  background: var(--color-card);
+}
+
+.sql-explorer-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.sql-explorer-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.75rem;
+  cursor: pointer;
+  /* The disclosure chevron is the marker; the text stays first. */
+  list-style: none;
+}
+
+.sql-explorer-summary::-webkit-details-marker { display: none; }
+
+.sql-explorer-summary::before {
+  content: '▸';
+  color: var(--color-label);
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.sql-explorer-details[open] .sql-explorer-summary::before { content: '▾'; }
+
+.sql-explorer-summary:focus-visible,
+.sql-explorer-action:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+/* The schema grid under an open table. The same tabular treatment as the
+   results, at a smaller step because it is reference material. */
+.sql-schema {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+  margin-top: 0.25rem;
+  border-top: 1px solid var(--color-line);
+}
+
+.sql-schema th {
+  text-align: left;
+  padding: 0.375rem 0.75rem;
+  color: var(--color-label);
+  font-weight: 400;
+  font-style: italic;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.sql-schema td {
+  padding: 0.375rem 0.75rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-line) 60%, transparent);
+  vertical-align: top;
+}
+
+.sql-schema tbody tr:last-child td { border-bottom: none; }
+
+
+/* Prism token colors (warm palette) */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata { color: var(--color-muted); font-style: italic; }
+.token.punctuation { color: var(--color-ink); }
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol { color: var(--color-ochre); }
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin { color: var(--color-olive); }
+.token.operator,
+.token.entity,
+.token.url { color: var(--color-accent); }
+.token.atrule,
+.token.attr-value,
+.token.keyword { color: var(--color-accent); font-weight: 600; }
+.token.function,
+.token.class-name { color: var(--color-ink); font-weight: 600; }
+.token.regex,
+.token.important { color: #a83a2a; }
+
+/* ==========================================================================
+   DATA TOOLS — JSON, YAML, XML, Front Matter
+   --------------------------------------------------------------------------
+   The converter tools share one editor, one status strip and one set of
+   controls, so the shapes they need live here next to the other tool styles
+   rather than in a `<style>` block per component: the site's convention is
+   Tailwind utilities in the markup and design-system tokens here.
+   ========================================================================== */
+
+/* The CodeMirror instance every data tool writes into. */
+.data-editor-host {
+  min-height: 18rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-control);
+  overflow: hidden;
+  background: var(--color-card);
+}
+.data-editor-host .cm-editor { height: 18rem; }
+.data-editor-host .cm-scroller { overflow: auto; }
+
+/* An output pane is the same document, displayed rather than edited, so it is
+   set apart from the source by a recessed surface instead of a disabled look. */
+.data-editor-host[data-readonly='true'] {
+  background: var(--color-surface);
+}
+
+/* The compact select and number fields carrying the format settings. */
+.input-like {
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-control);
+  padding: 0.3125rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--color-ink);
+  background: var(--color-card);
+}
+.input-like:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}

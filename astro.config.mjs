@@ -1,31 +1,17 @@
-import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
-import sitemap from "@astrojs/sitemap";
-import pagefind from "astro-pagefind";
-import mdx from '@astrojs/mdx';
-import vue from "@astrojs/vue";
+import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
+import tailwindcss from '@tailwindcss/vite';
+import { SITE } from './src/lib/site.ts';
+import { SITE_OUTPUT_DIR } from './src/lib/build-output.ts';
 
 export default defineConfig({
-  outDir: "./dist",
-  site: "https://awilum.ru",
-  compressHTML: true,
-  build: {
-    format: "directory"
+  site: SITE.url,
+  output: 'static',
+  devToolbar: { enabled: false },
+  outDir: SITE_OUTPUT_DIR,
+  build: { format: 'directory', emptyOutDir: false },
+  integrations: [sitemap()],
+  vite: {
+    plugins: [tailwindcss()],
   },
-  markdown: {
-    // Can be 'shiki' (default), 'prism' or false to disable highlighting
-    syntaxHighlight: "prism"
-  },
-  integrations: [tailwind({
-    applyBaseStyles: false
-  }), 
-  sitemap({
-    serialize(item) {
-      if (item.url.includes(`/articles/1/`)) {
-        return undefined;
-      }
-      return item;
-    },
-  }),
-  pagefind(), mdx(), vue({ jsx: true })]
 });

@@ -1,79 +1,129 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
-import { categoriesArticles } from '../consts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../lib/site.ts';
 
-let articles = (await getCollection('articles')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Sergey Romanenko',
+  alternateName: 'Awilum',
+  url: SITE.url,
+  image: `${SITE.url}/about/sergey-romanenko.jpg`,
+  sameAs: [
+    SITE.github,
+    SITE.mainSite,
+    'https://stepik.org/users/awilum',
+    'https://awilum.t.me',
+  ],
+  jobTitle: 'Software Engineer, Open-Source Creator, Photographer, Educator',
+  description:
+    'Sergey Romanenko (Awilum) is a software engineer and open-source creator. He builds developer tools, libraries and content-management systems, creates programming courses, and photographs people and places.',
+  knowsAbout: [
+    'JavaScript',
+    'PHP',
+    'Frontend Development',
+    'Open Source',
+    'Software Architecture',
+    'Photography',
+    'Education',
+  ],
+};
 
-articles = articles.slice(0,5);
+const work = [
+  {
+    title: 'Open-Source Software',
+    body: 'Libraries, tools and frameworks across PHP, JavaScript, frontend tooling and content-management systems — built to be examined, reused and improved.',
+  },
+  {
+    title: 'Developer Tools',
+    body: 'Small, practical utilities: HTML minifiers, email templates, time-zone helpers, benchmarking tools and more.',
+  },
+  {
+    title: 'Content & Education',
+    body: 'Programming courses, books and open learning materials that make technical subjects approachable without losing the details that matter.',
+  },
+  {
+    title: 'Photography',
+    body: 'Travel, street, portrait and documentary work exploring people, places and everyday life.',
+  },
+];
 ---
 
-<Layout title="Про разработку программного обеспечения, образование и IT в целом" 
-        description="Источник информации о разработке программного обеспечения, образовании и мире IT в целом. Здесь вы найдете обширные обзоры современных тенденций в области разработки программ, мои личные наблюдения и экспертизу в сфере образования, а также ответы на актуальные вопросы в области информационных технологий."
-		keywords="онлайн-курсы, образование, разработка, тестирование, ментор Сергей Романенко, курсы">	
+<BaseLayout
+  title="Awilum — Sergey Romanenko | Open-Source Developer & Creator"
+  description="Sergey Romanenko (Awilum): open-source developer, creator of libraries, tools and content-management systems. Explore his work on GitHub or visit his main website."
+  path="/"
+  jsonLd={person}
+>
+  <section class="flex flex-col items-center gap-8 py-12 text-center sm:py-20">
+    <img
+      src="/about/sergey-romanenko.jpg"
+      alt="Portrait of Sergey Romanenko (Awilum)"
+      class="h-36 w-36 rounded-full object-cover object-top ring-1 ring-rule sm:h-44 sm:w-44"
+      loading="eager"
+      width="176"
+      height="176"
+    />
+    <div class="max-w-2xl">
+      <p class="label-eyebrow">Awilum</p>
+      <h1 class="display mt-3 text-title text-ink">Sergey Romanenko</h1>
+      <p class="mt-6 text-lede text-muted">
+        Software engineer, open-source creator, photographer and educator. I
+        build practical tools, libraries and content-management systems, teach
+        programming, and document the people and places I encounter.
+      </p>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-3">
+      <a href={SITE.mainSite} class="btn btn-accent" rel="noopener">
+        Visit sergeyromanenko.com
+      </a>
+      <a href={SITE.github} class="btn btn-secondary" rel="noopener">
+        GitHub profile
+      </a>
+    </div>
+  </section>
 
-	<h1 class="text-4xl lg:text-5xl  text-left block py-14   border-b-2 border-black">Привет!<br>Меня зовут Сергей!</h1>
-	<div class="text-xl py-10 border-b-2 border-black">
-		<p>Я частный разработчик, ментор и автор онлайн-курсов.</p>
-		<p>На протяжении многих лет моя профессиональная деятельность была направлена на разработку, поддержку и тестирование проектов разнообразной сложности. За это время я приобрел обширный опыт работы с различными языками программирования и технологиями.</p>
-		<p class="mb-0">Я готов поделиться своими знаниями и опытом с вами, помогая вам улучшить ваши навыки программирования и достичь своих целей. Рад быть вашим гидом в мире разработки программного обеспечения!</p>
-	</div>
+  <section class="mx-auto max-w-3xl py-12">
+    <h2 class="display text-head text-ink">Who I am</h2>
+    <p class="mt-6 text-lede text-muted">
+      I've spent my life moving between disciplines, places and ways of
+      understanding the world — from computers and software to teaching,
+      photography, independent projects and travel. Today I work across code,
+      cameras and education, building software and practical tools, creating
+      learning resources, and photographing people, streets and everyday life.
+    </p>
+    <p class="mt-4 text-lede text-muted">
+      What connects it all is a desire to understand things firsthand, make
+      something meaningful from what I discover, and share the result with
+      others.
+    </p>
+  </section>
 
-	<h3 class="text-4xl lg:text-5xl text-left block py-14 border-b-2 border-black">Новые статьи</h3>
-	<div>
-		{
-			articles.map((note, index) => (
-				<div class=`lg:flex ${index < articles.length - 1 ? "border-b border-dashed border-slate-500" : "border-b-2 border-solid border-black"} py-4 items-center`>
-					<div class="lg:w-9/12 w-full pb-0 pt-0">
-						<a href=`/articles/${note.slug}/` class="text-xl no-underline hover:underline">{note.data.title}</a>
-					</div>
-					<div class="lg:w-3/12 mt-4 lg:mt-0 w-full lg:text-right pb-0 pt-0">
-						{
-							note.data.categories.map((category) => (
-									<a href=`/articles/categories/${category}/` class="bg-gray-200 px-3 py-1 mr-2 no-underline text-sm">
-										{categoriesArticles[category]['title']}
-									</a>
-								)
-							)
-						}
-					</div>
-				</div>
-			))
-		}
-	</div>
+  <section class="py-12">
+    <h2 class="display text-head text-ink text-center">What I do</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2">
+      {work.map((w) => (
+        <article class="rounded-2xl border border-rule p-6">
+          <h3 class="text-lg font-semibold text-ink">{w.title}</h3>
+          <p class="mt-2 text-muted">{w.body}</p>
+        </article>
+      ))}
+    </div>
+  </section>
 
-	<div class="text-center p-10">
-		<a href="/articles/" class="text-2xl  block underline ">Все статьи</a>
-	</div>
-	  
-	  <h3 class="text-4xl lg:text-5xl  text-left block py-14   border-b-2 border-t-2 border-solid border-black">Онлайн-курсы<br> по IT-профессиям</h3>
-	  <div class="grid grid-cols-1 gap-10 courses mt-10 mb-10">
-		    <div class="p-10 border-2 border-black rounded">
-				<a class="text-2xl  mb-6 block underline" href="/courses/javascript-basic/">JavaScript Базовый уровень</a>
-				<p><strong>В курс входят</strong>:<br> 231 урок, 861 тест, 237 интерактивных задач</p>
-				<p>
-					Самый полный курс по JavaScript для начинающих программистов! Этот курс идеально подходит для программистов, которые хотят изучить основы языка программирования JavaScript. В ходе курса вы узнаете основные концепции языка, включая переменные, типы данных, условные конструкции, циклы, функции и объекты. Курс также включает в себя большое количество практических заданий, которые помогут закрепить полученные знания.
-				</p>
-			</div>
-			<div class="p-10 border-2 border-black rounded">				
-				<a class="text-2xl  mb-6 block underline" href="/courses/javascript-advanced/">JavaScript Продвинутый уровень</a>
-				<p><strong>В курс входят</strong>:<br> 173 урока, 817 тестов, 155 интерактивных задач</p>
-				<p>
-					Этот курс представляет следующий этап вашего путешествия в мире разработки приложений на JavaScript. Если вы владеете основами и стремитесь глубже освоить продвинутые концепции и методы, то этот курс именно для вас. Обширные практические задания позволят вам закрепить и применить знания на практике. Вы также столкнетесь с разнообразными тестовыми и классическими задачами, которые часто встречаются на собеседованиях в ведущих компаниях, включая Google, Amazon, Apple, Twitter и Microsoft.			
-				</p>
-			</div>
-			<div class="p-10 border-2 border-black rounded">
-				<a class="text-2xl  mb-6 block underline" href="/courses/javascript-trainer/">JavaScript Тренажер</a>
-				<p><b>В курс входят</b>:<br> 364 интерактивные задачи</p>
-				<p class="">
-					Курс включает в себя разнообразные практические задачи по программированию, которые помогут улучшить ваш уровень программирования на JavaScript. Вы столкнетесь как с классическими задачами, так и с теми, которые встречаются на собеседованиях в таких крупных компаниях, как Google, Amazon, Apple, Twitter и Microsoft. Это позволит вам разносторонне развить навыки работы с переменными, типами данных, условными конструкциями, циклами, функциями, объектами и различными алгоритмами.
-				</p>
-			</div>
-		</div>
-		<div class="text-center  border-t-2 border-black py-10 items-center">
-			<a href="/courses/" class="text-2xl  block underline">Все курсы</a>
-		</div>
-	</div>
-</Layout>
+  <section class="mx-auto max-w-3xl py-12 text-center">
+    <h2 class="display text-head text-ink">Explore more</h2>
+    <p class="mt-4 text-lede text-muted">
+      Projects, writing, photography and courses all live on my main website. My
+      code is open source on GitHub.
+    </p>
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+      <a href={SITE.mainSite} class="btn btn-accent" rel="noopener">
+        Go to sergeyromanenko.com
+      </a>
+      <a href={SITE.github} class="btn btn-secondary" rel="noopener">
+        Browse repositories
+      </a>
+    </div>
+  </section>
+</BaseLayout>

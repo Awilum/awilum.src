@@ -1,0 +1,77 @@
+---
+import { SITE } from '@/lib/site.ts';
+import { buildSeo } from '@/lib/seo.ts';
+import '@/styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  path: string;
+  type?: 'website' | 'article';
+  jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
+  image?: string;
+}
+
+const {
+  title = SITE.title,
+  description = SITE.description,
+  path,
+  type = 'website',
+  jsonLd,
+  image,
+} = Astro.props;
+
+const seo = buildSeo({ title, description, path, type, jsonLd, image });
+const ld = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{seo.title}</title>
+    <meta name="description" content={seo.description} />
+    <link rel="canonical" href={seo.canonical} />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,400..600;1,14..32,400..600&family=IBM+Plex+Mono:wght@400&display=swap"
+    />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+
+    <meta property="og:type" content={seo.type} />
+    <meta property="og:title" content={seo.title} />
+    <meta property="og:description" content={seo.description} />
+    <meta property="og:url" content={seo.canonical} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:image" content={seo.image} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={seo.title} />
+    <meta name="twitter:description" content={seo.description} />
+    <meta name="twitter:image" content={seo.image} />
+
+    {ld.map((d) => (
+      <script type="application/ld+json" set:html={JSON.stringify(d)} />
+    ))}
+    <slot name="head" />
+  </head>
+  <body class="min-h-screen bg-paper text-ink">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:text-sm focus:text-paper">Skip to content</a>
+    <main id="main-content" class="mx-auto w-full max-w-page px-5 sm:px-8 lg:px-12 pt-10 sm:pt-14 lg:pt-16">
+      <slot />
+    </main>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-php.min.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-yaml.min.js"></script>
+    <script is:inline>if (window.Prism) Prism.highlightAll();</script>
+  </body>
+</html>
