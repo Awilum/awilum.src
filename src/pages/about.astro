@@ -464,30 +464,6 @@ const jsonLd = [person, aboutPage, breadcrumb];
       </div>
     </section>
 
-    <section class="mt-20 sm:mt-28" aria-labelledby="projects">
-      <p class="label-eyebrow">Selected projects</p>
-      <h2 id="projects" class="display mt-5 sm:mt-6 max-w-3xl text-head">
-        Work that can be examined, reused and improved.
-      </h2>
-      <div class="mt-8 border-t border-line">
-        {projects.map((project) => (
-          <div class="grid grid-cols-1 gap-3 border-b border-line py-7 sm:py-8 lg:grid-cols-12 lg:gap-8">
-            <p class="meta-mono text-label lg:col-span-2">{project.role}</p>
-            <div class="lg:col-span-4">
-              <h3 class="text-[1.0625rem] font-medium leading-snug text-ink">
-                <a href={project.repo} class="link-quiet" rel="noopener">
-                  {project.name}
-                </a>
-              </h3>
-            </div>
-            <p class="max-w-measure-wide text-pretty text-[1rem] leading-relaxed text-muted lg:col-span-6">
-              {project.note}
-            </p>
-          </div>
-        ))}
-      </div>
-    </section>
-
     <section class="mt-20 sm:mt-28" aria-labelledby="colophon">
       <p class="label-eyebrow">Colophon</p>
       <h2 id="colophon" class="display mt-5 sm:mt-6 max-w-3xl text-head">
