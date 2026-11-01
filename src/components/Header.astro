@@ -1,0 +1,311 @@
+---
+import { NAV_LINKS } from '@/lib/routes';
+import { SITE } from '@/lib/site';
+
+/**
+ * The masthead.
+ *
+ * Read as the top of a printed page rather than as an app bar: a wordmark on
+ * the left, the section list on the right in small mono capitals, and a single
+ * hairline underneath. The active section is marked by a terracotta rule under
+ * the word rather than by a filled pill, so the navigation stays quiet and the
+ * page keeps the upper-left corner for the headline.
+ *
+ * Below `md` the section list moves into a full-screen menu. Six sections plus
+ * a wordmark do not fit a phone width, and scrolling the masthead sideways hid
+ * links outside the viewport instead of making them reachable. The dialog is
+ * native: the browser traps focus and makes the page behind it inert, while the
+ * script below locks scrolling and restores both the page position and focus.
+ */
+
+/** `/courses/java/` → `/courses`; the home page stays `/`. */
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href: string): boolean => {
+  const section = href.replace(/\/$/, '');
+  return currentPath === section || currentPath.startsWith(`${section}/`);
+};
+
+/** True on any inner page, where the masthead should be a slim band. */
+const isHome = currentPath === '/';
+---
+
+<header
+  class:list={[
+    'sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur-md',
+    isHome ? 'bg-paper/70' : '',
+  ]}
+  data-site-header
+>
+  <div
+    class="mx-auto flex max-w-page items-center justify-between gap-4 px-5 py-3.5 sm:px-8 sm:py-4 lg:px-12"
+  >
+    <a
+      href="/"
+      class="group flex shrink-0 items-baseline gap-2.5"
+      aria-label={`${SITE.name} — home`}
+    >
+      <span
+        class="display translate-y-px text-[1.375rem] leading-none tracking-[-0.01em] text-ink transition-colors duration-200 group-hover:text-accent"
+        aria-hidden="true"
+      >
+        Sergey Romanenko
+      </span>
+    </a>
+
+    <nav
+      id="primary-navigation"
+      aria-label="Primary navigation"
+      class="hidden md:block"
+    >
+      <ul class="flex items-center gap-x-2" role="list">
+        {
+          NAV_LINKS.map(link => {
+            const active = isActive(link.href);
+            return (
+              <li>
+                <a
+                  href={link.href}
+                  aria-current={active ? 'page' : undefined}
+                  class:list={[
+                    'label-mono relative block px-1.5 py-1 transition-colors duration-200 ease-out-quiet',
+                    active ? 'text-accent' : 'text-label hover:text-ink',
+                  ]}
+                >
+                  {link.label}
+                  <span
+                    class:list={[
+                      'absolute inset-x-1.5 -bottom-0.5 block h-px origin-left transition-transform duration-250 ease-out-quiet',
+                      active ? 'scale-x-100 bg-accent' : 'scale-x-0 bg-accent',
+                    ]}
+                    aria-hidden="true"
+                  />
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </nav>
+
+    <button
+      type="button"
+      class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-md text-ink transition-colors duration-200 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:hidden"
+      aria-label="Open menu"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      data-menu-trigger
+    >
+      <svg
+        class="h-6 w-6"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        aria-hidden="true"
+      >
+        <path stroke-linecap="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
+      </svg>
+    </button>
+  </div>
+
+  <dialog
+    id="mobile-menu"
+    class="mobile-menu md:hidden"
+    aria-label="Site menu"
+    data-menu-dialog
+  >
+    <div
+      class="flex min-h-[100dvh] flex-col px-5 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[max(0.875rem,env(safe-area-inset-top))] sm:px-8"
+    >
+      <div class="flex items-center justify-between border-b border-line pb-3">
+        <a
+          href="/"
+          class="display translate-y-px text-[1.375rem] leading-none tracking-[-0.01em] text-ink transition-colors duration-200 hover:text-accent"
+        >
+          Sergey Romanenko
+        </a>
+        <button
+          type="button"
+          class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-md text-ink transition-colors duration-200 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          aria-label="Close menu"
+          data-menu-close
+        >
+          <svg
+            class="h-6 w-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            aria-hidden="true"
+          >
+            <path stroke-linecap="round" d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
+      </div>
+
+      <nav aria-label="Mobile navigation" class="flex-1 pt-6">
+        <ul role="list" class="flex flex-col">
+          {
+            NAV_LINKS.map((link, index) => {
+              const active = isActive(link.href);
+              return (
+                <li>
+                  <a
+                    href={link.href}
+                    aria-current={active ? 'page' : undefined}
+                    class:list={[
+                      'group flex min-h-14 items-center justify-between gap-4 border-b border-line py-3 transition-colors duration-200',
+                      active ? 'text-accent' : 'text-ink hover:text-accent',
+                    ]}
+                  >
+                    <span class="display text-[1.75rem] leading-none tracking-[-0.01em]">
+                      {link.label}
+                    </span>
+                    <span
+                      class:list={[
+                        'label-mono tabular-nums transition-colors duration-200',
+                        active ? 'text-accent' : 'text-label group-hover:text-muted',
+                      ]}
+                      aria-hidden="true"
+                    >
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                  </a>
+                </li>
+              );
+            })
+          }
+        </ul>
+      </nav>
+
+      <p class="meta-mono text-label">
+        {SITE.name} · Web, photography and code
+      </p>
+    </div>
+  </dialog>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+  const dialog = header?.querySelector<HTMLDialogElement>('[data-menu-dialog]');
+  const trigger = header?.querySelector<HTMLButtonElement>('[data-menu-trigger]');
+  const closeButton = header?.querySelector<HTMLButtonElement>('[data-menu-close]');
+
+  if (header && dialog && trigger) {
+    let isOpen = false;
+    let scrollY = 0;
+
+    /**
+     * A modal dialog already makes the page inert, but iOS Safari will still
+     * move the page under a touch drag unless the body is taken out of flow.
+     * The negative offset keeps the current view in place while it is fixed.
+     */
+    const lockScroll = (): void => {
+      scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
+    };
+
+    const unlockScroll = (): void => {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
+      // Restoring the reading position is not a navigation: animating it would
+      // make the page slide after the menu has already gone.
+      window.scrollTo({ top: scrollY, behavior: 'instant' });
+    };
+
+    const setExpanded = (expanded: boolean): void => {
+      trigger.setAttribute('aria-expanded', String(expanded));
+    };
+
+    const openMenu = (): void => {
+      if (isOpen) return;
+      isOpen = true;
+      lockScroll();
+      dialog.showModal();
+      setExpanded(true);
+      closeButton?.focus();
+    };
+
+    const closeMenu = (restoreFocus = true): void => {
+      if (!isOpen) return;
+      isOpen = false;
+      setExpanded(false);
+      if (dialog.open) dialog.close();
+      unlockScroll();
+      if (restoreFocus) trigger.focus();
+    };
+
+    trigger.addEventListener('click', openMenu);
+    closeButton?.addEventListener('click', () => closeMenu());
+
+    // Escape fires `cancel` before the dialog closes. Taking it over lets the
+    // page position and focus be restored in the same order as the close button.
+    dialog.addEventListener('cancel', (event) => {
+      event.preventDefault();
+      closeMenu();
+    });
+
+    // A dialog closed by the browser (for example a form method) must still
+    // release the body, otherwise the page is left unable to scroll.
+    dialog.addEventListener('close', () => {
+      if (!isOpen) return;
+      isOpen = false;
+      setExpanded(false);
+      unlockScroll();
+    });
+
+    // Follow a section link without restoring focus to a button that is about
+    // to be replaced by the next document.
+    dialog.addEventListener('click', (event) => {
+      const target = event.target as Element | null;
+      if (target?.closest('a[href]')) closeMenu(false);
+    });
+
+    const desktop = window.matchMedia('(min-width: 768px)');
+    const closeOnDesktop = (event: MediaQueryListEvent): void => {
+      if (event.matches) closeMenu(false);
+    };
+    if (typeof desktop.addEventListener === 'function') {
+      desktop.addEventListener('change', closeOnDesktop);
+    } else {
+      desktop.addListener(closeOnDesktop);
+    }
+
+    // Safari restores an open dialog from the back-forward cache. It must not
+    // come back with the body still locked.
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) closeMenu(false);
+    });
+  }
+</script>
+
+<style>
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    overscroll-behavior: contain;
+  }
+
+  .mobile-menu::backdrop {
+    background: var(--color-paper);
+  }
+</style>

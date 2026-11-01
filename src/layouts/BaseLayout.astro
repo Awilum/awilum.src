@@ -1,6 +1,8 @@
 ---
 import { SITE } from '@/lib/site.ts';
 import { buildSeo } from '@/lib/seo.ts';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
 import '@/styles/global.css';
 
 interface Props {
@@ -63,9 +65,11 @@ const ld = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
   </head>
   <body class="min-h-screen bg-paper text-ink">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:text-sm focus:text-paper">Skip to content</a>
+    <Header />
     <main id="main-content" class="mx-auto w-full max-w-page px-5 sm:px-8 lg:px-12 pt-10 sm:pt-14 lg:pt-16">
       <slot />
     </main>
+    <Footer />
     <script is:inline src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
     <script is:inline src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-php.min.js"></script>
     <script is:inline src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>

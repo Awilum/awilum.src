@@ -1,0 +1,98 @@
+---
+import { SITE } from '@/lib/site';
+
+const year = new Date().getFullYear();
+---
+
+<!--
+  A magazine colophon rather than a link dump: the identity set in the display
+  serif, the section list as a running index, the verified profiles last, and
+  the legal line as a small mono marginal note. One dark band closes the site —
+  the only inverted surface outside the lightbox — so the last thing on a page
+  is a deliberate stop rather than a fade-out.
+-->
+<footer class="mt-28 border-t border-rule sm:mt-36">
+  <div class="mx-auto max-w-page px-5 sm:px-8 lg:px-12">
+    <div class="grid grid-cols-1 gap-12 py-14 sm:grid-cols-2 sm:py-16 lg:grid-cols-12 lg:gap-8 lg:py-20">
+      <div class="lg:col-span-5">
+        <p class="display text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.05] tracking-[-0.015em]">
+          Awilum
+        </p>
+        <p class="mt-4 max-w-sm text-[1rem] leading-relaxed text-muted text-pretty">
+          The developer portfolio of Sergey Romanenko. Open-source libraries,
+          tools, content-management systems, and the code behind the courses,
+          photography, and publications on
+          <a href={SITE.mainSite} class="link-quiet" rel="noopener">
+            sergeyromanenko.com
+          </a>
+          .
+        </p>
+      </div>
+
+      <nav aria-label="Footer sections" class="lg:col-span-3 lg:col-start-7">
+        <p class="label-eyebrow">Sections</p>
+        <ul class="mt-4 flex flex-col" role="list">
+          <li>
+            <a
+              href="/about/"
+              class="link-quiet inline-block py-1 text-[0.9375rem] leading-relaxed text-muted transition-colors duration-200 hover:text-ink"
+            >
+              About
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="lg:col-span-3">
+        <p class="label-eyebrow">Elsewhere</p>
+        <ul class="mt-4 flex flex-col" role="list">
+          <li>
+            <a
+              href={SITE.github}
+              class="group flex items-baseline justify-between gap-3 py-1 text-[0.9375rem] leading-relaxed text-muted transition-colors duration-200 hover:text-ink"
+              target="_blank"
+              rel="noreferrer me"
+            >
+              <span class="link-quiet">GitHub</span>
+              <span class="meta-mono text-label transition-colors group-hover:text-muted">
+                @Awilum
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://stepik.org/users/awilum"
+              class="group flex items-baseline justify-between gap-3 py-1 text-[0.9375rem] leading-relaxed text-muted transition-colors duration-200 hover:text-ink"
+              target="_blank"
+              rel="noreferrer me"
+            >
+              <span class="link-quiet">Stepik</span>
+              <span class="meta-mono text-label transition-colors group-hover:text-muted">
+                @awilum
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://awilum.t.me"
+              class="group flex items-baseline justify-between gap-3 py-1 text-[0.9375rem] leading-relaxed text-muted transition-colors duration-200 hover:text-ink"
+              target="_blank"
+              rel="noreferrer me"
+            >
+              <span class="link-quiet">Telegram</span>
+              <span class="meta-mono text-label transition-colors group-hover:text-muted">
+                @awilum
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-2 border-t border-line py-7 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+      <p class="meta-mono text-label">
+        © {year} All rights are reserved by Sergey Romanenko.
+      </p>
+    </div>
+  </div>
+</footer>

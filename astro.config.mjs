@@ -8,8 +8,8 @@ export default defineConfig({
   site: SITE.url,
   output: 'static',
   devToolbar: { enabled: false },
-  outDir: SITE_OUTPUT_DIR,
-  build: { format: 'directory', emptyOutDir: false },
+  outDir: './dist',
+  build: { emptyOutDir: false },
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],

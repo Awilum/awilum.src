@@ -1,0 +1,84 @@
+{
+  "schema": "awilum.github.io/about-stats/1",
+  "retrievedAt": "2026-11-01T07:52:17.687Z",
+  "sources": [
+    {
+      "source": "GitHub",
+      "url": "https://api.github.com/users/Awilum",
+      "status": "ok",
+      "retrievedAt": "2026-11-01T07:52:18.347Z"
+    },
+    {
+      "source": "Stepik",
+      "url": "https://stepik.org/api/users/561566563",
+      "status": "ok",
+      "retrievedAt": "2026-11-01T07:52:18.347Z"
+    },
+    {
+      "source": "StepStat",
+      "url": "https://stepstat.ru/user/561566563",
+      "status": "ok",
+      "retrievedAt": "2026-11-01T07:52:17.746Z"
+    },
+    {
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/in/sergey-romanenko",
+      "status": "unavailable",
+      "retrievedAt": "2026-10-31T19:22:02.605Z"
+    }
+  ],
+  "github": {
+    "username": "Awilum",
+    "name": "Sergey Romanenko",
+    "publicRepos": 122,
+    "publicGists": 32,
+    "followers": 240,
+    "following": 146,
+    "memberSince": "2010-11-11T09:55:05Z",
+    "bio": "Nomad Explorer & Digital Creator.",
+    "blog": "https://sergeyromanenko.com"
+  },
+  "stepik": {
+    "userId": 561566563,
+    "fullName": "Sergey Romanenko",
+    "isAuthor": true,
+    "reputation": 2991659,
+    "reputationRank": 32,
+    "knowledge": 159,
+    "knowledgeRank": 1206399,
+    "createdCoursesCount": 26,
+    "createdLessonsCount": 1546,
+    "issuedCertificatesCount": 6885,
+    "followersCount": 57883,
+    "solvedStepsCount": 159,
+    "joinDate": "2022-12-09T15:17:11Z",
+    "city": null,
+    "shortBio": "Автор интерактивных курсов и тренажеров по JavaScript, Python, Java, C#, SQL, GO, Kotlin, PHP. Более 70 000 студентов."
+  },
+  "stepStat": {
+    "userId": 561566563,
+    "metrics": {
+      "createdCourses": 26,
+      "lessons": 1546,
+      "quizzes": 2834,
+      "codeTasks": 4260,
+      "certificatesIssued": 6884,
+      "reviews": 1358,
+      "students": 73235,
+      "followers": 57881,
+      "reputation": 2991599,
+      "knowledge": 159
+    },
+    "awards": [
+      {
+        "year": "2023",
+        "nomination": "Sergey Romanenko: Прорыв года"
+      },
+      {
+        "year": "2023",
+        "nomination": "Sergey Romanenko: Лучший платный курс"
+      }
+    ]
+  },
+  "linkedIn": null
+}
