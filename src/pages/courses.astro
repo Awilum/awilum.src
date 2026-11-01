@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '@/lib/site.ts';
+
+const stats = [
+  { value: '26', label: 'Published courses', note: 'online courses released' },
+  {
+    value: '72,000+',
+    label: 'Student enrollments',
+    note: 'learners across the catalogue',
+  },
+  { value: '1,343', label: 'Learner reviews', note: 'feedback from students' },
+  { value: '4.86', label: 'Average rating', note: 'out of 5' },
+  {
+    value: '6,756',
+    label: 'Certificates issued',
+    note: 'to course completers',
+  },
+  { value: '1,090', label: 'Lessons developed', note: 'across the catalogue' },
+  {
+    value: '6',
+    label: 'Educational programs',
+    note: 'structured learning paths',
+  },
+];
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Courses',
+      item: `${SITE.url}/courses/`,
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Online Courses | Sergey Romanenko"
+  description="An overview of the online programming courses created by Sergey Romanenko (Awilum): 26 published courses, 72,000+ enrollments, and a 4.86 average rating. Explore the complete catalogue on sergeyromanenko.com."
+  path="/courses/"
+  jsonLd={breadcrumb}
+>
+  <article>
+    <header class="w-full pb-12 pt-10 sm:pb-16 sm:pt-14">
+      <p class="label-eyebrow">Education</p>
+      <h1 class="display mt-5 sm:mt-6 text-title">Online courses</h1>
+      <p class="standfirst mt-5 sm:mt-6 max-w-3xl">
+        I build and teach interactive programming courses: SQL, JavaScript,
+        Python, PHP, Go, Kotlin, Java, C# and more on Stepik, with a focus on
+        long sequences of problems to solve rather than videos to sit through.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a
+          href="https://sergeyromanenko.com/courses"
+          class="btn btn-accent"
+          rel="noopener"
+        >
+          Explore the full catalogue →
+        </a>
+      </div>
+    </header>
+
+    <section class="mt-10 sm:mt-14" aria-labelledby="statistics">
+      <p class="label-eyebrow">The record</p>
+      <h2 id="statistics" class="display mt-5 sm:mt-6 max-w-3xl text-head">
+        Education in numbers.
+      </h2>
+      <p class="standfirst mt-5 sm:mt-6 max-w-3xl">
+        A concise overview of my educational work. The complete course
+        descriptions, syllabi, and enrollment details live on the main website.
+      </p>
+      <div class="mt-8 border-t border-line">
+        {stats.map((s) => (
+          <div class="grid grid-cols-1 gap-3 border-b border-line py-7 sm:py-8 lg:grid-cols-12 lg:gap-8">
+            <p class="meta-mono text-label lg:col-span-3">{s.label}</p>
+            <div class="lg:col-span-3">
+              <p class="font-mono text-2xl text-ink">{s.value}</p>
+            </div>
+            <p class="text-[1rem] leading-relaxed text-muted lg:col-span-6">
+              {s.note}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-20 sm:mt-28" aria-labelledby="explore">
+      <p class="label-eyebrow">Continue</p>
+      <h2 id="explore" class="display mt-5 sm:mt-6 max-w-3xl text-head">
+        Browse every course on the main site.
+      </h2>
+      <p class="standfirst mt-5 sm:mt-6 max-w-3xl">
+        Course catalogues, descriptions, pricing, and enrollment are maintained
+        on sergeyromanenko.com, the authoritative home for my educational work.
+      </p>
+      <div class="mt-8">
+        <a
+          href="https://sergeyromanenko.com/courses"
+          class="btn btn-accent"
+          rel="noopener"
+        >
+          Visit sergeyromanenko.com/courses
+        </a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
