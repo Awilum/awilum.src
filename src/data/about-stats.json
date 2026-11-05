@@ -1,24 +1,24 @@
 {
   "schema": "awilum.github.io/about-stats/1",
-  "retrievedAt": "2026-11-02T11:31:52.755Z",
+  "retrievedAt": "2026-11-05T11:20:49.272Z",
   "sources": [
     {
       "source": "GitHub",
       "url": "https://api.github.com/users/Awilum",
       "status": "ok",
-      "retrievedAt": "2026-11-02T11:31:53.003Z"
+      "retrievedAt": "2026-11-05T11:20:49.663Z"
     },
     {
       "source": "Stepik",
       "url": "https://stepik.org/api/users/561566563",
       "status": "ok",
-      "retrievedAt": "2026-11-02T11:31:53.652Z"
+      "retrievedAt": "2026-11-05T11:20:50.140Z"
     },
     {
       "source": "StepStat",
       "url": "https://stepstat.ru/user/561566563",
       "status": "ok",
-      "retrievedAt": "2026-11-02T11:31:52.815Z"
+      "retrievedAt": "2026-11-05T11:20:49.385Z"
     },
     {
       "source": "LinkedIn",
@@ -32,7 +32,7 @@
     "name": "Sergey Romanenko",
     "publicRepos": 117,
     "publicGists": 32,
-    "followers": 240,
+    "followers": 241,
     "following": 146,
     "memberSince": "2010-11-11T09:55:05Z",
     "bio": "Explorer · Photographer · Creator · Engineer",
@@ -42,14 +42,14 @@
     "userId": 561566563,
     "fullName": "Sergey Romanenko",
     "isAuthor": true,
-    "reputation": 2994119,
+    "reputation": 3000418,
     "reputationRank": 32,
     "knowledge": 159,
     "knowledgeRank": 1206399,
     "createdCoursesCount": 26,
     "createdLessonsCount": 1546,
-    "issuedCertificatesCount": 6897,
-    "followersCount": 57911,
+    "issuedCertificatesCount": 6925,
+    "followersCount": 58035,
     "solvedStepsCount": 159,
     "joinDate": "2022-12-09T15:17:11Z",
     "city": null,
@@ -62,11 +62,11 @@
       "lessons": 1546,
       "quizzes": 2834,
       "codeTasks": 4260,
-      "certificatesIssued": 6891,
-      "reviews": 1359,
-      "students": 73255,
-      "followers": 57889,
-      "reputation": 2992866,
+      "certificatesIssued": 6923,
+      "reviews": 1371,
+      "students": 73458,
+      "followers": 58027,
+      "reputation": 3000071,
       "knowledge": 159
     },
     "awards": [
