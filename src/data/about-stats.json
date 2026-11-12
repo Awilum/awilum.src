@@ -1,24 +1,24 @@
 {
   "schema": "awilum.github.io/about-stats/1",
-  "retrievedAt": "2026-11-09T11:56:22.868Z",
+  "retrievedAt": "2026-11-12T11:38:22.962Z",
   "sources": [
     {
       "source": "GitHub",
       "url": "https://api.github.com/users/Awilum",
       "status": "ok",
-      "retrievedAt": "2026-11-09T11:56:23.038Z"
+      "retrievedAt": "2026-11-12T11:38:23.246Z"
     },
     {
       "source": "Stepik",
       "url": "https://stepik.org/api/users/561566563",
       "status": "ok",
-      "retrievedAt": "2026-11-09T11:56:23.703Z"
+      "retrievedAt": "2026-11-12T11:38:24.031Z"
     },
     {
       "source": "StepStat",
       "url": "https://stepstat.ru/user/561566563",
       "status": "ok",
-      "retrievedAt": "2026-11-09T11:56:22.924Z"
+      "retrievedAt": "2026-11-12T11:38:23.023Z"
     },
     {
       "source": "LinkedIn",
@@ -32,7 +32,7 @@
     "name": "Sergey Romanenko",
     "publicRepos": 117,
     "publicGists": 32,
-    "followers": 242,
+    "followers": 241,
     "following": 146,
     "memberSince": "2010-11-11T09:55:05Z",
     "bio": "Explorer · Photographer · Creator · Engineer",
@@ -42,14 +42,14 @@
     "userId": 561566563,
     "fullName": "Sergey Romanenko",
     "isAuthor": true,
-    "reputation": 3010266,
+    "reputation": 3016468,
     "reputationRank": 32,
     "knowledge": 159,
     "knowledgeRank": 1206399,
     "createdCoursesCount": 26,
-    "createdLessonsCount": 1546,
-    "issuedCertificatesCount": 6967,
-    "followersCount": 58182,
+    "createdLessonsCount": 1548,
+    "issuedCertificatesCount": 7004,
+    "followersCount": 58313,
     "solvedStepsCount": 159,
     "joinDate": "2022-12-09T15:17:11Z",
     "city": null,
@@ -59,14 +59,14 @@
     "userId": 561566563,
     "metrics": {
       "createdCourses": 26,
-      "lessons": 1546,
-      "quizzes": 2834,
-      "codeTasks": 4260,
-      "certificatesIssued": 6960,
-      "reviews": 1376,
-      "students": 73662,
-      "followers": 58173,
-      "reputation": 3008776,
+      "lessons": 1548,
+      "quizzes": 3672,
+      "codeTasks": 4550,
+      "certificatesIssued": 6994,
+      "reviews": 1381,
+      "students": 73894,
+      "followers": 58302,
+      "reputation": 3016102,
       "knowledge": 159
     },
     "awards": [
