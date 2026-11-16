@@ -1,24 +1,24 @@
 {
   "schema": "awilum.github.io/about-stats/1",
-  "retrievedAt": "2026-11-12T11:38:22.962Z",
+  "retrievedAt": "2026-11-16T11:52:49.380Z",
   "sources": [
     {
       "source": "GitHub",
       "url": "https://api.github.com/users/Awilum",
       "status": "ok",
-      "retrievedAt": "2026-11-12T11:38:23.246Z"
+      "retrievedAt": "2026-11-16T11:52:49.657Z"
     },
     {
       "source": "Stepik",
       "url": "https://stepik.org/api/users/561566563",
       "status": "ok",
-      "retrievedAt": "2026-11-12T11:38:24.031Z"
+      "retrievedAt": "2026-11-16T11:52:50.585Z"
     },
     {
       "source": "StepStat",
       "url": "https://stepstat.ru/user/561566563",
       "status": "ok",
-      "retrievedAt": "2026-11-12T11:38:23.023Z"
+      "retrievedAt": "2026-11-16T11:52:49.437Z"
     },
     {
       "source": "LinkedIn",
@@ -42,14 +42,14 @@
     "userId": 561566563,
     "fullName": "Sergey Romanenko",
     "isAuthor": true,
-    "reputation": 3016468,
+    "reputation": 3023976,
     "reputationRank": 32,
     "knowledge": 159,
     "knowledgeRank": 1206399,
     "createdCoursesCount": 26,
     "createdLessonsCount": 1548,
-    "issuedCertificatesCount": 7004,
-    "followersCount": 58313,
+    "issuedCertificatesCount": 7034,
+    "followersCount": 58414,
     "solvedStepsCount": 159,
     "joinDate": "2022-12-09T15:17:11Z",
     "city": null,
@@ -60,13 +60,13 @@
     "metrics": {
       "createdCourses": 26,
       "lessons": 1548,
-      "quizzes": 3672,
+      "quizzes": 3418,
       "codeTasks": 4550,
-      "certificatesIssued": 6994,
-      "reviews": 1381,
-      "students": 73894,
-      "followers": 58302,
-      "reputation": 3016102,
+      "certificatesIssued": 7031,
+      "reviews": 1389,
+      "students": 74098,
+      "followers": 58403,
+      "reputation": 3023341,
       "knowledge": 159
     },
     "awards": [
