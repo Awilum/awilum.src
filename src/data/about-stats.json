@@ -1,24 +1,24 @@
 {
   "schema": "awilum.github.io/about-stats/1",
-  "retrievedAt": "2026-11-16T11:52:49.380Z",
+  "retrievedAt": "2026-11-19T11:58:25.310Z",
   "sources": [
     {
       "source": "GitHub",
       "url": "https://api.github.com/users/Awilum",
       "status": "ok",
-      "retrievedAt": "2026-11-16T11:52:49.657Z"
+      "retrievedAt": "2026-11-19T11:58:25.528Z"
     },
     {
       "source": "Stepik",
       "url": "https://stepik.org/api/users/561566563",
       "status": "ok",
-      "retrievedAt": "2026-11-16T11:52:50.585Z"
+      "retrievedAt": "2026-11-19T11:58:25.721Z"
     },
     {
       "source": "StepStat",
       "url": "https://stepstat.ru/user/561566563",
       "status": "ok",
-      "retrievedAt": "2026-11-16T11:52:49.437Z"
+      "retrievedAt": "2026-11-19T11:58:25.362Z"
     },
     {
       "source": "LinkedIn",
@@ -32,7 +32,7 @@
     "name": "Sergey Romanenko",
     "publicRepos": 117,
     "publicGists": 32,
-    "followers": 241,
+    "followers": 240,
     "following": 146,
     "memberSince": "2010-11-11T09:55:05Z",
     "bio": "Explorer · Photographer · Creator · Engineer",
@@ -42,14 +42,14 @@
     "userId": 561566563,
     "fullName": "Sergey Romanenko",
     "isAuthor": true,
-    "reputation": 3023976,
+    "reputation": 3029907,
     "reputationRank": 32,
     "knowledge": 159,
     "knowledgeRank": 1206399,
     "createdCoursesCount": 26,
     "createdLessonsCount": 1548,
-    "issuedCertificatesCount": 7034,
-    "followersCount": 58414,
+    "issuedCertificatesCount": 7055,
+    "followersCount": 58499,
     "solvedStepsCount": 159,
     "joinDate": "2022-12-09T15:17:11Z",
     "city": null,
@@ -62,11 +62,11 @@
       "lessons": 1548,
       "quizzes": 3418,
       "codeTasks": 4550,
-      "certificatesIssued": 7031,
+      "certificatesIssued": 7054,
       "reviews": 1389,
-      "students": 74098,
-      "followers": 58403,
-      "reputation": 3023341,
+      "students": 74190,
+      "followers": 58489,
+      "reputation": 3029183,
       "knowledge": 159
     },
     "awards": [
